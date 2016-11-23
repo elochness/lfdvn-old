@@ -1,0 +1,624 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Enterprise
+ *
+ * @ORM\Table(name="enterprise")
+ * @ORM\Entity
+ */
+class Enterprise
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code_postal", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $codePostal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=75, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=15, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", length=15, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $fax;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="monday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $monday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tuesday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $tuesday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wednesday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $wednesday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thursday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $thursday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="friday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $friday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="saturday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $saturday;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sunday", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $sunday;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="latitude", type="float", precision=10, scale=0, nullable=true, unique=false)
+     */
+    private $latitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="longitude", type="float", precision=10, scale=0, nullable=true, unique=false)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contains", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $contains;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Enterprise
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Enterprise
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set codePostal
+     *
+     * @param string $codePostal
+     *
+     * @return Enterprise
+     */
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codePostal
+     *
+     * @return string
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Enterprise
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param string $telephone
+     *
+     * @return Enterprise
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Enterprise
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Enterprise
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set monday
+     *
+     * @param string $monday
+     *
+     * @return Enterprise
+     */
+    public function setMonday($monday)
+    {
+        $this->monday = $monday;
+
+        return $this;
+    }
+
+    /**
+     * Get monday
+     *
+     * @return string
+     */
+    public function getMonday()
+    {
+        return $this->monday;
+    }
+
+    /**
+     * Set tuesday
+     *
+     * @param string $tuesday
+     *
+     * @return Enterprise
+     */
+    public function setTuesday($tuesday)
+    {
+        $this->tuesday = $tuesday;
+
+        return $this;
+    }
+
+    /**
+     * Get tuesday
+     *
+     * @return string
+     */
+    public function getTuesday()
+    {
+        return $this->tuesday;
+    }
+
+    /**
+     * Set wednesday
+     *
+     * @param string $wednesday
+     *
+     * @return Enterprise
+     */
+    public function setWednesday($wednesday)
+    {
+        $this->wednesday = $wednesday;
+
+        return $this;
+    }
+
+    /**
+     * Get wednesday
+     *
+     * @return string
+     */
+    public function getWednesday()
+    {
+        return $this->wednesday;
+    }
+
+    /**
+     * Set thursday
+     *
+     * @param string $thursday
+     *
+     * @return Enterprise
+     */
+    public function setThursday($thursday)
+    {
+        $this->thursday = $thursday;
+
+        return $this;
+    }
+
+    /**
+     * Get thursday
+     *
+     * @return string
+     */
+    public function getThursday()
+    {
+        return $this->thursday;
+    }
+
+    /**
+     * Set friday
+     *
+     * @param string $friday
+     *
+     * @return Enterprise
+     */
+    public function setFriday($friday)
+    {
+        $this->friday = $friday;
+
+        return $this;
+    }
+
+    /**
+     * Get friday
+     *
+     * @return string
+     */
+    public function getFriday()
+    {
+        return $this->friday;
+    }
+
+    /**
+     * Set saturday
+     *
+     * @param string $saturday
+     *
+     * @return Enterprise
+     */
+    public function setSaturday($saturday)
+    {
+        $this->saturday = $saturday;
+
+        return $this;
+    }
+
+    /**
+     * Get saturday
+     *
+     * @return string
+     */
+    public function getSaturday()
+    {
+        return $this->saturday;
+    }
+
+    /**
+     * Set sunday
+     *
+     * @param string $sunday
+     *
+     * @return Enterprise
+     */
+    public function setSunday($sunday)
+    {
+        $this->sunday = $sunday;
+
+        return $this;
+    }
+
+    /**
+     * Get sunday
+     *
+     * @return string
+     */
+    public function getSunday()
+    {
+        return $this->sunday;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param float $latitude
+     *
+     * @return Enterprise
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param float $longitude
+     *
+     * @return Enterprise
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set contains
+     *
+     * @param string $contains
+     *
+     * @return Enterprise
+     */
+    public function setContains($contains)
+    {
+        $this->contains = $contains;
+
+        return $this;
+    }
+
+    /**
+     * Get contains
+     *
+     * @return string
+     */
+    public function getContains()
+    {
+        return $this->contains;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Enterprise
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Enterprise
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block main %}
+    {% for article in articles %}
+        <article>
+            <h2>
+                {{ article.title }}
+            </h2>
+            <div>
+              {{article.contains | raw }}
+            </div>
+
+        </article>
+
+    {% else %}
+        <div class="well">{{ 'article.no_articless_found'|trans }}</div>
+    {% endfor %}
+
+    <div class="navigation text-center">
+        {{ pagerfanta(articles, 'twitter_bootstrap3_translated', { routeName: 'article_index_paginated' }) }}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

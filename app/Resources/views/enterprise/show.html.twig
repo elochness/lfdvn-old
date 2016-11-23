@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/bundles/leaflet/leaflet.css">
+  <script src="/bundles/leaflet/leaflet.js"></script>
+{% endblock %}
+
+
+
+{% block body_id 'blog_post_show' %}
+
+{% block main %}
+
+    <article>
+      <div>
+        <h1>{{ enterprise.name }}</h1>
+
+        <h2>Description</h2>
+        <div class="well">
+          {{ enterprise.contains }}
+        </div>
+
+        <h2>Coordonnées</h2>
+
+        <ul class="fa-ul">
+          <li>
+            <i class="fa-li fa fa-phone" aria-hidden="true"></i> Téléphone :
+            {% if enterprise.telephone %}
+              {{ enterprise.telephone }}
+            {% else %}
+              {{ 'NotDefined' | trans }}
+            {% endif %}
+          </li>
+          <li>
+            <i class="fa-li fa fa-at" aria-hidden="true"></i> Email :
+            {% if enterprise.email %}
+              {{ enterprise.email }}
+            {% else %}
+              {{ 'NotDefined' | trans }}
+            {% endif %}
+          </li>
+          <li>
+            <i class="fa-li fa fa-fax" aria-hidden="true"></i> Fax :
+            {% if enterprise.fax %}
+              {{ enterprise.fax }}
+            {% else %}
+              {{ 'NotDefined' | trans }}
+            {% endif %}
+          </li>
+          <li>
+            <i class="fa-li fa fa-home" aria-hidden="true"></i> Adresse :
+            {{ enterprise.address }} - {{ enterprise.codePostal }} {{ enterprise.city }}
+          </li>
+        </ul>
+
+
+        {% if enterprise.latitude and enterprise.longitude %}
+        <div id="mapid" style="width: 800px; height: 300px;"></div>
+        <script>
+          var mymap = L.map('mapid').setView([{{enterprise.latitude}},{{enterprise.longitude}}], 13);
+
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGZyYW5jb2lzIiwiYSI6ImNpdXpzNjI0czAwYXEzM3A3a25lYTg4bm0ifQ.DC5yUxTcEPwq6IqHdLt1-Q', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery ɠ<a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
+          }).addTo(mymap);
+
+          L.marker([47.0861,-1.4571]).addTo(mymap)
+            .bindPopup('{{ enterprise.name }}')
+            .openPopup();
+        </script>
+        {%endif%}
+
+      </div>
+
+
+
+    </article>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <h2>Horaires</h2>
+    <ul class="list_style_none">
+      <li>
+        {{ 'monday' | trans }} :
+        {% if enterprise.monday %}
+          <span class="{% if enterprise.monday == "Fermé" %}day_red{%endif%}">{{ enterprise.monday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'tuesday' | trans }} :
+        {% if enterprise.tuesday %}
+          <span class="{% if enterprise.tuesday == "Fermé" %}day_red{%endif%}">{{ enterprise.tuesday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'wednesday' | trans }} :
+        {% if enterprise.wednesday %}
+          <span class="{% if enterprise.wednesday == "Fermé" %}day_red{%endif%}">{{ enterprise.wednesday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'thursday' | trans }} :
+        {% if enterprise.thursday %}
+          <span class="{% if enterprise.thursday == "Fermé" %}day_red{%endif%}">{{ enterprise.thursday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'friday' | trans }} :
+        {% if enterprise.friday %}
+          <span class="{% if enterprise.friday == "Fermé" %}day_red{%endif%}">{{ enterprise.friday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'saturday' | trans }} :
+        {% if enterprise.saturday %}
+          <span class="{% if enterprise.saturday == "Fermé" %}day_red{%endif%}">{{ enterprise.saturday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+      <li>
+        {{ 'sunday' | trans }} :
+        {% if enterprise.sunday %}
+          <span class="{% if enterprise.sunday == "Fermé" %}day_red{%endif%}">{{ enterprise.sunday }}</span>
+        {% else %}
+          {{ 'NotDefined' | trans }}
+        {% endif %}
+      </li>
+    </ul>
+
+{% endblock %}

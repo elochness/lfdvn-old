@@ -1,0 +1,162 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Purchase
+ *
+ * @ORM\Table(name="purchase", indexes={@ORM\Index(name="IDX_6117D13B6C755722", columns={"buyer_id"})})
+ * @ORM\Entity
+ */
+class Purchase
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deliveryDate", type="date", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $deliverydate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deliveryHour", type="time", precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $deliveryhour;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="buyer_id", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $buyer;
+
+
+
+    /**
+     * Set deliverydate
+     *
+     * @param \DateTime $deliverydate
+     *
+     * @return Purchase
+     */
+    public function setDeliverydate($deliverydate)
+    {
+        $this->deliverydate = $deliverydate;
+
+        return $this;
+    }
+
+    /**
+     * Get deliverydate
+     *
+     * @return \DateTime
+     */
+    public function getDeliverydate()
+    {
+        return $this->deliverydate;
+    }
+
+    /**
+     * Set createdat
+     *
+     * @param \DateTime $createdat
+     *
+     * @return Purchase
+     */
+    public function setCreatedat($createdat)
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
+    }
+
+    /**
+     * Set deliveryhour
+     *
+     * @param \DateTime $deliveryhour
+     *
+     * @return Purchase
+     */
+    public function setDeliveryhour($deliveryhour)
+    {
+        $this->deliveryhour = $deliveryhour;
+
+        return $this;
+    }
+
+    /**
+     * Get deliveryhour
+     *
+     * @return \DateTime
+     */
+    public function getDeliveryhour()
+    {
+        return $this->deliveryhour;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set buyer
+     *
+     * @param \AppBundle\Entity\User $buyer
+     *
+     * @return Purchase
+     */
+    public function setBuyer(\AppBundle\Entity\User $buyer = null)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    /**
+     * Get buyer
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getBuyer()
+    {
+        return $this->buyer;
+    }
+}

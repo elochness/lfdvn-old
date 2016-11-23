@@ -1,0 +1,36 @@
+easy_admin:
+    entities:
+        EnterpriseDetails:
+            disabled_actions: ['delete', 'new']
+            label: menu.enterprise_details
+            class: AppBundle\Entity\EnterpriseDetails
+            list:
+                title: enterprise.list
+                fields:
+                  - 'name'
+                  - 'address'
+                  - 'codePostal'
+                  - 'city'
+                  - 'telephone'
+                  - 'fax'
+                  - 'email'
+            show:
+                title: enterprise_details.show
+                fields:
+                    - 'name'
+                    - 'address'
+                    - 'codePostal'
+                    - 'city'
+                    - 'telephone'
+                    - 'fax'
+                    - 'email'
+            edit:
+                title: enterprise_details.edit
+                fields:
+                    - 'name'
+                    - 'address'
+                    - 'codePostal'
+                    - 'city'
+                    - 'telephone'
+                    - 'fax'
+                    - 'email'

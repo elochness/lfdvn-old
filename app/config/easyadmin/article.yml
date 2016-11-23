@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Article:
+            label: menu.articles
+            class: AppBundle\Entity\Article
+            list:
+                title: article.list
+                fields:
+                  - 'id'
+                  - 'enabled'
+                  - 'title'
+                  - 'updatedAt'
+                  - 'createdAt'
+            new:
+                title: article.new
+                fields:
+                    - 'enabled'
+                    - 'title'
+                    - { property: 'contains', type: 'ckeditor' }
+            edit:
+                title: article.edit
+                fields:
+                    - 'enabled'
+                    - 'title'
+                    - { property: 'contains', type: 'ckeditor' }

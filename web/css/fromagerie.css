@@ -1,0 +1,37 @@
+h1 {
+  color: red;
+}
+
+.flex {
+  display: flex;
+}
+
+# Product
+
+article {
+  padding-bottom: 200px;
+}
+
+.img_list {
+  margin-right: 20px;
+  width: 250px;
+  height:180px;
+  border: 1px solid #18bc9c;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+     -webkit-box-shadow: #B3B3B3 3px 3px 3px;
+        -moz-box-shadow: #B3B3B3 3px 3px 3px;
+             box-shadow: #B3B3B3 3px 3px 3px;
+}
+
+# Enterprise
+
+.list_style_none {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.day_red {
+  color: #B0413E;
+}

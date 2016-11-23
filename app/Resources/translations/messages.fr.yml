@@ -1,0 +1,167 @@
+# There are two main techniques to fully translate a backend:
+# 1) Define the `label` option for each element and translate those labels in
+#    files like this.
+# 2) Let the backend create the labels for each element and translate those
+#    labels in files like this.
+#
+# The first one is the traditional way of translating Symfony applications, but
+# is very boring and you'll make lots of mistakes. The second one is the way we
+# recommend to translate backends.
+#
+# Both ways are explained in https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/tutorials/i18n.md
+
+# NOTE: since the application is originally developed in English, this
+#       "translation" file looks useless because it doesn't really translate
+#       any content. However, this file is essential to use it as the base for
+#       the translations into other languages.
+
+# The "main menu" is an example of defining the labels explicitly
+# (they are translated following the 1) method)
+# ------------------------------------------------------------------------------
+menu.categories:   Catégories
+menu.measurements: Mesures
+menu.products:     Produits
+menu.articles:     Articles
+menu.customers:    Clients
+menu.purchases:    Achats
+menu.about:        About EasyAdmin
+menu.about.home:   Project Home
+menu.about.docs:   Documentation
+menu.about.issues: Report Issues
+menu.gestion.products: Gestion des produits
+menu.gestion.purchases: Gestion des commandes
+menu.gestion.entreprise: Gestion de l'entreprise
+menu.gestion.users: Gestion des utilisateurs
+menu.enterprise: Entreprise
+menu.enterprise_details: Informations détaillées
+menu.geographic_coordinates: Repères
+menu.schedule: Horaires
+menu.contactus: Nous contacter
+menu.purchase: Commander
+menu.enterprise.desc: Fromagerie/Fermière
+
+# We let EasyAdmin generate the rest of the backend labels
+# (they are translated following the 2) method)
+# ------------------------------------------------------------------------------
+
+# entity names, labels and titles
+Product: Produit
+Products: Produits
+Category: Catégorie
+Categories: Catégories
+Measurement: Mesure
+User: Utilisateur
+Purchase: Commande
+PurchaseItem: Article de la commande
+Article: Article
+Enterprise: Entreprise
+EnterpriseDetails: Informations détaillées
+GeographicCoordinates: geographic_coordinates
+Schedule: Horaires
+
+# entity properties
+
+Description: Description
+EAN-13: EAN-13
+Ean: EAN-13
+Enabled: Publié
+Features: Fonctions
+ID: ID
+Image: Image
+Image file: Fichier Image
+Price: Prix
+Tags: Tags
+
+# help messages
+EAN-13 valid code. Leave empty if unknown.: Valide code EAN-13. Laisser vide si inconnu.
+
+# basic column
+Created at: Créé le
+Updated at: Modifié le
+Name: Nom
+Shortname: Nom court
+NotDefined: Non renseigné
+
+# product column
+Quantity: Quantité
+
+# purchase column
+Deliverydate: Date de livraison
+Deliveryhour: Heure de livraison
+Createdat: Créé le
+Buyer: Acheteur
+
+# article column
+Title: Titre
+
+# user column
+Firstname: Prénom
+Lastname: Nom
+
+# article column
+Contains: Contenu
+
+# enterprise column
+Address: Adresse
+Code postal: Code postal
+City: Ville
+Telephone: Téléphone
+Fax: Fax
+Email: Email
+Latitude: Latitude
+Longitude: Longitude
+
+# schedule column
+monday: Lundi
+tuesday: Mardi
+wednesday: Mercredi
+thursday: Jeudi
+friday: Vendredi
+saturday: Samedi
+sunday: Dimanche
+
+# product views
+product.list: Liste des produits
+product.new:  Ajouter un produit
+product.edit:  Modifier un produit
+products.list.last: Derniers produits
+product.read.more: Plus de détails
+product.show.details: Détails du produit
+
+# category views
+categories.list: Liste des catégories
+category.new:  Ajouter une catégorie
+category.edit:  Modifier une catégorie
+category.show.details: Détails de la catégorie
+
+# measurement views
+measurement.list: Liste des mesures
+measurement.new:  Ajouter une mesure
+measurement.edit:  Modifier une mesure
+measurement.show.details: Détails de la mesure
+
+# article views
+article.list: Liste des articles
+article.new:  Ajouter un article
+article.edit:  Modifier un article
+article.show.details: Détails de l'article
+
+# enterprise views
+enterprise.list: Liste des articles sur l'entreprise
+measurement.new: Ajouter un article sur l'entreprise
+enterprise.edit: Modifier un article sur l'entreprise
+
+# schedule views
+schedule.show: Informations des horaires
+schedule.edit: Modifier les horaires
+schedule.list: Liste des horaires
+
+# enterprise_details views
+enterprise_details.show: Informations détaillées sur l'entreprise
+enterprise_details.edit: Modifier les informations détaillées sur l'entreprise
+enterprise_details.list: Liste des informations détaillées sur l'entreprise
+
+# geographic_coordinates views
+geographic_coordinates.list: Liste des repères
+geographic_coordinates.new: Ajouter un repère
+geographic_coordinates.edit: Modifier un repère

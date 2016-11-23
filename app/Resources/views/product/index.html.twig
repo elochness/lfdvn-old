@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block main %}
+    {% for product in products %}
+        <article class="test">
+            <h2>
+                <a href="{{ path('product_show', { id: product.id }) }}">
+                    {{ product.name }}
+                </a>
+            </h2>
+            <div class="flex">
+              <div>
+                {% if product.image  %}
+                  <img class="img_list" src="{{ product_prefix ~"/"~ product.image }}" width="245" alt="{{ product.name }}" />
+                {% else %}
+                    <img class="img_list" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" />
+                {% endif %}
+              </div>
+              <div>
+                {{ product.description }} <br />
+                Prix : {{ product.price}}
+              </div>
+            </div>
+
+        </article>
+
+    {% else %}
+        <div class="well">{{ 'product.no_products_found'|trans }}</div>
+    {% endfor %}
+
+    <div class="navigation text-center">
+        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <ul>
+    {% for category in categories %}
+        <li>
+          <a href src=""{{ path('product_index', { category: category.id }) }}">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {{ parent() }}
+
+{% endblock %}

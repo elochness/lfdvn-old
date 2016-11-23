@@ -1,0 +1,19 @@
+easy_admin:
+    design:
+        brand_color: '#92ae3f'
+        menu:
+            - { label: menu.gestion.products }
+            - { entity: 'Product', icon: 'barcode' }
+            - { entity: 'Category', icon: 'tag' }
+            - { entity: 'Measurement', icon: 'th' }
+            - { label: menu.gestion.purchases }
+            - { entity: 'Purchase', icon: 'shopping-cart' }
+            - { entity: 'PurchaseItem', icon: 'cart-plus' }
+            - { label: menu.gestion.entreprise }
+            - { entity: 'Article', icon: 'newspaper-o' }
+            - { entity: 'Enterprise', icon: 'industry' }
+            - { entity: 'EnterpriseDetails', params: { action: 'show', id: 1 }, icon: 'sitemap' }
+            - { entity: 'Schedule', params: { action: 'show', id: 1 }, icon: 'calendar' }
+            - { entity: 'GeographicCoordinates', icon: 'map-marker' }
+            - { label: menu.gestion.users }
+            - { entity: 'User', icon: 'user' }
