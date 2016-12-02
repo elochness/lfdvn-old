@@ -26,7 +26,7 @@ class ProductRepository extends EntityRepository
               SELECT p
               FROM AppBundle:Product p
               WHERE p.enabled = true
-              ORDER BY a.updatedAt, a.createdAt DESC
+              ORDER BY p.updatedAt, p.createdAt DESC
           ')
       ;
   }
