@@ -56,7 +56,7 @@ PurchaseItem: Article de la commande
 Article: Article
 Enterprise: Entreprise
 EnterpriseDetails: Informations détaillées
-GeographicCoordinates: geographic_coordinates
+GeographicCoordinates: Repères
 Schedule: Horaires
 
 # entity properties
