@@ -3,20 +3,23 @@
 {% block body_id '_index' %}
 
 {% block main %}
-    {% for article in articles %}
-        <article>
-            <h2>
-                {{ article.title }}
-            </h2>
-            <div>
-              {{article.contains | raw }}
-            </div>
 
-        </article>
+    <div>
+        {% for article in articles %}
+            <article>
+                <h2>
+                    {{ article.title }}
+                </h2>
+                <div>
+                  {{article.contains | raw }}
+                </div>
 
-    {% else %}
-        <div class="well">{{ 'article.no_articless_found'|trans }}</div>
-    {% endfor %}
+            </article>
+
+        {% else %}
+            <div class="well">{{ 'article.no_articless_found'|trans }}</div>
+        {% endfor %}
+    </div>
 
     <div class="navigation text-center">
         {{ pagerfanta(articles, 'twitter_bootstrap3_translated', { routeName: 'article_index_paginated' }) }}
