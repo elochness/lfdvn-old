@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Enterprise;
+use AppBundle\Entity\EnterpriseDetails;
+use AppBundle\Entity\Schedule;
+use AppBundle\Entity\GeographicCoordinates;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -26,17 +28,30 @@ class EnterpriseController extends Controller
     */
     public function showAction()
     {
-        $enterprise = $this->getDoctrine()
-            ->getRepository(Enterprise::class)
+        $enterpriseDetails = $this->getDoctrine()
+            ->getRepository(EnterpriseDetails::class)
             ->findOneById(1);
 
-        if (!$enterprise) {
+        $schedule = $this->getDoctrine()
+            ->getRepository(Schedule::class)
+            ->findOneById(1);
+
+        $geographicsCoordinates = $this->getDoctrine()
+            ->getRepository(GeographicCoordinates::class)
+            ->findAll();
+
+        if (!$enterpriseDetails) {
             throw $this->createNotFoundException(
                 'No information for enterprise.'
             );
         }
 
-        return $this->render('enterprise/show.html.twig', ['enterprise' => $enterprise]);
+        return $this->render('enterprise/show.html.twig',
+        [
+          'enterpriseDetails' => $enterpriseDetails,
+          'schedule' => $schedule,
+          'geographicsCoordinates' => $geographicsCoordinates
+        ]);
     }
 
 }
