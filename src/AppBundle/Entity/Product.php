@@ -7,6 +7,12 @@ namespace AppBundle\Entity;
  */
 class Product
 {
+
+    /**
+     * Element number per page
+     */
+    const NUM_ITEMS = 10;
+
     /**
      * @var string
      */
@@ -371,4 +377,3 @@ class Product
         return $this->measurement;
     }
 }
-

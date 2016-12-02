@@ -33,11 +33,13 @@ class Enterprise
     private $id;
 
     /**
-     * Constructor
+     * Constructor of the Article class.
+     * (Initialize some fields).
      */
-    public function __construct__()
+    public function __construct()
     {
-      $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
