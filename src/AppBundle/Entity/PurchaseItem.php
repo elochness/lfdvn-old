@@ -110,4 +110,3 @@ class PurchaseItem
         return $this->purchase;
     }
 }
-

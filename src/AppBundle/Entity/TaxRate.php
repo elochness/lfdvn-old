@@ -29,5 +29,13 @@ class TaxRate
     private $id;
 
 
+    /**
+     * Get String information of TaxRate
+     *
+     * @return string Name of TaxRate
+     */
+    public function __toString()
+    {
+      return $this->getName();
+    }
 }
-

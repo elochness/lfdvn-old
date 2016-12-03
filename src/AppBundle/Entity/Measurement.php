@@ -110,4 +110,3 @@ class Measurement
         return $this->id;
     }
 }
-

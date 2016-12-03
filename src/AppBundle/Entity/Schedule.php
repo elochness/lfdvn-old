@@ -255,4 +255,3 @@ class Schedule
         return $this->id;
     }
 }
-

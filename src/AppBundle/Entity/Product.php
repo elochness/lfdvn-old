@@ -2,8 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * Product
+ *
+ * @Vich\Uploadable
  */
 class Product
 {
@@ -37,6 +42,12 @@ class Product
      * @var string
      */
     private $image;
+    
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @var boolean
@@ -197,6 +208,24 @@ class Product
     public function getImage()
     {
         return $this->image;
+    }
+    
+    public function setImageFile($image = null)
+    {
+        $this->photoFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+    
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     /**

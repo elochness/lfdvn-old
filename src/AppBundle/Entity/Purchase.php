@@ -139,4 +139,3 @@ class Purchase
         return $this->buyer;
     }
 }
-

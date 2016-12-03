@@ -110,4 +110,3 @@ class GeographicCoordinates
         return $this->id;
     }
 }
-

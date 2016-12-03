@@ -226,4 +226,3 @@ class EnterpriseDetails
         return $this->id;
     }
 }
-
