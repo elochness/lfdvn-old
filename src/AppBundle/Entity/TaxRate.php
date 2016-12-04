@@ -28,6 +28,40 @@ class TaxRate
      */
     private $id;
 
+    /**
+     * Set rate
+     *
+     * @param float $rate
+     *
+     * @return Tax Rate
+     */
+    public function setEnabled($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return rate
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     /**
      * Get String information of TaxRate
@@ -36,6 +70,6 @@ class TaxRate
      */
     public function __toString()
     {
-      return $this->getName();
+      return strval($this->getRate()) . " %";
     }
 }
