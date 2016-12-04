@@ -29,6 +29,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - 'category'
                     - 'measurement'
+                    - 'weight'
                     - 'description'
             edit:
                 title: product.edit
@@ -42,4 +43,5 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - 'category'
                     - 'measurement'
+                    - 'weight'
                     - 'description'
