@@ -32,6 +32,14 @@ class Purchase
      */
     private $buyer;
 
+    /**
+     * Constructor of the Purchase class.
+     * (Initialize some fields).
+     */
+    public function __construct()
+    {
+        $this->createdat = new \DateTime("now");
+    }
 
     /**
      * Set deliverydate
