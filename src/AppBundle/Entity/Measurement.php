@@ -109,4 +109,14 @@ class Measurement
     {
         return $this->id;
     }
+
+    /**
+     * Get String information of measurement
+     *
+     * @return string Name of measurement
+     */
+    public function __toString()
+    {
+      return $this->getName();
+    }
 }
