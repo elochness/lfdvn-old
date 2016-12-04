@@ -84,6 +84,7 @@ NotDefined: Non renseigné
 
 # product column
 Quantity: Quantité
+Weight: Poids
 
 # purchase column
 Deliverydate: Date de livraison
@@ -120,6 +121,9 @@ friday: Vendredi
 saturday: Samedi
 sunday: Dimanche
 
+# tax rate column
+Tax rate: Taux TVA
+
 # product views
 product.list: Liste des produits
 product.new:  Ajouter un produit
@@ -127,6 +131,7 @@ product.edit:  Modifier un produit
 products.list.last: Derniers produits
 product.read.more: Plus de détails
 product.show.details: Détails du produit
+product.no_products_found: Pas de produit disponible
 
 # category views
 categories.list: Liste des catégories
