@@ -35,7 +35,7 @@ class TaxRate
      *
      * @return Tax Rate
      */
-    public function setEnabled($rate)
+    public function setRate($rate)
     {
         $this->rate = $rate;
 
