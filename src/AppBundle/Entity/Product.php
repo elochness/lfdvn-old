@@ -42,7 +42,7 @@ class Product
      * @var string
      */
     private $image;
-    
+
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
      * @var File
@@ -88,6 +88,16 @@ class Product
      * @var \AppBundle\Entity\Measurement
      */
     private $measurement;
+
+    /**
+     * Constructor of the Article class.
+     * (Initialize some fields).
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
 
     /**
@@ -209,7 +219,7 @@ class Product
     {
         return $this->image;
     }
-    
+
     public function setImageFile($image = null)
     {
         $this->photoFile = $image;
@@ -222,7 +232,7 @@ class Product
             $this->updatedAt = new \DateTime('now');
         }
     }
-    
+
     public function getImageFile()
     {
         return $this->imageFile;
