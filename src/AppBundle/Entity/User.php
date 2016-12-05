@@ -2,50 +2,81 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * User
+ *
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
+ * @ORM\Entity
  */
 class User
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
      */
     private $username;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
      * @var array
+     *
+     * @ORM\Column(name="roles", type="json_array", nullable=false)
      */
     private $roles;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
     private $lastname;
 
     /**
-     * @var boolean
+     * @var string
+     *
+     * @ORM\Column(name="cellphone", type="string", length=20, nullable=true)
      */
-    private $isactive;
+    private $cellphone;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     */
+    private $enabled;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
     /**
@@ -193,27 +224,51 @@ class User
     }
 
     /**
-     * Set isactive
+     * Set cellphone
      *
-     * @param boolean $isactive
+     * @param string $cellphone
      *
      * @return User
      */
-    public function setIsactive($isactive)
+    public function setCellphone($cellphone)
     {
-        $this->isactive = $isactive;
+        $this->cellphone = $cellphone;
 
         return $this;
     }
 
     /**
-     * Get isactive
+     * Get cellphone
+     *
+     * @return string
+     */
+    public function getCellphone()
+    {
+        return $this->cellphone;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return User
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
      *
      * @return boolean
      */
-    public function getIsactive()
+    public function getEnabled()
     {
-        return $this->isactive;
+        return $this->enabled;
     }
 
     /**

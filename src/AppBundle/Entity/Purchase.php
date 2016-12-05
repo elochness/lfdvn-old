@@ -2,44 +2,57 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Purchase
+ *
+ * @ORM\Table(name="purchase", indexes={@ORM\Index(name="IDX_6117D13B6C755722", columns={"buyer_id"})})
+ * @ORM\Entity
  */
 class Purchase
 {
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="delivery_date", type="date", nullable=false)
      */
     private $deliveryDate;
 
     /**
      * @var \DateTime
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
+     *
+     * @ORM\Column(name="delivery_hour", type="time", nullable=true)
      */
     private $deliveryHour;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="buyer_id", referencedColumnName="id")
+     * })
      */
     private $buyer;
 
-    /**
-     * Constructor of the Purchase class.
-     * (Initialize some fields).
-     */
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime("now");
-    }
+
 
     /**
      * Set deliveryDate
@@ -66,30 +79,6 @@ class Purchase
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Purchase
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set deliveryHour
      *
      * @param \DateTime $deliveryHour
@@ -111,6 +100,30 @@ class Purchase
     public function getDeliveryHour()
     {
         return $this->deliveryHour;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Purchase
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
