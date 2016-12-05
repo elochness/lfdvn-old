@@ -10,17 +10,17 @@ class Purchase
     /**
      * @var \DateTime
      */
-    private $deliverydate;
+    private $deliveryDate;
 
     /**
      * @var \DateTime
      */
-    private $createdat;
+    private $createdAt;
 
     /**
      * @var \DateTime
      */
-    private $deliveryhour;
+    private $deliveryHour;
 
     /**
      * @var integer
@@ -38,79 +38,79 @@ class Purchase
      */
     public function __construct()
     {
-        $this->createdat = new \DateTime("now");
+        $this->createdAt = new \DateTime("now");
     }
 
     /**
-     * Set deliverydate
+     * Set deliveryDate
      *
-     * @param \DateTime $deliverydate
+     * @param \DateTime $deliveryDate
      *
      * @return Purchase
      */
-    public function setDeliverydate($deliverydate)
+    public function setDeliveryDate($deliveryDate)
     {
-        $this->deliverydate = $deliverydate;
+        $this->deliveryDate = $deliveryDate;
 
         return $this;
     }
 
     /**
-     * Get deliverydate
+     * Get deliveryDate
      *
      * @return \DateTime
      */
-    public function getDeliverydate()
+    public function getDeliveryDate()
     {
-        return $this->deliverydate;
+        return $this->deliveryDate;
     }
 
     /**
-     * Set createdat
+     * Set createdAt
      *
-     * @param \DateTime $createdat
+     * @param \DateTime $createdAt
      *
      * @return Purchase
      */
-    public function setCreatedat($createdat)
+    public function setCreatedAt($createdAt)
     {
-        $this->createdat = $createdat;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createdat
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getCreatedat()
+    public function getCreatedAt()
     {
-        return $this->createdat;
+        return $this->createdAt;
     }
 
     /**
-     * Set deliveryhour
+     * Set deliveryHour
      *
-     * @param \DateTime $deliveryhour
+     * @param \DateTime $deliveryHour
      *
      * @return Purchase
      */
-    public function setDeliveryhour($deliveryhour)
+    public function setDeliveryHour($deliveryHour)
     {
-        $this->deliveryhour = $deliveryhour;
+        $this->deliveryHour = $deliveryHour;
 
         return $this;
     }
 
     /**
-     * Get deliveryhour
+     * Get deliveryHour
      *
      * @return \DateTime
      */
-    public function getDeliveryhour()
+    public function getDeliveryHour()
     {
-        return $this->deliveryhour;
+        return $this->deliveryHour;
     }
 
     /**
