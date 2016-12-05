@@ -38,6 +38,11 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="isactive" type="boolean" column="isActive" nullable="false"/>
+    <field name="cellphone" type="string" column="cellphone" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="enabled" type="boolean" column="enabled" nullable="false"/>
   </entity>
 </doctrine-mapping>

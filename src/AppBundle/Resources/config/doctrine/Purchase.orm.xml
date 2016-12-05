@@ -7,9 +7,9 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="deliveryDate" type="date" column="deliveryDate" nullable="false"/>
-    <field name="createdAt" type="datetime" column="createdAt" nullable="false"/>
-    <field name="deliveryHour" type="time" column="deliveryHour" nullable="true"/>
+    <field name="deliveryDate" type="date" column="delivery_date" nullable="false"/>
+    <field name="deliveryHour" type="time" column="delivery_hour" nullable="true"/>
+    <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
     <many-to-one field="buyer" target-entity="User" fetch="LAZY">
       <join-columns>
         <join-column name="buyer_id" referenced-column-name="id"/>
