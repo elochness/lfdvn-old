@@ -132,7 +132,7 @@ product.edit:  Modifier un produit
 products.list.last: Derniers produits
 product.read.more: Plus de détails
 product.show.details: Détails du produit
-product.no_products_found: Pas de produit disponible
+product.no_found: Pas de produit disponible
 
 # category views
 categories.list: Liste des catégories
@@ -151,6 +151,7 @@ article.list: Liste des articles
 article.new:  Ajouter un article
 article.edit:  Modifier un article
 article.show.details: Détails de l'article
+article.no_found: Pas d'article disponible
 
 # enterprise views
 enterprise.list: Liste des articles sur l'entreprise
