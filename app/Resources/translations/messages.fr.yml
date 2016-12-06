@@ -24,6 +24,7 @@ menu.products:     Produits
 menu.articles:     Articles
 menu.customers:    Clients
 menu.purchases:    Achats
+menu.admin:        Administration
 menu.about:        About EasyAdmin
 menu.about.home:   Project Home
 menu.about.docs:   Documentation
@@ -170,3 +171,10 @@ enterprise_details.list: Liste des informations détaillées sur l'entreprise
 geographic_coordinates.list: Liste des repères
 geographic_coordinates.new: Ajouter un repère
 geographic_coordinates.edit: Modifier un repère
+
+# Connexion view
+title.login: Authentification
+label.username: Identifiant
+label.password: Mot de passe
+label.role: Rôle
+action.sign_in: Se connecter
