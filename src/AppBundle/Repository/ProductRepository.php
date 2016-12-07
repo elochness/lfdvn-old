@@ -17,18 +17,35 @@ class ProductRepository extends EntityRepository
 {
 
   /**
+   * Recuperate last enabled product
+   * @param cid : Category id  
    * @return Query
    */
-  public function queryLatest()
+  public function queryLatest($cid)
   {
-      return $this->getEntityManager()
+      if(!empty($cid))
+      {
+        return $this->getEntityManager()
+          ->createQuery('
+              SELECT p
+              FROM AppBundle:Product p
+              INNER JOIN AppBundle:Category c WITH p.category = c.id
+              WHERE p.enabled = true
+              AND c.id = '.$cid.'
+              ORDER BY p.updatedAt, p.createdAt DESC
+          ')
+        ;
+        
+      } else {
+        return $this->getEntityManager()
           ->createQuery('
               SELECT p
               FROM AppBundle:Product p
               WHERE p.enabled = true
               ORDER BY p.updatedAt, p.createdAt DESC
           ')
-      ;
+        ;
+      }
   }
 
   /**
@@ -36,9 +53,9 @@ class ProductRepository extends EntityRepository
    *
    * @return
    */
-  public function findLatest($page = 1)
+  public function findLatest($page = 1, $cid)
   {
-      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
+      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest($cid), false));
       $paginator->setMaxPerPage(Product::NUM_ITEMS);
       $paginator->setCurrentPage($page);
 

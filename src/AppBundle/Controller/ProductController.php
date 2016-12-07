@@ -21,20 +21,34 @@ use Symfony\Component\HttpFoundation\Response;
 class ProductController extends Controller
 {
     /**
-    *  @Route("/", defaults={"page": 1}, name="product_index")
-    *  @Method("GET")
-    * @Cache(smaxage="10")
-    */
-    public function indexAction($page)
+     *  @Route("/", defaults={"page": 1}, name="product_index")
+     *  @Route("/{page}", name="product_index_paginated", requirements={"page" = "\d+"})     
+     *  @Route("/categorie/{cid}", defaults={"page": 1}, name="product_category")     
+     *  @Method("GET")
+     *  @Cache(smaxage="10")
+     */
+    public function indexAction($page, $cid)
     {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page);
+        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page, $cid);
         $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
-        return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories]);
+        $selectedCategory = null;
+        
+        if(!empty($cid))
+        {
+          foreach($categories as $category) {
+            if($category->getId() ==$cid){
+               $selectedCategory = $category->getName();
+               break;
+            }
+          }
+        }
+        
+        return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategory]);
     }
 
     /**
-    *  @Route("/{id}", name="product_show")
-    */
+     *  @Route("/show/{id}", name="product_show")
+     */
     public function showAction($id)
     {
         $product = $this->getDoctrine()

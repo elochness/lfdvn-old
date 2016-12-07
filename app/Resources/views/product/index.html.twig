@@ -3,11 +3,19 @@
 {% block body_id '_index' %}
 
 {% block main %}
+     
+    <h1>
+    {% if app.request.attributes.get('_route') == 'product_category' %}
+      {{ selectedCategory }}
+    {% else %}
+      {{ 'product.list'|trans }}
+    {% endif %}
+    </h1>
     {% for product in products %}
-        <article class="test">
+        <article>
             <h2>
                 <a href="{{ path('product_show', { id: product.id }) }}">
-                    {{ product.name }}
+                    {{ product.name }} 
                 </a>
             </h2>
             <div class="flex">
@@ -15,12 +23,19 @@
                 {% if product.image  %}
                   <img class="img_list" src="{{ product_prefix ~"/"~ product.image }}" width="245" alt="{{ product.name }}" />
                 {% else %}
-                    <img class="img_list" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" />
+                  <img class="img_list" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" />
                 {% endif %}
               </div>
               <div>
+                {% if product.quantity > 0 %} 
+                  <span class="label label-success">{{ 'product.available'|trans }}</span>
+                {% else %} 
+                  <span class="label label-danger">{{ 'product.out_of_stock'|trans }}</span> 
+                {% endif %} <br />
                 {{ product.description }} <br />
-                Prix : {{ product.price}}
+                {{ 'Category' |trans }} : {{ product.category.name }} <br />
+                {{ 'Price' |trans }} : {{ product.price}} € <br />
+                {{ 'Weight' |trans }} : {{ product.weight}} {{ product.measurement.shortname}}
               </div>
             </div>
 
@@ -36,12 +51,12 @@
 {% endblock %}
 
 {% block sidebar %}
-    <ul>
-    {% for category in categories %}
-        <li>
-          <a href src=""{{ path('product_index', { category: category.id }) }}">{{ category.name }}</a>
-        </li>
-    {% endfor %}
+    <ul class="list_style_none">
+      {% for category in categories %}
+          <li>
+            <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
+          </li>
+      {% endfor %}
     </ul>
 
     {{ parent() }}
