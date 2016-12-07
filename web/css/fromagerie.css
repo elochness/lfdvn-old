@@ -6,10 +6,8 @@ h1 {
   display: flex;
 }
 
-# Product
-
 article {
-  padding-bottom: 200px;
+  padding-top: 30px;
 }
 
 .img_list {
@@ -24,8 +22,6 @@ article {
         -moz-box-shadow: #B3B3B3 3px 3px 3px;
              box-shadow: #B3B3B3 3px 3px 3px;
 }
-
-# Enterprise
 
 .list_style_none {
   list-style-type: none;
