@@ -84,6 +84,8 @@ Shortname: Nom court
 NotDefined: Non renseigné
 
 # product column
+product.available: Disponible
+product.out_of_stock: Rupture de stock
 Quantity: Quantité
 Weight: Poids
 
