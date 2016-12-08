@@ -25,17 +25,18 @@ class ProductRepository extends EntityRepository
   {
       if(!empty($cid))
       {
-        return $this->getEntityManager()
+        $query = $this->getEntityManager()
           ->createQuery('
               SELECT p
               FROM AppBundle:Product p
               INNER JOIN AppBundle:Category c WITH p.category = c.id
               WHERE p.enabled = true
-              AND c.id = '.$cid.'
+              AND c.id = :cid
               ORDER BY p.updatedAt, p.createdAt DESC
           ')
         ;
-        
+        $query->setParameter('cid', $cid);
+        return $query;        
       } else {
         return $this->getEntityManager()
           ->createQuery('
