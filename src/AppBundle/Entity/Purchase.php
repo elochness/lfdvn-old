@@ -60,6 +60,16 @@ class Purchase
     {
         $this->createdAt = new \DateTime();
     }
+    
+    /**
+     * Get String information of user
+     *
+     * @return string Name of user
+     */
+    public function __toString()
+    {
+      return $this->getId() . " - " . $this->getCreatedAt();
+    }
 
     /**
      * Set deliveryDate

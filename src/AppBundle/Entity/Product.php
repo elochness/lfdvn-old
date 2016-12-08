@@ -98,7 +98,16 @@ class Product
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
-
+    
+    /**
+     * Get String information of user
+     *
+     * @return string Name of user
+     */
+    public function __toString()
+    {
+      return $this->getName();
+    }
 
     /**
      * Set name

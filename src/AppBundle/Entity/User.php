@@ -76,8 +76,16 @@ class User
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-
+    
+    /**
+     * Get String information of user
+     *
+     * @return string Name of user
+     */
+    public function __toString()
+    {
+      return $this->getLastname() . " " . $this->getFirstname;
+    }
 
     /**
      * Set username
