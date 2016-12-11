@@ -49,7 +49,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         //
-        //$this->loadUsers($manager);
+        $this->loadUsers($manager);
         //$this->loadPosts($manager);
         $this->loadSchedules($manager);
         $this->loadEnterpriseDetails($manager);
@@ -62,6 +62,8 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
         $johnUser = new User();
         $johnUser->setUsername('john_user');
+        $johnUser->setFirstname('john');
+        $johnUser->setLastname('user');
         $johnUser->setEmail('john_user@symfony.com');
         $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
         $johnUser->setPassword($encodedPassword);
@@ -69,6 +71,8 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
         $annaAdmin = new User();
         $annaAdmin->setUsername('anna_admin');
+        $annaAdmin->setFirstname('anna');
+        $annaAdmin->setLastname('admin');
         $annaAdmin->setEmail('anna_admin@symfony.com');
         $annaAdmin->setRoles(['ROLE_ADMIN']);
         $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
