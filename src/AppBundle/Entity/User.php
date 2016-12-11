@@ -3,56 +3,62 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="user")
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
- * @ORM\Entity
+ * Defines the properties of the User entity to represent the application users.
+ * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ *
+ * Tip: if you have an existing database, you can generate these entity class automatically.
+ * See http://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
+ *
+ * @author Ryan Weaver <weaverryan@gmail.com>
+ * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
      */
     private $username;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="json_array", nullable=false)
-     */
-    private $roles;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
      */
     private $firstname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
      */
     private $lastname;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    /**
+     * @var Purchase[]
+     *
+     * @ORM\OneToMany(targetEntity="Purchase", mappedBy="buyer", cascade={"remove"})
+     */
+    private $purchases;
 
     /**
      * @var string
@@ -62,125 +68,64 @@ class User
     private $cellphone;
 
     /**
-     * @var boolean
+     * @var bool
      *
-     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-    
-    /**
-     * Get String information of user
-     *
-     * @return string Name of user
-     */
-    public function __toString()
+
+    public function __construct()
     {
-      return $this->getLastname() . " " . $this->getFirstname;
+
+        $this->purchases = new ArrayCollection();
+        $this->enabled = true;
     }
 
     /**
-     * Set username
+     * Set enabled
      *
-     * @param string $username
+     * @param boolean $enabled
      *
      * @return User
      */
-    public function setUsername($username)
+    public function setEnabled($enabled)
     {
-        $this->username = $username;
+        $this->enabled = $enabled;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get enabled
      *
-     * @return string
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getUsername()
     {
         return $this->username;
     }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
+    public function setUsername($username)
     {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set roles
-     *
-     * @param array $roles
-     *
-     * @return User
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return array
-     */
-    public function getRoles()
-    {
-        return $this->roles;
+        $this->username = $username;
     }
 
     /**
@@ -231,6 +176,16 @@ class User
         return $this->lastname;
     }
 
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
     /**
      * Set cellphone
      *
@@ -256,36 +211,55 @@ class User
     }
 
     /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return User
+     * {@inheritdoc}
      */
-    public function setEnabled($enabled)
+    public function getPassword()
     {
-        $this->enabled = $enabled;
-
-        return $this;
+        return $this->password;
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
     /**
-     * Get enabled
-     *
-     * @return boolean
+     * Returns the roles or permissions granted to the user for security.
      */
-    public function getEnabled()
+    public function getRoles()
     {
-        return $this->enabled;
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * Returns the salt that was originally used to encode the password.
      */
-    public function getId()
+    public function getSalt()
     {
-        return $this->id;
+        // See "Do you need to use a Salt?" at http://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // we're using bcrypt in security.yml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+
+        return;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     */
+    public function eraseCredentials()
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
     }
 }
