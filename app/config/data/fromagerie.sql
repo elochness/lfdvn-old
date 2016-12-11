@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 05 Décembre 2016 à 23:11
+-- Généré le :  Dim 11 Décembre 2016 à 11:06
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,32 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `fromagerie`
 --
-
--- --------------------------------------------------------
-
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
---
--- Client :  127.0.0.1
--- Généré le :  Dim 04 Décembre 2016 à 20:21
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `fromagerie`
---
-CREATE DATABASE IF NOT EXISTS `fromagerie` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `fromagerie`;
 
 -- --------------------------------------------------------
 
@@ -60,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -73,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -89,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `publishedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_9474526C4B89032C` (`post_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2701 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -104,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `enterprise` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -113,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `enterprise` (
 --
 
 CREATE TABLE IF NOT EXISTS `enterprise_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code_postal` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
@@ -122,7 +96,14 @@ CREATE TABLE IF NOT EXISTS `enterprise_details` (
   `fax` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `enterprise_details`
+--
+
+INSERT INTO `enterprise_details` (`id`, `name`, `address`, `code_postal`, `city`, `telephone`, `fax`, `email`) VALUES
+(1, 'La fromagerie du vignoble nantais', '9, rue de la XXX', '44140', 'Le bignon', 'XX.XX.XX.XX.XX', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `geographic_coordinates` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -150,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `measurement` (
   `shortname` varchar(3) CHARACTER SET latin1 DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Unité d''un produit' AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Unité d''un produit' AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -167,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `authorEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `publishedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=541 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -188,12 +169,12 @@ CREATE TABLE IF NOT EXISTS `product` (
   `category_id` int(11) DEFAULT NULL,
   `measurement_id` int(11) DEFAULT NULL,
   `price` double NOT NULL,
-  `tax_rate_id` int(11) NOT NULL,
+  `tax_rate_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `measurement_id` (`measurement_id`),
   KEY `tax_rate_id` (`tax_rate_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -204,12 +185,12 @@ CREATE TABLE IF NOT EXISTS `product` (
 CREATE TABLE IF NOT EXISTS `purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyer_id` int(11) DEFAULT NULL,
-  `deliveryDate` date NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `deliveryHour` time DEFAULT NULL,
+  `delivery_date` date NOT NULL,
+  `delivery_hour` time DEFAULT NULL,
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6117D13B6C755722` (`buyer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -234,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `purchase_item` (
 --
 
 CREATE TABLE IF NOT EXISTS `schedule` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `monday` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `tuesday` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `wednesday` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
@@ -244,7 +225,14 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `sunday` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `alert_day` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Horaires de l''entreprise' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Horaires de l''entreprise';
+
+--
+-- Contenu de la table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `alert_day`) VALUES
+(1, 'Fermé', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h', 'Fermé', 'Fermeture exceptionnelle le XX.');
 
 -- --------------------------------------------------------
 
@@ -256,8 +244,7 @@ CREATE TABLE IF NOT EXISTS `tax_rate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rate` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -273,11 +260,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:json_array)',
   `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `isActive` tinyint(1) NOT NULL,
+  `cellphone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Contraintes pour les tables exportées
