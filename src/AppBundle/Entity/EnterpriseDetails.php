@@ -225,4 +225,18 @@ class EnterpriseDetails
     {
         return $this->id;
     }
+
+    /**
+     * Get id
+     *
+     * @param integer id
+     *
+     * @return EnterpriseDetails
+     */
+    public function setId($id)
+    {
+      $this->id = $id;
+
+      return $this;
+    }
 }

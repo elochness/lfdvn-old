@@ -20,6 +20,8 @@ use AppBundle\Entity\Product;
 use AppBundle\Entity\TaxRate;
 use AppBundle\Entity\Purchase;
 use AppBundle\Entity\PurchaseItem;
+use AppBundle\Entity\Schedule;
+use AppBundle\Entity\EnterpriseDetails;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -46,8 +48,11 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
+        //
         //$this->loadUsers($manager);
         //$this->loadPosts($manager);
+        $this->loadSchedules($manager);
+        $this->loadEnterpriseDetails($manager);
         $this->loadProducts($manager);
     }
 
@@ -103,6 +108,53 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    /**
+     * Load information of schedules
+     *
+     * @param ObjectManager $manager
+     */
+    private function loadSchedules(ObjectManager $manager)
+    {
+      $schedule = new Schedule();
+      $schedule->setId(1);
+      $schedule->setMonday('Fermé');
+      $schedule->setTuesday('De 9h-12h à 15h-19h');
+      $schedule->setWednesday('De 9h-12h à 15h-19h');
+      $schedule->setThursday('De 9h-12h à 15h-19h');
+      $schedule->setFriday('De 9h-12h à 15h-19h');
+      $schedule->setSaturday('De 9h-12h');
+      $schedule->setSunday('Fermé');
+      $schedule->setAlertDay('Fermeture exceptionnelle le XX.');
+
+      $manager->persist($schedule);
+      $manager->flush();
+    }
+
+
+    /**
+     * Load information of schedules
+     *
+     * @param ObjectManager $manager
+     */
+    private function loadEnterpriseDetails(ObjectManager $manager)
+    {
+      $enterpriseDetails = new EnterpriseDetails();
+      $enterpriseDetails->setId(1);
+      $enterpriseDetails->setName('La fromagerie du vignoble nantais');
+      $enterpriseDetails->setAddress('9, rue de la XXX');
+      $enterpriseDetails->setCodePostal('44140');
+      $enterpriseDetails->setCity('Le bignon');
+      $enterpriseDetails->setTelephone('XX.XX.XX.XX.XX');
+
+      $manager->persist($enterpriseDetails);
+      $manager->flush();
+    }
+
+    /**
+     * Load information of two products
+     *
+     * @param ObjectManager $manager
+     */
     private function loadProducts(ObjectManager $manager)
     {
       // Tax Rate

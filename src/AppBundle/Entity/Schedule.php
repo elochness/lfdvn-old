@@ -254,4 +254,18 @@ class Schedule
     {
         return $this->id;
     }
+
+    /**
+     * Get id
+     *
+     * @param id $id
+     *
+     * @return Schedule
+     */
+    public function setId($id)
+    {
+      $this->id = $id;
+
+      return $this;
+    }
 }
