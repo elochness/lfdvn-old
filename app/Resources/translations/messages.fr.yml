@@ -164,11 +164,13 @@ enterprise.edit: Modifier un article sur l'entreprise
 schedule.show: Informations des horaires
 schedule.edit: Modifier les horaires
 schedule.list: Liste des horaires
+schedule.no_found: Pas d'horaires
 
 # enterprise_details views
 enterprise_details.show: Informations détaillées sur l'entreprise
 enterprise_details.edit: Modifier les informations détaillées sur l'entreprise
 enterprise_details.list: Liste des informations détaillées sur l'entreprise
+enterprise_details.no_found: L'entreprise ne possède pas de détails
 
 # geographic_coordinates views
 geographic_coordinates.list: Liste des repères

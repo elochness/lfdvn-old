@@ -40,12 +40,6 @@ class EnterpriseController extends Controller
             ->getRepository(GeographicCoordinates::class)
             ->findAll();
 
-        if (!$enterpriseDetails) {
-            throw $this->createNotFoundException(
-                'No information for enterprise.'
-            );
-        }
-
         return $this->render('enterprise/show.html.twig',
         [
           'enterpriseDetails' => $enterpriseDetails,

@@ -12,6 +12,7 @@
 
 {% block main %}
 
+    {% if enterpriseDetails %}
     <article>
       <div>
         <h1>{{ enterpriseDetails.name }}</h1>
@@ -74,15 +75,18 @@
 
       </div>
 
-
-
     </article>
+    {% else %}
+      <div class="well">{{ 'enterprise_details.no_found'|trans }}</div>
+    {% endif %}
 
 {% endblock %}
 
 {% block sidebar %}
 
     <h2>Horaires</h2>
+
+    {% if schedule %}
     <ul class="list_style_none">
       <li>
         {{ 'monday' | trans }} :
@@ -141,5 +145,8 @@
         {% endif %}
       </li>
     </ul>
+    {% else %}
+      <div class="well">{{ 'schedule.no_found'|trans }}</div>
+    {% endif %}
 
 {% endblock %}
