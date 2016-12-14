@@ -81,6 +81,16 @@ class User implements UserInterface
         $this->purchases = new ArrayCollection();
         $this->enabled = true;
     }
+    
+    /**
+     * Get String information of user
+     *
+     * @return string Name of user
+     */
+    public function __toString()
+    {
+      return $this->getLastname() . " " . $this->getFirstname;
+    }
 
     /**
      * Set enabled
