@@ -11,5 +11,6 @@
       </options>
     </field>
     <field name="enabled" type="boolean" column="enabled" nullable="false"/>
+    <one-to-many field="products" target-entity="Product" mapped-by="category" />
   </entity>
 </doctrine-mapping>

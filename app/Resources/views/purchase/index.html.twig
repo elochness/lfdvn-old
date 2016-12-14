@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block main %}
+     
+    <h1>
+    
+    {% if categories|length > 0 %}
+        {% for category in categories %}
+            <h2>{{ category.name }}</h2>
+            {% for product in category.products %}
+                <h3>{{ product.name }}</h3>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <div class="well">{{ 'product.no_found'|trans }}</div>
+    {% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+    <ul class="list_style_none">
+      {% for category in categories %}
+          <li>
+            <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
+          </li>
+      {% endfor %}
+    </ul>
+
+    {{ parent() }}
+
+{% endblock %}
