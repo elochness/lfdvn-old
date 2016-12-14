@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Category
  */
@@ -21,8 +23,38 @@ class Category
      * @var integer
      */
     private $id;
+    
+    /**
+     * @var Products[]
+     */
+    private $products;
 
-
+    /**
+     * Constructor
+     * 
+     */              
+    public function __construct()
+    {
+        $this->purchases = new ArrayCollection();
+        $this->enabled = true;
+    }
+    
+    /**
+     * Get all products
+     */              
+    public function getProducts()
+    {
+      return $this->products;
+    }
+    
+    /**
+     * Get all products
+     */              
+    public function setProducts($products)
+    {
+      return $this->products = $products;
+    }
+    
     /**
      * Set name
      *
@@ -80,7 +112,7 @@ class Category
     {
         return $this->id;
     }
-
+    
     /**
      * Get String information of category
      *
