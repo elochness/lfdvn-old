@@ -7,12 +7,20 @@
     <h1>
     
     {% if categories|length > 0 %}
+        <form>
         {% for category in categories %}
             <h2>{{ category.name }}</h2>
+                                     
             {% for product in category.products %}
-                <h3>{{ product.name }}</h3>
+                <ul class="purchase-list">
+                    <li class="name">{{ product.name }}</li>
+                    <li><span  id="pu-{{ loop.parent.loop.index}}-{{ loop.index }}">{{ product.price }}</span> €</li>
+                    <li><input id="qte-{{ loop.parent.loop.index}}-{{ loop.index }}" type="number" min="0" max="50" /></li>
+                    <li><span  id="total-{{ loop.parent.loop.index}}-{{ loop.index }}" /></li>
+                </ul>
             {% endfor %}
         {% endfor %}
+        </form>
     {% else %}
         <div class="well">{{ 'product.no_found'|trans }}</div>
     {% endif %}

@@ -1,6 +1,3 @@
-h1 {
-  color: red;
-}
 
 .flex {
   display: flex;
@@ -30,4 +27,73 @@ article {
 
 .day_red {
   color: #B0413E;
+}
+ 
+/* Purchase list */
+
+.purchase-list {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    border: 1px solid #EFF0EC;
+    margin-bottom: 5px;
+    background-color: white;
+    border-left: 4px solid #39aa56;
+}
+
+
+.purchase-list li{
+    margin-top : 5px;
+    margin-bottom : 5px;
+    text-align: center;
+    flex-grow: 1;
+    border-right: 1px solid #EFF0EC;
+    width: 20%;
+}
+
+.purchase-list:hover{
+    background-color: rgb(222,236,220);
+}
+
+.purchase-list li.name{
+    text-align: left;
+    margin-left : 5px;
+    width: 40%;
+}
+
+.purchase-total{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+.purchase-total li {
+    background: tomato;
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+    
+    line-height: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
 }
