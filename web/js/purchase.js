@@ -11,13 +11,27 @@ function addEvent(obj, evType, fn) {
 }
   
 function isChanged (el) {
-
+            
     var id_input = el.id.substring(3);
     var price = document.getElementById("pu" + id_input).innerHTML;
+    
     if(isNumeric(price)) {
         document.getElementById("total" + id_input).innerHTML = (price * el.value).toFixed(2);
+        changeLine(el, true);
+    } else {
+        changeLine(el, false);
     }
     sumPurchase();
+}
+
+function changeLine(el, active) {
+    var ulNode = el.parentNode.parentNode;
+
+    if(active && parseInt(el.value) > 0) {
+        ulNode.className = "purchase-list selected";
+    } else {
+        ulNode.className = "purchase-list";
+    }
 }
 
 function sumPurchase() {
@@ -25,14 +39,14 @@ function sumPurchase() {
     var sum = 0;
 
     var totals = document.getElementsByName('total');
-
+    
     for(i=0;i<totals.length;i++) {
         if(isNumeric(totals[i].innerHTML)) {
             sum += parseFloat(totals[i].innerHTML);
         }
     }
 
-    document.getElementById('total-final').innerHTML = sum;
+    document.getElementById('total-final').innerHTML = sum.toFixed(2);
 }
 
 

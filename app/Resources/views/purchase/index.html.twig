@@ -1,25 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id '_index' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <script src="/js/purchase.js"></script>
+{% endblock %}
 
 {% block main %}
      
-    <h1>
+    <h1> Liste des produits à commander</h1>
+    <hr />
+    <br />
     
     {% if categories|length > 0 %}
         <form>
         {% for category in categories %}
-            <h2>{{ category.name }}</h2>
-                                     
-            {% for product in category.products %}
-                <ul class="purchase-list">
-                    <li class="name">{{ product.name }}</li>
-                    <li><span  id="pu-{{ loop.parent.loop.index}}-{{ loop.index }}">{{ product.price }}</span> €</li>
-                    <li><input id="qte-{{ loop.parent.loop.index}}-{{ loop.index }}" type="number" min="0" max="50" /></li>
-                    <li><span  id="total-{{ loop.parent.loop.index}}-{{ loop.index }}" /></li>
-                </ul>
-            {% endfor %}
+            {% if category.products|length > 0 %}
+              <h2>{{ category.name }}</h2>
+                                       
+              {% for product in category.products %}
+                  <ul class="purchase-list">
+                      <li>{{ product.name }}</li>
+                      <li><span  id="pu-{{ category.id }}-{{ product.id }}">{{ product.price }}</span> <i class="fa fa-eur" aria-hidden="true"></i></li>
+                      <li class="multi"><i class="fa fa-times"aria-hidden="true"></i></li>
+                      <li><input id="qte-{{ category.id }}-{{ product.id }}" type="number" min="0" max="50" /></li>
+                      <li><span  id="total-{{ category.id }}-{{ product.id }}" name="total"></span> <i class="fa fa-eur" aria-hidden="true"></i></li>
+                  </ul>
+              {% endfor %}
+            {% endif %}
         {% endfor %}
+        <ul class="purchase-total">
+            <li id="result"><span id="total-final"></span> <i class="fa fa-eur" aria-hidden="true"></i></li>
+            <li class="name">Total</li>
+        </ul>
         </form>
     {% else %}
         <div class="well">{{ 'product.no_found'|trans }}</div>
