@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Purchaseitems list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Taxrate</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchaseItem in purchaseItems %}
+            <tr>
+                <td><a href="{{ path('purchaseitem_show', { 'id': purchaseItem.id }) }}">{{ purchaseItem.price }}</a></td>
+                <td>{{ purchaseItem.quantity }}</td>
+                <td>{{ purchaseItem.taxRate }}</td>
+                <td>{{ purchaseItem.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('purchaseitem_show', { 'id': purchaseItem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('purchaseitem_edit', { 'id': purchaseItem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('purchaseitem_new') }}">Create a new purchaseItem</a>
+        </li>
+    </ul>
+{% endblock %}
