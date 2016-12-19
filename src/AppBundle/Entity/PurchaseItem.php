@@ -109,4 +109,62 @@ class PurchaseItem
     {
         return $this->purchase;
     }
+    /**
+     * @var float
+     */
+    private $price;
+
+    /**
+     * @var float
+     */
+    private $taxRate;
+
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return PurchaseItem
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set taxRate
+     *
+     * @param float $taxRate
+     *
+     * @return PurchaseItem
+     */
+    public function setTaxRate($taxRate)
+    {
+        $this->taxRate = $taxRate;
+
+        return $this;
+    }
+
+    /**
+     * Get taxRate
+     *
+     * @return float
+     */
+    public function getTaxRate()
+    {
+        return $this->taxRate;
+    }
 }
