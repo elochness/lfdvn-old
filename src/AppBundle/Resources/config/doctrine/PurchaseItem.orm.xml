@@ -8,11 +8,13 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
+    <field name="price" type="float" column="price" precision="10" scale="0" nullable="false"/>
     <field name="quantity" type="smallint" column="quantity" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="taxRate" type="float" column="tax_rate" precision="10" scale="0" nullable="false"/>
     <many-to-one field="product" target-entity="Product" fetch="LAZY">
       <join-columns>
         <join-column name="product_id" referenced-column-name="id"/>
