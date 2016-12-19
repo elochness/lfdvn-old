@@ -26,7 +26,30 @@ class PurchaseItem
      * @var \AppBundle\Entity\Purchase
      */
     private $purchase;
+    
+    /**
+     * @var float
+     */
+    private $price;
 
+    /**
+     * @var float
+     */
+    private $taxRate;
+
+    /**
+     * Get String information of user
+     *
+     * @return string Name of user
+     */
+    public function __toString()
+    {
+      if (isset($this->product)) {
+          return $this->product->name;
+      } else {
+          return "Non défini";
+      }
+    }
 
     /**
      * Set quantity
@@ -109,16 +132,6 @@ class PurchaseItem
     {
         return $this->purchase;
     }
-    /**
-     * @var float
-     */
-    private $price;
-
-    /**
-     * @var float
-     */
-    private $taxRate;
-
 
     /**
      * Set price

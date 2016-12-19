@@ -65,6 +65,8 @@ class Purchase
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->deliveryDate = new \DateTime();
+        $this->deliveryHour = new \DateTime();
         $this->items = new ArrayCollection();
     }
     
