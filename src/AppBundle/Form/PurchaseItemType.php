@@ -13,7 +13,12 @@ class PurchaseItemType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('price')->add('quantity')->add('taxRate')->add('product')->add('purchase')        ;
+        $builder
+            ->add('price')
+            ->add('quantity')
+            ->add('taxRate')
+            ->add('product')
+            ;
     }
     
     /**

@@ -2,9 +2,17 @@
 
 namespace AppBundle\Form;
 
+
+use AppBundle\Form\PurchaseItemType;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PurchaseType extends AbstractType
 {
@@ -14,10 +22,15 @@ class PurchaseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('deliveryDate')
-        ->add('deliveryHour')
-        ->add('createdAt')
-        ->add('buyer');
+        ->add('deliveryDate',      DateType::class)
+        ->add('deliveryHour',     TimeType::class)
+        ->add('items', CollectionType::class, array(
+          'entry_type'  => PurchaseItemType::class,
+          'allow_add'   => true,
+          'allow_delete'  => true
+        ))
+        ->add('save',      SubmitType::class)
+        ;
     }
     
     /**
