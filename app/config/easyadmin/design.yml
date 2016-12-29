@@ -17,3 +17,4 @@ easy_admin:
             - { entity: 'GeographicCoordinates', icon: 'map-marker' }
             - { label: menu.gestion.users }
             - { entity: 'User', icon: 'user' }
+            - { label: menu.homepage, route: 'homepage' }
