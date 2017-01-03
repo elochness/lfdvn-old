@@ -2,63 +2,66 @@
 
 {% block body_id '_index' %}
 
-{% block main %}
-     
-    <h1>
-    {% if app.request.attributes.get('_route') == 'product_category' %}
-      {{ selectedCategory }}
-    {% else %}
-      {{ 'product.list'|trans }}
-    {% endif %}
-    </h1>
-    {% for product in products %}
-        <article>
-            <h2>
-                <a href="{{ path('product_show', { id: product.id }) }}">
-                    {{ product.name }} 
-                </a>
-            </h2>
-            <div class="flex">
-              <div>
-                {% if product.image  %}
-                  <img class="img_list" src="{{ product_prefix ~"/"~ product.image }}" width="245" alt="{{ product.name }}" />
-                {% else %}
-                  <img class="img_list" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" />
-                {% endif %}
-              </div>
-              <div>
-                {% if product.quantity > 0 %} 
-                  <span class="label label-success">{{ 'product.available'|trans }}</span>
-                {% else %} 
-                  <span class="label label-danger">{{ 'product.out_of_stock'|trans }}</span> 
-                {% endif %} <br />
-                {{ product.description }} <br />
-                {{ 'Category' |trans }} : {{ product.category.name }} <br />
-                {{ 'Price' |trans }} : {{ product.price}} € <br />
-                {{ 'Weight' |trans }} : {{ product.weight}} {{ product.measurement.shortname}}
-              </div>
-            </div>
+    {% block main %}
 
-        </article>
+        <h1>
+            {% if app.request.attributes.get('_route') == 'product_category' %}
+                {{ selectedCategory }}
+            {% else %}
+                {{ 'product.list'|trans }}
+            {% endif %}
+        </h1>
+        <section>
+            {% for product in products %}
+                <article class="box product">
+                    <div class="image">
+                        {% if product.image %}
+                            <img src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}"/>
+                        {% else %}
+                            <img src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image"/>
+                        {% endif %}
+                    </div>
+                    <div class="details">
+                        <h2>{{ product.name }}</h2>
+                        <div>
+                            {% if product.quantity > 0 %}
+                                <span class="label label-success">{{ 'product.available'|trans }}</span>
+                            {% else %}
+                                <span class="label label-danger">{{ 'product.out_of_stock'|trans }}</span>
+                            {% endif %}
+                            <br/>
+                        </div>
+                        <div>
+                            <p>{{ product.description }}</p>
+                            {{ 'Category' |trans }} : {{ product.category.name }}
+                            <br/>
+                            {{ 'Price' |trans }} : {{ product.price}} €
+                            <br/>
+                            {{ 'Weight' |trans }} : {{ product.weight}} {{ product.measurement.shortname}}
+                        </div>
+                        <a href="#" class="btn btn-primary btn-block">Search</a>
+                    </div>
+                </article>
 
-    {% else %}
-        <div class="well">{{ 'product.no_found'|trans }}</div>
-    {% endfor %}
+            {% else %}
+                <div class="well">{{ 'product.no_found'|trans }}</div>
+            {% endfor %}
+        </section>
 
-    <div class="navigation text-center">
-        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
-    </div>
-{% endblock %}
+        <div class="navigation text-center">
+            {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
+        </div>
+    {% endblock %}
 
-{% block sidebar %}
-    <ul class="list_style_none">
-      {% for category in categories %}
-          <li>
-            <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
-          </li>
-      {% endfor %}
-    </ul>
+    {% block sidebar %}
+        <ul class="list_style_none">
+            {% for category in categories %}
+                <li>
+                    <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-    {{ parent() }}
+        {{ parent() }}
 
-{% endblock %}
+    {% endblock %}
