@@ -13,7 +13,7 @@
         </h1>
         <section>
             {% for product in products %}
-                <article class="box product">
+                <article class="box product flex">
                     <div class="image">
                         {% if product.image %}
                             <img src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}"/>
@@ -22,23 +22,31 @@
                         {% endif %}
                     </div>
                     <div class="details">
-                        <header>
+                        <header class="flex">
                         <h2>{{ product.name }}</h2>
-                          <div class="mesure">
-                              <div>
-                                  <div>
-                                      Poids
+                          <div class="flex">
+                              <div class="mesure">
+                                  <div class="mesure-id">
+                                      {{ 'Category' |trans }}
                                   </div>
-                                  <div>
-                                      0.6g
+                                  <div class="mesure-value">
+                                      {{ product.category.name }}
                                   </div>
                               </div>
-                              <div>
-                                  <div>
-                                      Laitage
+                              <div class="mesure">
+                                  <div class="mesure-id">
+                                      {{ 'Weight' |trans }}
                                   </div>
-                                  <div>
-                                      Vache
+                                  <div class="mesure-value">
+                                      {{ product.weight}} {{ product.measurement.shortname}}
+                                  </div>
+                              </div>
+                              <div class="mesure">
+                                  <div class="mesure-id">
+                                      {{ 'Price' |trans }}
+                                  </div>
+                                  <div class="mesure-value">
+                                      {{ product.price}} €
                                   </div>
                               </div>
                           </div>
@@ -53,11 +61,6 @@
                         </div>
                         <div>
                             <p>{{ product.description }}</p>
-                            {{ 'Category' |trans }} : {{ product.category.name }}
-                            <br/>
-                            {{ 'Price' |trans }} : {{ product.price}} €
-                            <br/>
-                            {{ 'Weight' |trans }} : {{ product.weight}} {{ product.measurement.shortname}}
                         </div>
                         <a href="#" class="btn btn-primary btn-block">Search</a>
                     </div>
