@@ -56,7 +56,6 @@ User: Utilisateur
 Purchase: Commande
 PurchaseItem: Article de la commande
 Article: Article
-Enterprise: Entreprise
 EnterpriseDetails: Informations détaillées
 GeographicCoordinates: Repères
 Schedule: Horaires
@@ -156,11 +155,6 @@ article.new:  Ajouter un article
 article.edit:  Modifier un article
 article.show.details: Détails de l'article
 article.no_found: Pas d'article disponible
-
-# enterprise views
-enterprise.list: Liste des articles sur l'entreprise
-measurement.new: Ajouter un article sur l'entreprise
-enterprise.edit: Modifier un article sur l'entreprise
 
 # schedule views
 schedule.show: Informations des horaires
