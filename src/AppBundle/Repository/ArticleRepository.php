@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Article;
+use AppBundle\Entity\ArticleCategory;
 use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
@@ -19,16 +20,21 @@ class ArticleRepository extends EntityRepository
   /**
    * @return Query
    */
-  public function queryLatest()
+  public function queryLatest($caid = ArticleCategory::ARTICLE_PRINCIPAL)
   {
-      return $this->getEntityManager()
-          ->createQuery('
+    $query = $this->getEntityManager()
+      ->createQuery('
               SELECT a
               FROM AppBundle:Article a
+              INNER JOIN AppBundle:ArticleCategory ac
+              ON a.articleCategory = ac.id
               WHERE a.enabled = true
+              AND ac.id = :caid
               ORDER BY a.updatedAt, a.createdAt DESC
           ')
       ;
+      $query->setParameter('caid', $caid);
+      return $query;
   }
 
   /**
@@ -44,4 +50,16 @@ class ArticleRepository extends EntityRepository
 
       return $paginator;
   }
+
+
+    public function findEnterprise()
+    {
+        return $this->queryLatest(ArticleCategory::ARTICLE_ENTERPRISE);
+    }
+
+    public function findBandeau()
+    {
+        return $this->queryLatest(ArticleCategory::ARTICLE_BANDEAU);
+    }
+
 }
