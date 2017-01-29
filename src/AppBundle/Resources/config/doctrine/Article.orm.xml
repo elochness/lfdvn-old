@@ -25,7 +25,7 @@
         <field name="enabled" type="boolean" column="enabled" nullable="false"/>
         <many-to-one field="articleCategory" target-entity="ArticleCategory" fetch="LAZY">
             <join-columns>
-                <join-column name="article_category_id" referenced-column-name="id"/>
+                <join-column name="article_category_id" referenced-column-name="id" nullable="false"/>
             </join-columns>
         </many-to-one>
     </entity>
