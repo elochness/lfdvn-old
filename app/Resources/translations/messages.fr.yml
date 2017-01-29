@@ -98,6 +98,7 @@ Buyer: Acheteur
 
 # article column
 Title: Titre
+Article category: Type d'article
 
 # user column
 Firstname: Prénom

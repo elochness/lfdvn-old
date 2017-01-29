@@ -8,6 +8,7 @@ easy_admin:
                 fields:
                   - 'id'
                   - 'enabled'
+                  - 'articleCategory'
                   - 'title'
                   - 'updatedAt'
                   - 'createdAt'
@@ -15,11 +16,13 @@ easy_admin:
                 title: article.new
                 fields:
                     - 'enabled'
+                    - 'articleCategory'
                     - 'title'
                     - { property: 'contains', type: 'ckeditor' }
             edit:
                 title: article.edit
                 fields:
                     - 'enabled'
+                    - 'articleCategory'
                     - 'title'
                     - { property: 'contains', type: 'ckeditor' }
