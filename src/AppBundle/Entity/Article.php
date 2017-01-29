@@ -39,6 +39,11 @@ class Article
     private $enabled;
 
     /**
+     * @var \AppBundle\Entity\ArticleCategory
+     */
+    private $articleCategory;
+
+    /**
      * @var integer
      */
     private $id;
@@ -181,5 +186,29 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set articleCategory
+     *
+     * @param \AppBundle\Entity\ArticleCategory $articleCategory
+     *
+     * @return Article
+     */
+    public function setArticleCategory(\AppBundle\Entity\ArticleCategory $articleCategory = null)
+    {
+        $this->articleCategory = $articleCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get articleCategory
+     *
+     * @return \AppBundle\Entity\ArticleCategory
+     */
+    public function getArticleCategory()
+    {
+        return $this->articleCategory;
     }
 }
