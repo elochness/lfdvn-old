@@ -22,6 +22,8 @@ use AppBundle\Entity\Purchase;
 use AppBundle\Entity\PurchaseItem;
 use AppBundle\Entity\Schedule;
 use AppBundle\Entity\EnterpriseDetails;
+use AppBundle\Entity\Article;
+use AppBundle\Entity\ArticleCategory;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -50,6 +52,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     {
         //
         $this->loadUsers($manager);
+        $this->loadArticles($manager);
         //$this->loadPosts($manager);
         $this->loadSchedules($manager);
         $this->loadEnterpriseDetails($manager);
@@ -81,6 +84,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
         $manager->flush();
     }
+
 
     private function loadPosts(ObjectManager $manager)
     {
@@ -134,6 +138,52 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
       $manager->flush();
     }
 
+    private function loadArticles(ObjectManager $manager)
+    {
+      $categoryPresentation = new ArticleCategory();
+      $categoryPresentation->setId(1);
+      $categoryPresentation->setName('Article de présentation');
+      $manager->persist($categoryPresentation);
+      $manager->flush();
+
+      $categoryEnterprise = new ArticleCategory();
+      $categoryEnterprise->setId(2);
+      $categoryEnterprise->setName('Article sur l\'entreprise');
+      $manager->persist($categoryEnterprise);
+      $manager->flush();
+
+      $categoryBandeau = new ArticleCategory();
+      $categoryBandeau->setId(3);
+      $categoryBandeau->setName('Article sur le bandeau droit');
+      $manager->persist($categoryBandeau);
+      $manager->flush();
+
+      $articlePresentation = new Article();
+      $articlePresentation->setEnabled(true);
+      $articlePresentation->setTitle('Bienvenue au nouveau site de La Fromagerie du vignoble nantais');
+      $articlePresentation->setContains('Mon contenu est très limité');
+      $articlePresentation->setArticleCategory($categoryPresentation);
+      $manager->persist($articlePresentation);
+      $manager->flush();
+
+      $articleEnterprise = new Article();
+      $articleEnterprise->setEnabled(true);
+      $articleEnterprise->setTitle('Présentation de l\'entreprise');
+      $articleEnterprise->setContains('L’aventure de la fromagerie Beillevaire commence il y a trentaine d\'années, à Machecoul, au sud de la Loire Atlantique. Agriculteur à ses débuts, comme ses parents, Pascal Beillevaire fait les marchés pour vendre le lait et la crème de la production familiale. Durant les premières vacances, Pascal, accompagné de son épouse Claudine, partent sur les routes de France afin de dénicher les meilleurs fromages de chaque terroir et les proposer à leur clientèle.
+La passion fait naître un métier : celui de producteur-fromager. C’est alors qu’ils initient la fromagerie autour des 3 piliers fondateurs.');
+      $articleEnterprise->setArticleCategory($categoryEnterprise);
+      $manager->persist($articleEnterprise);
+      $manager->flush();
+
+      $articleBandeau = new Article();
+      $articleBandeau->setEnabled(true);
+      $articleBandeau->setTitle('Notre phylosophie');
+      $articleBandeau->setContains('Notre production s\'organise dans le respect d\'une agriculture durable et la conservation des méthodes traditionnlles de fabrication. La totalité des fromages sont élaborés dans notre local');
+      $articleBandeau->setArticleCategory($categoryBandeau);
+      $manager->persist($articleBandeau);
+      $manager->flush();
+
+    }
 
     /**
      * Load information of schedules
