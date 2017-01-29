@@ -157,9 +157,9 @@ body {
   color: #7d7d7d;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .container {
-    width: 1170px;
+    width: 750px;
   }
 }
 
@@ -169,9 +169,9 @@ body {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .container {
-    width: 750px;
+    width: 1170px;
   }
 }
 
