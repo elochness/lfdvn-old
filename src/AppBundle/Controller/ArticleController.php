@@ -30,4 +30,9 @@ class ArticleController extends Controller
         return $this->render('article/index.html.twig', ['articles' => $articles]);
     }
 
+    public function bandeauAction()
+    {
+        $articlesBandeau = $this->getDoctrine()->getRepository(Article::class)->findBandeau();
+        return $this->render('article/bandeau.html.twig', ['articlesBandeau' => $articlesBandeau]);
+    }
 }
