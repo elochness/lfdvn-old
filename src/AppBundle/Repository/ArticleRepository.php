@@ -27,7 +27,7 @@ class ArticleRepository extends EntityRepository
               SELECT a
               FROM AppBundle:Article a
               INNER JOIN AppBundle:ArticleCategory ac
-              ON a.articleCategory = ac.id
+              WITH a.articleCategory = ac.id
               WHERE a.enabled = true
               AND ac.id = :caid
               ORDER BY a.updatedAt, a.createdAt DESC
