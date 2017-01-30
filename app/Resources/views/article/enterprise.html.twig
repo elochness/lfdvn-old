@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block main %}
+
+    <div>
+        {% for article in articles %}
+            <article class="box article-large">
+                <h2>
+                    {{ article.title }}
+                </h2>
+                <div>
+                  {{article.contains | raw }}
+                </div>
+
+            </article>
+
+        {% else %}
+            <div class="well">{{ 'article.no_found'|trans }}</div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}
