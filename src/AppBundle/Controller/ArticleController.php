@@ -30,6 +30,17 @@ class ArticleController extends Controller
         return $this->render('article/index.html.twig', ['articles' => $articles]);
     }
 
+    /**
+    *  @Route("/la-fromagerie", name="article_enterprise")
+    *  @Method("GET")
+    * @Cache(smaxage="10")
+    */
+    public function enterpriseAction()
+    {
+        $articlesEnterprise = $this->getDoctrine()->getRepository(Article::class)->findEnterprise();
+        return $this->render('article/enterprise.html.twig', ['articles' => $articlesEnterprise]);
+    }
+
     public function bandeauAction()
     {
         $articlesBandeau = $this->getDoctrine()->getRepository(Article::class)->findBandeau();

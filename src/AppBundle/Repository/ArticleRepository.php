@@ -54,12 +54,12 @@ class ArticleRepository extends EntityRepository
 
     public function findEnterprise()
     {
-        return $this->queryLatest(ArticleCategory::ARTICLE_ENTERPRISE);
+        return $this->queryLatest(ArticleCategory::ARTICLE_ENTERPRISE)->getResult();
     }
 
     public function findBandeau()
     {
-        return $this->queryLatest(ArticleCategory::ARTICLE_BANDEAU);
+        return $this->queryLatest(ArticleCategory::ARTICLE_BANDEAU)->getResult();
     }
 
 }
