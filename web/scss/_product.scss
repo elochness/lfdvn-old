@@ -1,0 +1,40 @@
+.product {
+    img {
+        border-radius: 5px 0 0;
+        min-width: 200px;
+    }
+
+    .details {
+        padding: 10px 20px;
+
+        header {
+            h2 {
+                flex-grow: 1;
+            }
+
+            .mesure {
+                margin: 0 2px;
+            }
+
+            .mesure-id {
+                font-size: (14/$factor_font_size) + em;
+                padding: 0 10px;
+                background-color: $primary;
+                color: $background;
+            }
+
+            .mesure-value {
+                font-size: (14/$factor_font_size) + em;
+                font-weight: bold;
+                padding: 0 10px;
+                border-left: 1px solid $primary;
+                border-bottom: 1px solid $primary;
+                border-right: 1px solid $primary;
+            }
+        }
+
+        p {
+            line-height: 1.5em;
+        }
+    }
+}

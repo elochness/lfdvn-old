@@ -22,7 +22,7 @@ class ArticleController extends Controller
     /**
     *  @Route("/", defaults={"page": 1}, name="article_index")
     *  @Method("GET")
-    * @Cache(smaxage="10")
+    *  @Cache(smaxage="10")
     */
     public function indexAction($page)
     {
@@ -33,7 +33,7 @@ class ArticleController extends Controller
     /**
     *  @Route("/la-fromagerie", name="article_enterprise")
     *  @Method("GET")
-    * @Cache(smaxage="10")
+    *  @Cache(smaxage="10")
     */
     public function enterpriseAction()
     {
