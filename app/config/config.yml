@@ -135,3 +135,9 @@ fm_elfinder:
                         upload_allow:     ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'audio/mpeg', 'video/mp4', 'video/webm', 'application/pdf']
                         upload_deny:      ['all']
                         upload_max_size:  8M
+
+
+kms_froala_editor:
+    language: "fr"
+    toolbarInline: false
+
