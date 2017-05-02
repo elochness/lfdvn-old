@@ -52,17 +52,8 @@
                           </div>
                         </header>
                         <div>
-                            {% if product.quantity > 0 %}
-                                <span class="label label-success">{{ 'product.available'|trans }}</span>
-                            {% else %}
-                                <span class="label label-danger">{{ 'product.out_of_stock'|trans }}</span>
-                            {% endif %}
-                            <br/>
+                            <p>{{ product.description  | raw }}</p>
                         </div>
-                        <div>
-                            <p>{{ product.description }}</p>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-block">Search</a>
                     </div>
                 </article>
 
@@ -77,14 +68,14 @@
     {% endblock %}
 
     {% block sidebar %}
-        <ul class="list_style_none">
+        <div class="box article-large">
+            <h2>Catégories</h2>
             {% for category in categories %}
-                <li>
+                <h3>
                     <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
-                </li>
+                </h3>
             {% endfor %}
-        </ul>
-
+        </div>
         {{ parent() }}
 
     {% endblock %}
