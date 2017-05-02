@@ -30,7 +30,7 @@ easy_admin:
                     - 'category'
                     - 'measurement'
                     - 'weight'
-                    - 'description'
+                    - { property: 'description', type: 'ckeditor' }
             edit:
                 title: product.edit
                 fields:
@@ -44,4 +44,4 @@ easy_admin:
                     - 'category'
                     - 'measurement'
                     - 'weight'
-                    - 'description'
+                    - { property: 'description', type: 'ckeditor' }
