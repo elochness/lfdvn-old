@@ -13,11 +13,10 @@
 {% block main %}
 
     {% if enterpriseDetails %}
-    <article>
-      <div>
-        <h1>{{ enterpriseDetails.name }}</h1>
+    <h1>{{ enterpriseDetails.name }}</h1>
+    <article class="box article-large">
 
-        <h2>Coordonnées</h2>
+        <h2>Contact</h2>
 
         <ul class="fa-ul">
           <li>
@@ -49,9 +48,15 @@
             {{ enterpriseDetails.address }} - {{ enterpriseDetails.codePostal }} {{ enterpriseDetails.city }}
           </li>
         </ul>
+        </article>
+
 
 
         {% if geographicsCoordinates %}
+
+        <article class="box article-large">
+        <h2>Position géographique</h2>
+
         <div id="mapid" style="width: 800px; height: 300px;"></div>
         <script>
           var mymap = L.map('mapid').setView([{{geographicsCoordinates[0].latitude}},{{geographicsCoordinates[0].longitude}}], 13);
@@ -71,19 +76,22 @@
           {% endfor %}
 
         </script>
+
+        </article>
         {%endif%}
 
-      </div>
 
-    </article>
     {% else %}
       <div class="well">{{ 'enterprise_details.no_found'|trans }}</div>
     {% endif %}
+
+
 
 {% endblock %}
 
 {% block sidebar %}
 
+    <div class="box article-large">
     <h2>Horaires</h2>
 
     {% if schedule %}
@@ -145,6 +153,7 @@
         {% endif %}
       </li>
     </ul>
+    </div>
     {% else %}
       <div class="well">{{ 'schedule.no_found'|trans }}</div>
     {% endif %}
