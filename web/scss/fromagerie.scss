@@ -6,7 +6,7 @@ $primary: #dd5555;
 $background: #ebebeb;
 $navbar-background: #DDE236;
 $navbar-front: #91AD37;
-$navbar-background-focus: #A8C64D;
+$navbar-background-focus: #afd241;
 $font-color: #7d7d7d;
 $space: 1rem;
 $factor_font_size: 16;
@@ -99,7 +99,9 @@ p {
 //■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
 
 @import "btn";
+@import "img";
 @import "product";
+@import "pagination";
 
 *,
 *:after,
@@ -175,7 +177,7 @@ h1 {
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
-    background-color: $navbar-front;
+    background-color: $navbar-background-focus;
     color: white;
 }
 
