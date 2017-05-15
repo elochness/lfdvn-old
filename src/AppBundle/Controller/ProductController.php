@@ -27,21 +27,21 @@ class ProductController extends Controller
      *  @Method("GET")
      *  @Cache(smaxage="10")
      */
-    public function indexAction($page, $cid)
+    public function indexAction($page)
     {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page, $cid);
+        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page);
         $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
         $selectedCategory = null;
         
-        if(!empty($cid))
-        {
-          foreach($categories as $category) {
-            if($category->getId() ==$cid){
-               $selectedCategory = $category->getName();
-               break;
-            }
-          }
-        }
+//         if(!empty($cid))
+//         {
+//           foreach($categories as $category) {
+//             if($category->getId() ==$cid){
+//                $selectedCategory = $category->getName();
+//                break;
+//             }
+//           }
+//         }
         
         return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategory]);
     }

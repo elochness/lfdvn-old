@@ -33,14 +33,16 @@
                                       {{ product.category.name }}
                                   </div>
                               </div>
-                              <div class="mesure">
-                                  <div class="mesure-id">
-                                      {{ 'Weight' |trans }}
-                                  </div>
-                                  <div class="mesure-value">
-                                      {{ product.weight}} {{ product.measurement.shortname}}
-                                  </div>
-                              </div>
+                               {% if product.packaging %}
+	                              <div class="mesure">
+	                                  <div class="mesure-id">
+	                                      {{ 'Packaging' |trans }}
+	                                  </div>
+	                                  <div class="mesure-value">
+	                                      {{ product.packaging}}
+	                                  </div>
+	                              </div>
+                              {% endif %}
                               <div class="mesure">
                                   <div class="mesure-id">
                                       {{ 'Price' |trans }}

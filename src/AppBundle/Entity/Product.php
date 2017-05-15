@@ -36,11 +36,6 @@ class Product
     /**
      * @var string
      */
-    private $weight;
-
-    /**
-     * @var string
-     */
     private $image;
 
     /**
@@ -65,9 +60,14 @@ class Product
     private $updatedAt;
 
     /**
-     * @var float
+     * @var decimal
      */
     private $price;
+    
+    /**
+     * @var decimal
+     */
+    private $refundable;
 
     /**
      * @var string
@@ -85,9 +85,9 @@ class Product
     private $category;
 
     /**
-     * @var \AppBundle\Entity\Measurement
+     * @var string
      */
-    private $measurement;
+    private $packaging;
 
     /**
      * Constructor of the Article class.
@@ -179,30 +179,6 @@ class Product
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set weight
-     *
-     * @param string $weight
-     *
-     * @return Product
-     */
-    public function setWeight($weight)
-    {
-        $this->weight = $weight;
-
-        return $this;
-    }
-
-    /**
-     * Get weight
-     *
-     * @return string
-     */
-    public function getWeight()
-    {
-        return $this->weight;
     }
 
     /**
@@ -322,7 +298,7 @@ class Product
     /**
      * Set price
      *
-     * @param float $price
+     * @param float $refundable
      *
      * @return Product
      */
@@ -341,6 +317,30 @@ class Product
     public function getPrice()
     {
         return $this->price;
+    }
+    
+    /**
+     * Set refundable
+     *
+     * @param decimal $refundable
+     *
+     * @return Product
+     */
+    public function setRefundable($refundable)
+    {
+    	$this->refundable = $refundable;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get refundable
+     *
+     * @return decimal
+     */
+    public function getRefundable()
+    {
+    	return $this->refundable;
     }
 
     /**
@@ -402,26 +402,26 @@ class Product
     }
 
     /**
-     * Set measurement
+     * Set packaging
      *
-     * @param \AppBundle\Entity\Measurement $measurement
+     * @param string $packaging
      *
      * @return Product
      */
-    public function setMeasurement(\AppBundle\Entity\Measurement $measurement = null)
+    public function setPackaging($packaging = null)
     {
-        $this->measurement = $measurement;
+        $this->packaging = $packaging;
 
         return $this;
     }
 
     /**
-     * Get measurement
+     * Get packaging
      *
-     * @return \AppBundle\Entity\Measurement
+     * @return $packaging
      */
-    public function getMeasurement()
+    public function getPackaging()
     {
-        return $this->measurement;
+        return $this->packaging;
     }
 }

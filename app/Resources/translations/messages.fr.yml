@@ -54,7 +54,8 @@ Product: Produit
 Products: Produits
 Category: Catégorie
 Categories: Catégories
-Measurement: Mesure
+Packaging: Conditionnement
+Refundable: Consigne
 User: Utilisateur
 Purchase: Commande
 PurchaseItem: Article de la commande
@@ -90,7 +91,6 @@ NotDefined: Non renseigné
 product.available: Disponible
 product.out_of_stock: Rupture de stock
 Quantity: Quantité
-Weight: Poids
 
 # purchase column
 Deliverydate: Date de livraison

@@ -68,7 +68,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $johnUser->setFirstname('john');
         $johnUser->setLastname('user');
         $johnUser->setEmail('john_user@symfony.com');
-        $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
+        $encodedPassword = $passwordEncoder->encodePassword($johnUser, ' ');
         $johnUser->setPassword($encodedPassword);
         $manager->persist($johnUser);
 
@@ -267,7 +267,7 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $product->setTaxRate($taxRate10);
       $product->setMeasurement($kiloMeasurement);
       $product->setCategory($chevreCategory);
-      $product->setWeight("200");
+      $product->setPackaging("200");
       $manager->persist($product);
 
       $productFro = new Product();
@@ -281,7 +281,7 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $productFro->setTaxRate($taxRate20);
       $productFro->setMeasurement($litreMeasurement);
       $productFro->setCategory($chevreCategory);
-      $productFro->setWeight("80");
+      $productFro->setPackaging("80");
       $manager->persist($productFro);
 
 

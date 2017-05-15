@@ -25,11 +25,6 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="weight" type="string" column="weight" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="image" type="string" column="image" length="100" nullable="true">
       <options>
         <option name="fixed"/>
@@ -37,18 +32,15 @@
     </field>
     <field name="enabled" type="boolean" column="enabled" nullable="false"/>
     <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
-    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
-    <field name="price" type="float" column="price" precision="10" scale="0" nullable="false"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>   
+    <field name="price" type="decimal" column="price" precision="10" scale="2" nullable="false"/>
+    <field name="refundable" type="decimal" column="refundable" precision="10" scale="2" nullable="false"/>
     <many-to-one field="category" target-entity="Category" inversed-by="products" fetch="LAZY">
       <join-columns>
         <join-column name="category_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="measurement" target-entity="Measurement" fetch="LAZY">
-      <join-columns>
-        <join-column name="measurement_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
+    <field name="packaging" type="string" column="packaging" length="100" nullable="true"/>
     <many-to-one field="taxRate" target-entity="TaxRate" fetch="LAZY">
       <join-columns>
         <join-column name="tax_rate_id" referenced-column-name="id"/>
