@@ -41,6 +41,9 @@ menu.contactus: Nous contacter
 menu.purchase: Commander
 menu.enterprise.desc: Fromagerie/Fermière
 menu.homepage: Site Web
+menu.logout: Déconnexion
+
+lien.facebook: https://www.facebook.com/lafromagerieduvignoblenantais/
 
 # We let EasyAdmin generate the rest of the backend labels
 # (they are translated following the 2) method)
