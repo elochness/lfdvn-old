@@ -23,12 +23,10 @@ class PurchaseController extends Controller
      *  @Route("/", name="purchase_index")    
      *  @Method("GET")
      */
-    /*public function indexAction()
+    public function indexAction()
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
-        
-        return $this->render('purchase/index.html.twig', ['categories' => $categories]);
-    } */
+        return $this->render('purchase/index.html.twig');
+    } 
     
     /**
      *  @Route("/", name="purchase_add")    
