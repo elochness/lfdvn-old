@@ -9,7 +9,3 @@ easy_admin_bundle:
 
 elfinder:
      resource: "@FMElfinderBundle/Resources/config/routing.yml"
-     
-kms_froala_editor:
-  resource: "@KMSFroalaEditorBundle/Resources/config/routing.yml"
-  prefix:   /froalaeditor

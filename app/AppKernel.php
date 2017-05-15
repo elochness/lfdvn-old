@@ -26,8 +26,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             # Manage Upload file
             new FM\ElfinderBundle\FMElfinderBundle(),
-        		new KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
-
+        	
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -136,8 +136,3 @@ fm_elfinder:
                         upload_deny:      ['all']
                         upload_max_size:  8M
 
-
-kms_froala_editor:
-    language: "fr"
-    toolbarInline: false
-
