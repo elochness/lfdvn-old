@@ -20,14 +20,21 @@ use Symfony\Component\HttpFoundation\Response;
 class ArticleController extends Controller
 {
     /**
-    *  @Route("/", defaults={"page": 1}, name="article_index")
+    *  @Route("/", name="article_index")
     *  @Method("GET")
     *  @Cache(smaxage="10")
     */
-    public function indexAction($page)
+    public function indexAction(Request $request)
     {
+    	
+    	$page =  $request->query->get('page');
+    	if (!isset($page)) {
+    		$page = 1;
+    	}
+    	
         $articles = $this->getDoctrine()->getRepository(Article::class)->findLatest($page);
         return $this->render('article/index.html.twig', ['articles' => $articles]);
+        
     }
 
     /**
