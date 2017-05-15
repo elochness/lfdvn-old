@@ -41,7 +41,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('purchase_add') }}">
+                                    <a href="{{ path('purchase_index') }}">
                                         {{ 'menu.purchase'|trans }}
                                     </a>
                                 </li>
@@ -130,19 +130,12 @@
                         <div id="footer-copyright" class="col-md-6">
                             <p>&copy;
                                 {{ 'now'|date('Y') }}
-                                - The Symfony Project</p>
-                            <p>{{ 'mit_license'|trans }}</p>
+                                - La fromagerie du vignoble nantais</p>
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>
-                                <a href="https://twitter.com/symfony">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="https://www.facebook.com/SensioLabs">
+                                <a href="{{ 'lien.facebook'|trans }}">
                                     <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://symfony.com/blog/">
-                                    <i class="fa fa-rss"></i>
                                 </a>
                             </p>
                         </div>
