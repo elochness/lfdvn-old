@@ -5,7 +5,6 @@ easy_admin:
             - { label: menu.gestion.products }
             - { entity: 'Product', icon: 'barcode' }
             - { entity: 'Category', icon: 'tag' }
-            - { entity: 'Measurement', icon: 'th' }
             - { label: menu.gestion.purchases }
             - { entity: 'Purchase', icon: 'shopping-cart' }
             - { entity: 'PurchaseItem', icon: 'cart-plus' }
