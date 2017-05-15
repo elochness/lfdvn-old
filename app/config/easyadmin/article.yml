@@ -17,7 +17,7 @@ easy_admin:
                 fields:
                     - 'articleCategory'
                     - 'title'
-                    - { property: 'contains', type: 'KMS\FroalaEditorBundle\Form\Type\FroalaEditorType' }
+                    - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
                     - 'enabled'
             edit:
                 title: article.edit
