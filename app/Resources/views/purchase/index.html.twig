@@ -5,48 +5,26 @@
   <script src="/js/purchase.js"></script>
 {% endblock %}
 
+
 {% block main %}
-     
-    <h1> Liste des produits à commander</h1>
-    <hr />
-    <br />
-    
-    {% if categories|length > 0 %}
-        <form>
-        {% for category in categories %}
-            {% if category.products|length > 0 %}
-              <h2>{{ category.name }}</h2>
-                                       
-              {% for product in category.products %}
-                  <ul class="purchase-list">
-                      <li>{{ product.name }}</li>
-                      <li><span  id="pu-{{ category.id }}-{{ product.id }}">{{ product.price }}</span> <i class="fa fa-eur" aria-hidden="true"></i></li>
-                      <li class="multi"><i class="fa fa-times"aria-hidden="true"></i></li>
-                      <li><input id="qte-{{ category.id }}-{{ product.id }}" type="number" min="0" max="50" /></li>
-                      <li><span  id="total-{{ category.id }}-{{ product.id }}" name="total"></span> <i class="fa fa-eur" aria-hidden="true"></i></li>
-                  </ul>
-              {% endfor %}
-            {% endif %}
-        {% endfor %}
-        <ul class="purchase-total">
-            <li id="result"><span id="total-final"></span> <i class="fa fa-eur" aria-hidden="true"></i></li>
-            <li class="name">Total</li>
-        </ul>
-        </form>
-    {% else %}
-        <div class="well">{{ 'product.no_found'|trans }}</div>
-    {% endif %}
+
+    <div>
+            <article class="box article-large">
+                <h2>
+                    Page en construction.
+                </h2>
+                <div>
+                	<img class="center" src="{{ asset('images/barricade.svg') }}" width="256" height="240" alt="Travaux" />
+                </div>
+
+            </article>
+
+    </div>
 
 {% endblock %}
 
 {% block sidebar %}
-    <ul class="list_style_none">
-      {% for category in categories %}
-          <li>
-            <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
-          </li>
-      {% endfor %}
-    </ul>
+
 
     {{ parent() }}
 
