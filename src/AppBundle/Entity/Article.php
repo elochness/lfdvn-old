@@ -11,7 +11,7 @@ class Article
     /**
      * Element number per page
      */
-    const NUM_ITEMS = 10;
+    const NUM_ITEMS = 1;
 
     /**
      * @var string
