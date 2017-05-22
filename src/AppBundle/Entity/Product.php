@@ -207,7 +207,7 @@ class Product
 
     public function setImageFile($image = null)
     {
-        $this->photoFile = $image;
+        $this->imageFile = $image;
 
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
