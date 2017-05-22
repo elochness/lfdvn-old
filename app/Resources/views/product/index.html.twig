@@ -2,82 +2,104 @@
 
 {% block body_id '_index' %}
 
-    {% block main %}
+{% block main %}
 
-        <h1>
-            {% if app.request.attributes.get('_route') == 'product_category' %}
-                {{ selectedCategory }}
-            {% else %}
-                {{ 'product.list'|trans }}
-            {% endif %}
-        </h1>
-        <section>
-            {% for product in products %}
-                <article class="box product flex">
-                    <div class="image">
-                        {% if product.image %}
-                            <img src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}"/>
-                        {% else %}
-                            <img src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image"/>
-                        {% endif %}
+    <h1>
+        {% if app.request.attributes.get('_route') == 'product_category' %}
+            {{ selectedCategory }}
+        {% else %}
+            {{ 'product.list'|trans }}
+        {% endif %}
+    </h1>
+    <section>
+        {% for product in products %}
+            <article class="box product flex">
+                <div class="image">
+                    {% if product.image %}
+                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}"/>
+                    {% else %}
+                        <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image"/>
+                    {% endif %}
+                </div>
+                <div class="details">
+                
+                	<h2>{{ product.name }}</h2>
+                    <header class="flex">
+                    	{# Caracteristics of product #}
+                      	<div class="flex">
+                          	{% if product.category.name %}
+	                          	<div class="mesure">
+	                              	<div class="mesure-id">
+	                              		<img class="center" src="{{ asset('images/svg/001-shopping-1.svg') }}" width="32" height="32" alt="Catégorie" />
+	                                  	{{ 'Category' |trans }}
+	                              	</div>
+	                              	<div class="mesure-value">
+	                                  	{{ product.category.name }}
+	                              	</div>
+	                          	</div>
+                          	{% endif %}
+                           	{% if product.packaging %}
+                              	<div class="mesure">
+                                  	<div class="mesure-id">
+                                  		<img class="center" src="{{ asset('images/svg/003-business.svg') }}" width="32" height="32" alt="Conditionnement" />
+                                      	{{ 'Packaging' |trans }}
+                                  	</div>
+                                  	<div class="mesure-value">
+                                      	{{ product.packaging}}
+                                  	</div>
+                              	</div>
+                          	{% endif %}
+                          	{% if product.price %}
+                          		<div class="mesure">
+                              		<div class="mesure-id">
+                              			<img class="center" src="{{ asset('images/svg/004-coins.svg') }}" width="32" height="32" alt="Prix" />
+                                  		{{ 'Price' |trans }}
+                              		</div>
+                              		<div class="mesure-value">
+                                  		{{ product.price }} €
+                              		</div>
+                          		</div>
+                      		{% endif %}
+                      		{% if product.refundable and  product.refundable > 0 %}
+                          		<div class="mesure">
+                              		<div class="mesure-id">
+                              			<img class="center" src="{{ asset('images/svg/006-get-money.svg') }}" width="32" height="32" alt="Consigne" />
+                                  		{{ 'Refundable' |trans }}
+                              		</div>
+                              		<div class="mesure-value">
+                                  		{{ product.refundable }} €
+                              		</div>
+                          		</div>
+                      		{% endif %}
+                      	</div>
+                    </header>
+                    
+                    {# Complete description of product #}
+                    <div>
+                        <p>{{ product.description  | raw }}</p>
                     </div>
-                    <div class="details">
-                        <header class="flex">
-                        <h2>{{ product.name }}</h2>
-                          <div class="flex">
-                              <div class="mesure">
-                                  <div class="mesure-id">
-                                      {{ 'Category' |trans }}
-                                  </div>
-                                  <div class="mesure-value">
-                                      {{ product.category.name }}
-                                  </div>
-                              </div>
-                               {% if product.packaging %}
-	                              <div class="mesure">
-	                                  <div class="mesure-id">
-	                                      {{ 'Packaging' |trans }}
-	                                  </div>
-	                                  <div class="mesure-value">
-	                                      {{ product.packaging}}
-	                                  </div>
-	                              </div>
-                              {% endif %}
-                              <div class="mesure">
-                                  <div class="mesure-id">
-                                      {{ 'Price' |trans }}
-                                  </div>
-                                  <div class="mesure-value">
-                                      {{ product.price}} €
-                                  </div>
-                              </div>
-                          </div>
-                        </header>
-                        <div>
-                            <p>{{ product.description  | raw }}</p>
-                        </div>
-                    </div>
-                </article>
+                </div>
+            </article>
 
-            {% else %}
-                <div class="well">{{ 'product.no_found'|trans }}</div>
-            {% endfor %}
-        </section>
+        {% else %}
+            <div class="well">{{ 'product.no_found'|trans }}</div>
+        {% endfor %}
+    </section>
 
-        <div class="navigation text-center">
-            {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
-        </div>
-    {% endblock %}
+    <div class="navigation text-center">
+        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
+    </div>
+{% endblock %}
 
-    {% block sidebar %}
-        <div class="box article-large">
-            <h2>Catégories</h2>
-            {% for category in categories %}
-                <h3>
-                    <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
-                </h3>
-            {% endfor %}
-        </div>
-        {{ parent() }}
+{% block sidebar %}
+    <div class="box article-large">
+        <h2>Catégories</h2>
+        {% for category in categories %}
+            <h3>
+                <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
+            </h3>
+        {% endfor %}
+    </div>
+    {{ parent() }}
 
-    {% endblock %}
+{% endblock %}
