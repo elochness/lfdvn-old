@@ -271,6 +271,9 @@ ol, ul {
         width: 75%;
     }
 }
+
+
+
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
@@ -315,7 +318,7 @@ ol, ul {
 }
 
 /* Cas pour afficher correctement les caracteristiques d'un produit */
-@media ( max-width: 1000px) {
+@media ( max-width: 992px) {
 	.flex {
 		flex-direction: column;
 	}
