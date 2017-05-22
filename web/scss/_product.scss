@@ -1,11 +1,27 @@
+
+
 .product {
-    .photo {
-        border-radius: 5px 0 0;
-        min-width: 200px;
-    }
+
+	/* Arrondi sur les deux coins au top lors affichage petit */
+	@media ( max-width: 992px) {
+		.photo {
+			width: 100%;
+			border-radius: 5px 5px 0px 0px;
+		}
+	}
+
+	/* Arrondi sur lee coin top left lors affichage grand */
+	@media ( min-width: 992px) {
+		.photo {
+			border-radius: 5px 0 0;
+	        min-width: 200px;
+		}
+	}
+
 
     .details {
         padding: 10px 20px;
+        width: 100%;
 
         header {
             h2 {
@@ -44,10 +60,4 @@
     }
 }
 
-/* Cas pour afficher correctement les caracteristiques d'un produit */
-@media ( max-width: 1000px) {
-	.photo {
-		width: 100%;
-		border-radius: 5px 5px 0px 0px;
-	}
-}
+
