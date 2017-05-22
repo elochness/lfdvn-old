@@ -313,4 +313,12 @@ ol, ul {
     display: flex;
     flex-direction: row;
 }
+
+/* Cas pour afficher correctement les caracteristiques d'un produit */
+@media ( max-width: 1000px) {
+	.flex {
+		flex-direction: column;
+	}
+}
+
 /* Product */
