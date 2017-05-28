@@ -10,10 +10,17 @@
 
 {% block body_id 'blog_post_show' %}
 
+{% block body_title %}
+	<div class="row">
+        <div id="main" class="col-sm-12">
+            <h1>{{ enterpriseDetails.name }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
 {% block main %}
 
     {% if enterpriseDetails %}
-    <h1>{{ enterpriseDetails.name }}</h1>
     <article class="box article-large">
 
         <h2>Contact</h2>
