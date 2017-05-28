@@ -102,6 +102,8 @@ p {
 @import "img";
 @import "product";
 @import "pagination";
+@import "footer";
+@import "sidebar";
 
 *,
 *:after,
@@ -162,38 +164,21 @@ h1 {
     border-color: transparent;
     z-index: 1000;
     position: relative;
-    min-height: 60px;
     margin-bottom: 21px;
-}
-.nav {
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
 }
 
 .nav > li > a, .nav > li > a {
     color: $navbar-front;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
-    text-decoration: none;
-    background-color: $navbar-background-focus;
-    color: white;
-}
-
-.navbar-nav {
-    margin: 7.5px -15px;
-}
-
-.navbar-collapse {
-    max-height: 340px;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-.nav>li {
-    position: relative;
-    display: block;
+.nav {
+	li {
+		a:hover{
+		    text-decoration: none;
+		    background-color: $navbar-background-focus;
+		    color: white;
+		}
+	}
 }
 
 ol, ul {
@@ -204,43 +189,6 @@ ol, ul {
 @media (min-width: 768px) {
     .container {
         width: 750px;
-    }
-
-    .navbar-header {
-        float: left;
-    }
-
-    .navbar > .container .navbar-brand {
-        margin-left: -15px;
-    }
-
-    .navbar-collapse,.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .navbar-collapse.collapse {
-        display: block!important;
-        height: auto!important;
-        padding-bottom: 0;
-        overflow: visible!important;
-        width: auto;
-        border-top: 0;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        padding-right: 0;
-        padding-left: 0;
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .navbar-nav {
-        float: left;
-        margin: 0;
-    }
-
-    .navbar-nav>li {
-        float: left;
     }
 
     .col-sm-3, .col-sm-9 {
@@ -324,4 +272,15 @@ ol, ul {
 	}
 }
 
-/* Product */
+/* Row class */
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.row:before, .row:after {
+    content: " ";
+    display: table;
+}
+.row:after {
+    clear: both;
+}
