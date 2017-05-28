@@ -4,7 +4,6 @@
    repository-class="AppBundle\Repository\ProductRepository">
     <indexes>
       <index name="category_id" columns="category_id"/>
-      <index name="measurement_id" columns="measurement_id"/>
       <index name="tax_rate_id" columns="tax_rate_id"/>
     </indexes>
     <id name="id" type="integer" column="id">
