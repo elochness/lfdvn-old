@@ -15,10 +15,10 @@ easy_admin:
             new:
                 title: article.new
                 fields:
+                    - 'enabled'
                     - 'articleCategory'
                     - 'title'
                     - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
-                    - 'enabled'
             edit:
                 title: article.edit
                 fields:
