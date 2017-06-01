@@ -173,10 +173,16 @@ h1 {
 
 .nav {
 	li {
+	
+		a {
+			font-size: medium;
+		}
+		
 		a:hover{
 		    text-decoration: none;
 		    background-color: $navbar-background-focus;
 		    color: white;
+		    
 		}
 	}
 }
