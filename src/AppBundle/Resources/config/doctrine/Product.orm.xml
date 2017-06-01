@@ -33,7 +33,7 @@
     <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
     <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>   
     <field name="price" type="decimal" column="price" precision="10" scale="2" nullable="false"/>
-    <field name="refundable" type="decimal" column="refundable" precision="10" scale="2" nullable="false"/>
+    <field name="refundable" type="decimal" column="refundable" precision="10" scale="2" nullable="true"/>
     <many-to-one field="category" target-entity="Category" inversed-by="products" fetch="LAZY">
       <join-columns>
         <join-column name="category_id" referenced-column-name="id"/>
