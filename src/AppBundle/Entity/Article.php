@@ -11,7 +11,7 @@ class Article
     /**
      * Element number per page
      */
-    const NUM_ITEMS = 1;
+    const NUM_ITEMS = 5;
 
     /**
      * @var string
@@ -56,6 +56,7 @@ class Article
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->enabled = true;
     }
 
     /**

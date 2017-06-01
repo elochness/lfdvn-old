@@ -97,6 +97,7 @@ class Product
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->enabled = true;
     }
     
     /**
