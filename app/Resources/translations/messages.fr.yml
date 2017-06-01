@@ -54,6 +54,7 @@ Product: Produit
 Products: Produits
 Category: Catégorie
 Categories: Catégories
+category.all: Tout
 Packaging: Conditionnement
 Refundable: Consigne
 User: Utilisateur
@@ -133,6 +134,7 @@ Tax rate: Taux TVA
 
 # product views
 product.list: Liste des produits
+product.list_end: Liste des
 product.new:  Ajouter un produit
 product.edit:  Modifier un produit
 products.list.last: Derniers produits

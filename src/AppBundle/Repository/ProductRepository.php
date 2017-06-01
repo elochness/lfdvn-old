@@ -21,23 +21,23 @@ class ProductRepository extends EntityRepository
    * @param cid : Category id  
    * @return Query
    */
-  public function queryLatest()
+  public function queryLatest($selectedCategory)
   {
-//       if(!empty($cid))
-//       {
-//         $query = $this->getEntityManager()
-//           ->createQuery('
-//               SELECT p
-//               FROM AppBundle:Product p
-//               INNER JOIN AppBundle:Category c WITH p.category = c.id
-//               WHERE p.enabled = true
-//               AND c.id = :cid
-//               ORDER BY p.updatedAt, p.createdAt DESC
-//           ')
-//         ;
-//         $query->setParameter('cid', $cid);
-//         return $query;        
-//       } else {
+      if(!empty($selectedCategory))
+      {
+        $query = $this->getEntityManager()
+          ->createQuery('
+              SELECT p
+              FROM AppBundle:Product p
+              INNER JOIN AppBundle:Category c WITH p.category = c.id
+              WHERE p.enabled = true
+              AND c.id = :cid
+              ORDER BY p.updatedAt, p.createdAt DESC
+          ')
+        ;
+        $query->setParameter('cid', $selectedCategory);
+        return $query;        
+      } else {
         return $this->getEntityManager()
           ->createQuery('
               SELECT p
@@ -46,7 +46,7 @@ class ProductRepository extends EntityRepository
               ORDER BY p.updatedAt, p.createdAt DESC
           ')
         ;
-//       }
+      }
   }
 
   /**
@@ -54,9 +54,9 @@ class ProductRepository extends EntityRepository
    *
    * @return
    */
-  public function findLatest($page = 1)
+  public function findLatest($page, $selectedCategory)
   {
-      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
+      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest($selectedCategory), false));
       $paginator->setMaxPerPage(Product::NUM_ITEMS);
       $paginator->setCurrentPage($page);
 

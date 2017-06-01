@@ -5,7 +5,11 @@
 {% block body_title %}
 	<div class="row">
         <div id="main" class="col-sm-12">
-            <h1>{{ 'product.list'|trans }}</h1>
+        	{% if selectedCategory %}
+        		<h1>{{ 'product.list_end'|trans ~ " " ~ selectedCategory|lower ~ "s"}}</h1>
+        	{% else %}
+            	<h1>{{ 'product.list'|trans }}</h1>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
@@ -88,16 +92,19 @@
     </section>
 
     <div class="navigation text-center">
-        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index_paginated' }) }}
+        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index' }) }}
     </div>
 {% endblock %}
 
 {% block sidebar %}
     <div class="box article-large">
         <h2>Catégories</h2>
+        <h3>
+        	<a href=" {{ path('product_index') }} ">{{ 'category.all'|trans }}</a>
+        </h3>
         {% for category in categories %}
             <h3>
-                <a href="{{ path('product_category', { cid: category.id }) }}">{{ category.name }}</a>
+                <a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a>
             </h3>
         {% endfor %}
     </div>

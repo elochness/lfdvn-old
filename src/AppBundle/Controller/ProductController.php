@@ -20,30 +20,35 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ProductController extends Controller
 {
-    /**
-     *  @Route("/", defaults={"page": 1}, name="product_index")
-     *  @Route("/{page}", name="product_index_paginated", requirements={"page" = "\d+"})     
-     *  @Route("/categorie/{cid}", defaults={"page": 1}, name="product_category")     
-     *  @Method("GET")
-     *  @Cache(smaxage="10")
-     */
-    public function indexAction($page)
+	/**
+	 *  @Route("/", name="product_index")
+	 *  @Method("GET")
+	 *  @Cache(smaxage="10")
+	 */
+    public function indexAction(Request $request)
     {
-        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page);
+    	$page =  $request->query->get('page');
+    	if (!isset($page)) {
+    		$page = 1;
+    	}
+    	
+    	$selectedCategory =  $request->query->get('categorie');
+    	$selectedCategoryName = null;
+    	
+        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page, $selectedCategory);
         $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
-        $selectedCategory = null;
         
-//         if(!empty($cid))
-//         {
-//           foreach($categories as $category) {
-//             if($category->getId() ==$cid){
-//                $selectedCategory = $category->getName();
-//                break;
-//             }
-//           }
-//         }
+        if(!empty($selectedCategory))
+        {
+          foreach($categories as $category) {
+            if($category->getId() == $selectedCategory){
+               $selectedCategoryName = $category->getName();
+               break;
+            }
+          }
+        }
         
-        return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategory]);
+        return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategoryName]);
     }
 
     /**
