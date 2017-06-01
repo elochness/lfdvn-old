@@ -39,7 +39,7 @@ easy_admin:
                     - 'price'
                     - 'refundable'
                     - 'taxRate'
-                    - { property: 'imageFile', type: 'vich_image',  type_options: { required: true } }
+                    - { property: 'imageFile', type: 'vich_image' }
                     - 'category'
                     - 'packaging'
                     - { property: 'description', type: 'ckeditor' }
