@@ -20,7 +20,7 @@
         <join-column name="product_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="purchase" target-entity="Purchase" fetch="LAZY">
+    <many-to-one field="purchase" target-entity="Purchase" fetch="LAZY" inversed-by="items">
       <join-columns>
         <join-column name="purchase_id" referenced-column-name="id"/>
       </join-columns>
