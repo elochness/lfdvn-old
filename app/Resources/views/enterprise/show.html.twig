@@ -64,7 +64,7 @@
         <article class="box article-large">
         <h2>Position géographique</h2>
 
-        <div id="mapid" style="width: 800px; height: 300px;"></div>
+        <div id="mapid"></div>
         <script>
           var mymap = L.map('mapid').setView([{{geographicsCoordinates[0].latitude}},{{geographicsCoordinates[0].longitude}}], 13);
 
@@ -104,7 +104,7 @@
     {% if schedule %}
     <ul class="list_style_none">
       <li>
-        {{ 'monday' | trans }} :
+        {{ 'Monday' | trans }} :
         {% if schedule.monday %}
           <span class="{% if schedule.monday == "Fermé" %}day_red{%endif%}">{{ schedule.monday }}</span>
         {% else %}
@@ -112,7 +112,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'tuesday' | trans }} :
+        {{ 'Tuesday' | trans }} :
         {% if schedule.tuesday %}
           <span class="{% if schedule.tuesday == "Fermé" %}day_red{%endif%}">{{ schedule.tuesday }}</span>
         {% else %}
@@ -120,7 +120,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'wednesday' | trans }} :
+        {{ 'Wednesday' | trans }} :
         {% if schedule.wednesday %}
           <span class="{% if schedule.wednesday == "Fermé" %}day_red{%endif%}">{{ schedule.wednesday }}</span>
         {% else %}
@@ -128,7 +128,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'thursday' | trans }} :
+        {{ 'Thursday' | trans }} :
         {% if schedule.thursday %}
           <span class="{% if schedule.thursday == "Fermé" %}day_red{%endif%}">{{ schedule.thursday }}</span>
         {% else %}
@@ -136,7 +136,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'friday' | trans }} :
+        {{ 'Friday' | trans }} :
         {% if schedule.friday %}
           <span class="{% if schedule.friday == "Fermé" %}day_red{%endif%}">{{ schedule.friday }}</span>
         {% else %}
@@ -144,7 +144,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'saturday' | trans }} :
+        {{ 'Saturday' | trans }} :
         {% if schedule.saturday %}
           <span class="{% if schedule.saturday == "Fermé" %}day_red{%endif%}">{{ schedule.saturday }}</span>
         {% else %}
@@ -152,7 +152,7 @@
         {% endif %}
       </li>
       <li>
-        {{ 'sunday' | trans }} :
+        {{ 'Sunday' | trans }} :
         {% if schedule.sunday %}
           <span class="{% if schedule.sunday == "Fermé" %}day_red{%endif%}">{{ schedule.sunday }}</span>
         {% else %}

@@ -8,6 +8,7 @@ $navbar-background: #DDE236;
 $navbar-front: #91AD37;
 $navbar-background-focus: #afd241;
 $font-color: #7d7d7d;
+$font-color-close: #fb0303;
 $space: 1rem;
 $factor_font_size: 16;
 
@@ -98,12 +99,14 @@ p {
 // IMPORT
 //■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
 
+@import "sidebar";
 @import "btn";
 @import "img";
 @import "product";
 @import "pagination";
 @import "footer";
-@import "sidebar";
+@import "map";
+@import "schedules";
 
 *,
 *:after,

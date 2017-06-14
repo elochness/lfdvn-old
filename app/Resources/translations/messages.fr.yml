@@ -121,13 +121,13 @@ Latitude: Latitude
 Longitude: Longitude
 
 # schedule column
-monday: Lundi
-tuesday: Mardi
-wednesday: Mercredi
-thursday: Jeudi
-friday: Vendredi
-saturday: Samedi
-sunday: Dimanche
+Monday: Lundi
+Tuesday: Mardi
+Wednesday: Mercredi
+Thursday: Jeudi
+Friday: Vendredi
+Saturday: Samedi
+Sunday: Dimanche
 
 # tax rate column
 Tax rate: Taux TVA
