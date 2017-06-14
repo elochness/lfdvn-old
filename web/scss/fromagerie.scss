@@ -154,6 +154,10 @@ h1 {
         font-size: (17/$factor_font_size) + em;
         color: $font-color;
     }
+    
+    #list-category {
+    	margin-bottom: 0px;
+    }
 }
 
 .navbar {
