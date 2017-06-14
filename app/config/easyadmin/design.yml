@@ -16,7 +16,3 @@ easy_admin:
             - { label: menu.gestion.users }
             - { entity: 'User', icon: 'user' }
             - { label: menu.homepage, route: 'homepage' }
-        assets:
-            js:
-                - '/assets/elfinder/elfinder-built.js'
-                - '/js/setup-ckfinder.js'
