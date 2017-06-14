@@ -174,6 +174,8 @@ img.center {
   /* line 31, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/_img.scss */
   .navbar-brand img {
     width: 180px;
+    margin-left: 10px;
+    margin-right: 50px;
   }
 }
 
@@ -497,7 +499,12 @@ h1 {
   color: #7d7d7d;
 }
 
-/* line 159, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 158, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+.box #list-category {
+  margin-bottom: 0px;
+}
+
+/* line 163, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .navbar {
   color: #91AD37;
   background-color: #DDE236;
@@ -509,82 +516,87 @@ h1 {
   margin-bottom: 21px;
 }
 
-/* line 170, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 174, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .nav > li > a, .nav > li > a {
   color: #91AD37;
 }
 
-/* line 176, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 181, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+.nav li a {
+  font-size: medium;
+}
+
+/* line 185, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .nav li a:hover {
   text-decoration: none;
   background-color: #afd241;
   color: white;
 }
 
-/* line 184, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 194, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 ol, ul {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
-  /* line 190, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 200, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .container {
     width: 750px;
   }
-  /* line 194, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 204, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3, .col-sm-9 {
     float: left;
   }
-  /* line 198, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 208, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3 {
     width: 25%;
   }
-  /* line 202, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 212, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-9 {
     width: 75%;
   }
 }
 
 @media (min-width: 992px) {
-  /* line 207, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 217, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .container {
     width: 970px;
   }
-  /* line 210, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 220, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3, .col-sm-9 {
     float: left;
   }
-  /* line 214, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 224, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3 {
     width: 25%;
   }
-  /* line 218, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 228, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-9 {
     width: 75%;
   }
 }
 
 @media (min-width: 1200px) {
-  /* line 226, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 236, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .container {
     width: 1170px;
   }
-  /* line 229, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 239, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3, .col-sm-9 {
     float: left;
   }
-  /* line 233, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 243, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-3 {
     width: 25%;
   }
-  /* line 237, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 247, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .col-sm-9 {
     width: 75%;
   }
 }
 
-/* line 243, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 253, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -593,17 +605,17 @@ ol, ul {
 }
 
 /* Article */
-/* line 251, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 261, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .article-large {
   padding: 20px;
 }
 
-/* line 254, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 264, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .article-large h2 {
   margin-top: 0px;
 }
 
-/* line 259, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 269, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .flex {
   display: -webkit-box;
   display: -moz-box;
@@ -615,26 +627,26 @@ ol, ul {
 
 /* Cas pour afficher correctement les caracteristiques d'un produit */
 @media (max-width: 992px) {
-  /* line 270, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+  /* line 280, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
   .flex {
     flex-direction: column;
   }
 }
 
 /* Row class */
-/* line 276, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 286, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .row {
   margin-left: -15px;
   margin-right: -15px;
 }
 
-/* line 280, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 290, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .row:before, .row:after {
   content: " ";
   display: table;
 }
 
-/* line 284, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
+/* line 294, D:/Logiciels/wamp/www/fromagerie-vignoble/web/scss/fromagerie.scss */
 .row:after {
   clear: both;
 }

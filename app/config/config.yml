@@ -125,6 +125,7 @@ fm_elfinder:
             locale:           %locale%
             editor:           ckeditor
             fullscreen:       false
+            theme:            smoothness
             include_assets:   true
             connector:
                 debug:        false
