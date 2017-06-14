@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 11 Décembre 2016 à 11:06
+-- Généré le :  Mer 14 Juin 2017 à 17:16
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -28,13 +28,36 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `article_category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contains` longtext COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `enabled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `article_category_id` (`article_category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `article_category`
+--
+
+CREATE TABLE IF NOT EXISTS `article_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Type d''article' AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `article_category`
+--
+
+INSERT INTO `article_category` (`id`, `name`) VALUES
+(1, 'Article de présentation'),
+(2, 'Article sur l''entreprise'),
+(3, 'Article sur le bandeau droit');
 
 -- --------------------------------------------------------
 
@@ -47,23 +70,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=13 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `comment`
---
-
-CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_id` int(11) DEFAULT NULL,
-  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `authorEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `publishedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_9474526C4B89032C` (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -103,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `enterprise_details` (
 --
 
 INSERT INTO `enterprise_details` (`id`, `name`, `address`, `code_postal`, `city`, `telephone`, `fax`, `email`) VALUES
-(1, 'La fromagerie du vignoble nantais', '9, rue de la XXX', '44140', 'Le bignon', 'XX.XX.XX.XX.XX', NULL, NULL);
+(1, '', '', '', '', 'XX.XX.XX.XX.XX', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -117,38 +124,7 @@ CREATE TABLE IF NOT EXISTS `geographic_coordinates` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `measurement`
---
-
-CREATE TABLE IF NOT EXISTS `measurement` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `shortname` varchar(3) CHARACTER SET latin1 DEFAULT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Unité d''un produit' AUTO_INCREMENT=13 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `post`
---
-
-CREATE TABLE IF NOT EXISTS `post` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `summary` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `authorEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `publishedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -161,20 +137,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` longtext CHARACTER SET latin1 NOT NULL,
-  `weight` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `measurement_id` int(11) DEFAULT NULL,
-  `price` double NOT NULL,
+  `packaging` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `refundable` decimal(10,2) DEFAULT NULL,
   `tax_rate_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
-  KEY `measurement_id` (`measurement_id`),
   KEY `tax_rate_id` (`tax_rate_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=29 ;
 
 -- --------------------------------------------------------
 
@@ -190,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6117D13B6C755722` (`buyer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -203,6 +178,8 @@ CREATE TABLE IF NOT EXISTS `purchase_item` (
   `product_id` int(11) DEFAULT NULL,
   `purchase_id` int(11) DEFAULT NULL,
   `quantity` smallint(6) NOT NULL,
+  `price` double NOT NULL,
+  `tax_rate` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6FA8ED7D4584665A` (`product_id`),
   KEY `IDX_6FA8ED7D558FBEB9` (`purchase_id`)
@@ -232,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 --
 
 INSERT INTO `schedule` (`id`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `alert_day`) VALUES
-(1, 'Fermé', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h', 'Fermé', 'Fermeture exceptionnelle le XX.');
+(1, 'Fermé', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-15h', 'Fermé', 'Fermeture exceptionnelle le XX.');
 
 -- --------------------------------------------------------
 
@@ -244,7 +221,16 @@ CREATE TABLE IF NOT EXISTS `tax_rate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rate` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `tax_rate`
+--
+
+INSERT INTO `tax_rate` (`id`, `rate`) VALUES
+(9, 5.5),
+(10, 10),
+(11, 20);
 
 -- --------------------------------------------------------
 
@@ -265,24 +251,31 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `roles`, `firstname`, `lastname`, `cellphone`, `enabled`) VALUES
+(1, 'john_user', 'john_user@symfony.com', '$2y$13$/seCIMLkFABd.6Ve2ofvkeBJO13hsm2MVvd45kRappPjs9eNLPAa6', '[]', 'john', 'user', NULL, 1),
+(2, 'anna_admin', 'anna_admin@symfony.com', '$2y$13$A5NEbsa/6p7QV.luP8U3K.9hbLTx.MralUS/PfKt6H1NfSHReGQeC', '["ROLE_ADMIN"]', 'anna', 'admin', NULL, 1);
 
 --
 -- Contraintes pour les tables exportées
 --
 
 --
--- Contraintes pour la table `comment`
+-- Contraintes pour la table `article`
 --
-ALTER TABLE `comment`
-  ADD CONSTRAINT `FK_9474526C4B89032C` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`);
+ALTER TABLE `article`
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`article_category_id`) REFERENCES `article_category` (`id`);
 
 --
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `FK_D34A04AD12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  ADD CONSTRAINT `product_measurement_fk` FOREIGN KEY (`measurement_id`) REFERENCES `measurement` (`id`),
   ADD CONSTRAINT `product_tax_rate_fk` FOREIGN KEY (`tax_rate_id`) REFERENCES `tax_rate` (`id`);
 
 --
