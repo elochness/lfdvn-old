@@ -63,3 +63,6 @@ security:
         # additional security lives in the controllers
         - { path: '^/login', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/admin', roles: ROLE_ADMIN }
+        # Secure ElFinder
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }
