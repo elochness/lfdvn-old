@@ -30,7 +30,7 @@ class ArticleRepository extends EntityRepository
               WITH a.articleCategory = ac.id
               WHERE a.enabled = true
               AND ac.id = :caid
-              ORDER BY a.updatedAt, a.createdAt DESC
+              ORDER BY a.updatedAt DESC, a.createdAt DESC
           ')
       ;
       $query->setParameter('caid', $caid);
