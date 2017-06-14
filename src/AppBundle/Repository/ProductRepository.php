@@ -32,7 +32,7 @@ class ProductRepository extends EntityRepository
               INNER JOIN AppBundle:Category c WITH p.category = c.id
               WHERE p.enabled = true
               AND c.id = :cid
-              ORDER BY p.updatedAt, p.createdAt DESC
+              ORDER BY p.name, c.name ASC
           ')
         ;
         $query->setParameter('cid', $selectedCategory);
@@ -42,8 +42,9 @@ class ProductRepository extends EntityRepository
           ->createQuery('
               SELECT p
               FROM AppBundle:Product p
+          	  INNER JOIN AppBundle:Category c WITH p.category = c.id
               WHERE p.enabled = true
-              ORDER BY p.updatedAt, p.createdAt DESC
+              ORDER BY p.name, c.name ASC
           ')
         ;
       }
