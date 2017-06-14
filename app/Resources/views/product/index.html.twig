@@ -98,15 +98,17 @@
 
 {% block sidebar %}
     <div class="box article-large">
-        <h2>Catégories</h2>
-        <h3>
-        	<a href=" {{ path('product_index') }} ">{{ 'category.all'|trans }}</a>
-        </h3>
+    
+        <img src="{{ asset('images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 style='display:inline;'>Catégories</h2>
+        <ul id="list-category">
+        	<li><a href=" {{ path('product_index') }} ">{{ 'category.all'|trans }}</a></li>
+        
         {% for category in categories %}
-            <h3>
-                <a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a>
-            </h3>
+            
+                <li><a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a></li>
+            
         {% endfor %}
+        </ul>
     </div>
     {{ parent() }}
 
