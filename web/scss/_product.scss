@@ -13,8 +13,8 @@
 	/* Arrondi sur lee coin top left lors affichage grand */
 	@media ( min-width: 992px) {
 		.photo {
+			width: 100%;
 			border-radius: 5px 0 0;
-	        min-width: 200px;
 		}
 	}
 
@@ -58,6 +58,10 @@
             line-height: 1.5em;
         }
     }
+}
+
+.title-inline {
+	display:inline;
 }
 
 
