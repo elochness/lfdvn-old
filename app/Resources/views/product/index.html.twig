@@ -4,7 +4,7 @@
 
 {% block body_title %}
 	<div class="row">
-        <div id="main" class="col-sm-12">
+        <div class="col-sm-12">
         	{% if selectedCategory %}
         		<h1>{{ 'product.list_end'|trans ~ " " ~ selectedCategory|lower ~ "s"}}</h1>
         	{% else %}
@@ -80,9 +80,7 @@
                     </header>
                     
                     {# Complete description of product #}
-                    <div>
-                        <p>{{ product.description  | raw }}</p>
-                    </div>
+                    <div>{{ product.description  | raw }}</div>
                 </div>
             </article>
 
