@@ -191,7 +191,8 @@ class Product
      */
     public function setImage($image)
     {
-        $this->image = $image;
+    	$this->image = $image;
+    	//$this->image = $this->getValidFilename($image);
 
         return $this;
     }
@@ -208,6 +209,7 @@ class Product
 
     public function setImageFile($image = null)
     {
+        // $this->imageFile = $this->getValidFilename($image);
         $this->imageFile = $image;
 
         // VERY IMPORTANT:
@@ -424,5 +426,21 @@ class Product
     public function getPackaging()
     {
         return $this->packaging;
+    }
+    
+    /**
+     * Replace filename for validation
+     * @param string $originFilename origin of filename
+     * @return string valid filename
+     */
+    private function getValidFilename($originFilename)
+    {
+    	//remplacement lettres accentuées par équivalent
+    	$modifiedFilename = strtr($originFilename ,
+    			'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+    			'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+    	
+    	//n'autorise que les lettres et les chiffres et les caractères '_' et '-'; remplace tous les autres caractères par '-'
+    	return preg_replace('/([^.a-z0-9_-]+)/i', '-', $modifiedFilename);
     }
 }

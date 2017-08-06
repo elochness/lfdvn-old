@@ -11,16 +11,17 @@
 {% block main %}
 
     <div>
-            <article class="box article-large">
-                <h2>
-                    Page en construction.
-                </h2>
-                <div>
-                	<img class="center" src="{{ asset('images/barricade.svg') }}" width="256" height="240" alt="Travaux" />
-                </div>
-
-            </article>
-
+    	<article class="box article-large">
+            <h2>
+                Page en construction.
+            </h2>
+            <div>
+            	<div class="flex flex-center">
+            		<div >{{ 'article.no_purchase'|trans }}</div>
+            		<div><img class="center" src="{{ asset('images/svg/011-barricade.svg') }}" width="128" height="128" alt="Travaux" /></div>
+            	</div>
+            </div>
+        </article>
     </div>
 
 {% endblock %}

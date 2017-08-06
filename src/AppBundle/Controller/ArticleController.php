@@ -47,6 +47,17 @@ class ArticleController extends Controller
         $articlesEnterprise = $this->getDoctrine()->getRepository(Article::class)->findEnterprise();
         return $this->render('article/enterprise.html.twig', ['articles' => $articlesEnterprise]);
     }
+    
+    /**
+     *  @Route("/recettes", name="article_recipe")
+     *  @Method("GET")
+     *  @Cache(smaxage="10")
+     */
+    public function recipeAction()
+    {
+    	$articlesRecipe = $this->getDoctrine()->getRepository(Article::class)->findRecipe();
+    	return $this->render('article/recipe.html.twig', ['articles' => $articlesRecipe]);
+    }
 
     public function bandeauAction()
     {

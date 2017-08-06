@@ -17,7 +17,18 @@
             </article>
 
         {% else %}
-            <div class="well">{{ 'article.no_found'|trans }}</div>
+            <article class="box article-large">
+                <h2>
+                    Pas d'information.
+                </h2>
+                <div>
+                	<div class="flex flex-center">
+                		<div >{{ 'article.no_enterprise'|trans }}</div>
+                		<div><img class="center" src="{{ asset('images/svg/010-curriculum.svg') }}" width="128" height="128" alt="Curriculum" /> </div>
+                	</div>
+                </div>
+
+            </article>
         {% endfor %}
     </div>
 

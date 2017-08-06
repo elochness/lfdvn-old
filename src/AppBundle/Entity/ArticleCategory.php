@@ -22,6 +22,11 @@ class ArticleCategory
      * Element number per page
      */
     const ARTICLE_BANDEAU = 3;
+    
+    /**
+     * Id of recipe article
+     */
+    const ARTICLE_RECIPE = 4;
     /**
      * @var string
      */

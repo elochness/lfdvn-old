@@ -140,7 +140,7 @@ h1 {
     h2 {
         color: $primary;
         font-weight: bold;
-        font-size: (23/$factor_font_size) + em;
+        font-size: (28/$factor_font_size) + em;
     }
 
     h3 {
@@ -156,6 +156,14 @@ h1 {
         margin-left: 20px;
         font-size: (17/$factor_font_size) + em;
         color: $font-color;
+    }
+    
+    li {
+    	margin-bottom: 5px;
+    }
+    
+    em {
+    	font-style: italic;
     }
     
     #list-category {
@@ -265,7 +273,9 @@ ol, ul {
     padding: 20px;
 
     h2 {
-      margin-top: 0px;
+        margin-top: 0px;
+        border-bottom: 3px solid;
+        margin-bottom: 20px;
     }
 }
 
@@ -276,6 +286,11 @@ ol, ul {
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
+}
+
+.flex-center {
+	align-items: center;
+	justify-content: center;
 }
 
 /* Cas pour afficher correctement les caracteristiques d'un produit */

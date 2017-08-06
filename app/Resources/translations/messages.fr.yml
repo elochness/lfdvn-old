@@ -38,6 +38,7 @@ menu.enterprise_details: Informations détaillées
 menu.geographic_coordinates: Repères
 menu.schedule: Horaires
 menu.contactus: Nous contacter
+menu.recipe: Nos idées recettes
 menu.purchase: Commander
 menu.enterprise.desc: Qui sommes-nous?
 menu.homepage: Accueil
@@ -159,7 +160,10 @@ article.list: Liste des articles
 article.new:  Ajouter un article
 article.edit:  Modifier un article
 article.show.details: Détails de l'article
-article.no_found: Pas d'article disponible
+article.no_found: Pas de nouvelles informations sur la Fromagerie du Vignoble Nantais.
+article.no_recipe: Pas de recette pour l'instant. N'hésitez pas à nous transmettre vos recettes afin de les faire découvrir au plus grand nombre.
+article.no_enterprise: Pas d'information sur la fromagerie pour l'instant. Ce n'est qu'une question de temps avant de vous faire découvrir la passion des créateurs de la fromagerie.
+article.no_purchase: La partie "Commander" est en cours de construction. Elle vous permettra de choisir une liste de produits à réserver qui seront récupérer le jour de votre choix à la fromagerie. 
 
 # schedule views
 schedule.show: Informations des horaires

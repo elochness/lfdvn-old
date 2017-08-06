@@ -17,14 +17,14 @@
             </article>
 
         {% else %}
-        	<article class="box article-large">
+            <article class="box article-large">
                 <h2>
-                    Pas d'information.
+                    Pas de recette.
                 </h2>
                 <div>
                 	<div class="flex flex-center">
-                		<div >{{ 'article.no_found'|trans }}</div>
-                		<div><img class="center" src="{{ asset('images/svg/009-notes.svg') }}" width="128" height="128" alt="Note" /> </div>
+                		<div >{{ 'article.no_recipe'|trans }}</div>
+                		<div><img class="center" src="{{ asset('images/svg/008-pancakes.svg') }}" width="128" height="128" alt="Recette" /> </div>
                 	</div>
                 </div>
 
@@ -32,9 +32,6 @@
         {% endfor %}
     </div>
 
-    <div class="navigation text-center">
-        {{ pagerfanta(articles, 'twitter_bootstrap3_translated', { routeName: 'article_index' }) }}
-    </div>
 {% endblock %}
 
 {% block sidebar %}
