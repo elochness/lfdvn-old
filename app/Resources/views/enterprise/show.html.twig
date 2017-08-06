@@ -64,7 +64,7 @@
 
         <div id="mapid"></div>
         <script>
-          var mymap = L.map('mapid').setView([{{geographicsCoordinates[0].latitude}},{{geographicsCoordinates[0].longitude}}], 13);
+          var mymap = L.map('mapid').setView([47.10802, -1.47458], 15);
 
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGZyYW5jb2lzIiwiYSI6ImNpdXpzNjI0czAwYXEzM3A3a25lYTg4bm0ifQ.DC5yUxTcEPwq6IqHdLt1-Q', {
             maxZoom: 18,
@@ -74,11 +74,12 @@
             id: 'mapbox.streets'
           }).addTo(mymap);
 
-          {% for geographicCoordinates in geographicsCoordinates %}
-              L.marker([{{geographicCoordinates.latitude}},{{geographicCoordinates.longitude}}]).addTo(mymap)
-                .bindPopup('{{ geographicCoordinates.name }}')
+		  L.marker([47.10959, -1.47275]).addTo(mymap)
+                .bindPopup('Chez Papa');
+
+          L.marker([47.10802, -1.47458]).addTo(mymap)
+                .bindPopup('Fromagerie du Vignoble Nantais')
                 .openPopup();
-          {% endfor %}
 
         </script>
 
