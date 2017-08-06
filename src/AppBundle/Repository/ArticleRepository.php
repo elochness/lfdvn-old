@@ -61,5 +61,10 @@ class ArticleRepository extends EntityRepository
     {
         return $this->queryLatest(ArticleCategory::ARTICLE_BANDEAU)->getResult();
     }
+    
+    public function findRecipe()
+    {
+    	return $this->queryLatest(ArticleCategory::ARTICLE_RECIPE)->getResult();
+    }
 
 }
