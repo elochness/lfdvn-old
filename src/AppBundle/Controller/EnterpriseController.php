@@ -36,15 +36,10 @@ class EnterpriseController extends Controller
             ->getRepository(Schedule::class)
             ->findOneById(1);
 
-        $geographicsCoordinates = $this->getDoctrine()
-            ->getRepository(GeographicCoordinates::class)
-            ->findAll();
-
         return $this->render('enterprise/show.html.twig',
         [
           'enterpriseDetails' => $enterpriseDetails,
-          'schedule' => $schedule,
-          'geographicsCoordinates' => $geographicsCoordinates
+          'schedule' => $schedule
         ]);
     }
 

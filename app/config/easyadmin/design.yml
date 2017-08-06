@@ -12,7 +12,6 @@ easy_admin:
             - { entity: 'Article', icon: 'newspaper-o' }
             - { entity: 'EnterpriseDetails', params: { action: 'show', id: 1 }, icon: 'sitemap' }
             - { entity: 'Schedule', params: { action: 'show', id: 1 }, icon: 'calendar' }
-            - { entity: 'GeographicCoordinates', icon: 'map-marker' }
             - { label: menu.gestion.users }
             - { entity: 'User', icon: 'user' }
             - { label: menu.homepage, route: 'homepage' }
