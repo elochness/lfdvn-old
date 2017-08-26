@@ -99,12 +99,9 @@
     
         <img src="{{ asset('images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 class="title-inline">Catégories</h2>
         <ul id="list-category">
-        	<li><a href=" {{ path('product_index') }} ">{{ 'category.all'|trans }}</a></li>
         
         {% for category in categories %}
-            
-                <li><a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a></li>
-            
+        	<li><a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a></li>
         {% endfor %}
         </ul>
     </div>
