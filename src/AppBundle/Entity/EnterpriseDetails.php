@@ -35,11 +35,6 @@ class EnterpriseDetails
     /**
      * @var string
      */
-    private $fax;
-
-    /**
-     * @var string
-     */
     private $email;
 
     /**
@@ -166,30 +161,6 @@ class EnterpriseDetails
     public function getTelephone()
     {
         return $this->telephone;
-    }
-
-    /**
-     * Set fax
-     *
-     * @param string $fax
-     *
-     * @return EnterpriseDetails
-     */
-    public function setFax($fax)
-    {
-        $this->fax = $fax;
-
-        return $this;
-    }
-
-    /**
-     * Get fax
-     *
-     * @return string
-     */
-    public function getFax()
-    {
-        return $this->fax;
     }
 
     /**

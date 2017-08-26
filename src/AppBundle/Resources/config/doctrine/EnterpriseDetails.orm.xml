@@ -28,11 +28,6 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="fax" type="string" column="fax" length="15" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="email" type="string" column="email" length="100" nullable="true">
       <options>
         <option name="fixed"/>

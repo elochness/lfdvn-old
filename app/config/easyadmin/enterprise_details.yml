@@ -12,7 +12,6 @@ easy_admin:
                   - 'codePostal'
                   - 'city'
                   - 'telephone'
-                  - 'fax'
                   - 'email'
             show:
                 title: enterprise_details.show
@@ -22,7 +21,6 @@ easy_admin:
                     - 'codePostal'
                     - 'city'
                     - 'telephone'
-                    - 'fax'
                     - 'email'
             edit:
                 title: enterprise_details.edit
@@ -32,5 +30,4 @@ easy_admin:
                     - 'codePostal'
                     - 'city'
                     - 'telephone'
-                    - 'fax'
                     - 'email'
