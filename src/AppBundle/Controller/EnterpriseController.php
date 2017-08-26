@@ -32,15 +32,19 @@ class EnterpriseController extends Controller
             ->getRepository(EnterpriseDetails::class)
             ->findOneById(1);
 
-        $schedule = $this->getDoctrine()
-            ->getRepository(Schedule::class)
-            ->findOneById(1);
-
         return $this->render('enterprise/show.html.twig',
         [
           'enterpriseDetails' => $enterpriseDetails,
-          'schedule' => $schedule
         ]);
+    }
+    
+    public function scheduleAction() {
+    	
+    	$schedule = $this->getDoctrine()
+    	->getRepository(Schedule::class)
+    	->findOneById(1);
+    	
+    	return $this->render('enterprise/schedule.html.twig', ['schedule' => $schedule]);
     }
 
 }

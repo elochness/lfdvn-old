@@ -39,6 +39,11 @@
 
 {% block sidebar %}
 
+	{{ render_esi(controller('AppBundle:Enterprise:Schedule', {
+        'sharedAge': 600,
+        '_locale': app.request.locale
+    })) }}
+    
     {{ parent() }}
-
+    
 {% endblock %}
