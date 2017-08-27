@@ -85,7 +85,14 @@
             </article>
 
         {% else %}
-            <div class="well">{{ 'product.no_found'|trans }}</div>
+        	<article class="box article-large">
+                <div>
+                	<div class="flex flex-center">
+                		<div >{{ 'product.no_found'|trans }}</div>
+                		<div><img class="center" src="{{ asset('images/svg/007-groceries.svg') }}" width="128" height="128" alt="Groceries" /> </div>
+                	</div>
+                </div>
+            </article>
         {% endfor %}
     </section>
 
