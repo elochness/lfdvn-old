@@ -78,11 +78,16 @@ class Product
      * @var integer
      */
     private $id;
-
+    
     /**
      * @var \AppBundle\Entity\Category
      */
     private $category;
+
+    /**
+     * @var \AppBundle\Entity\Subcategory
+     */
+    private $subcategory;
 
     /**
      * @var string
@@ -379,7 +384,7 @@ class Product
     {
         return $this->id;
     }
-
+    
     /**
      * Set category
      *
@@ -389,11 +394,11 @@ class Product
      */
     public function setCategory(\AppBundle\Entity\Category $category = null)
     {
-        $this->category = $category;
-
-        return $this;
+    	$this->category = $category;
+    
+    	return $this;
     }
-
+    
     /**
      * Get category
      *
@@ -401,7 +406,31 @@ class Product
      */
     public function getCategory()
     {
-        return $this->category;
+    	return $this->category;
+    }
+
+    /**
+     * Set subcategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subcategory
+     *
+     * @return Product
+     */
+    public function setSubcategory(\AppBundle\Entity\Subcategory $subcategory = null)
+    {
+        $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subcategory
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getSubcategory()
+    {
+        return $this->subcategory;
     }
 
     /**

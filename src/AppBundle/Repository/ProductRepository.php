@@ -29,10 +29,11 @@ class ProductRepository extends EntityRepository
           ->createQuery('
               SELECT p
               FROM AppBundle:Product p
-              INNER JOIN AppBundle:Category c WITH p.category = c.id
+              INNER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
+          	  INNER JOIN AppBundle:Category c WITH s.category = c.id
               WHERE p.enabled = true
               AND c.id = :cid
-              ORDER BY p.name, c.name ASC
+              ORDER BY p.name ASC, c.name ASC
           ')
         ;
         $query->setParameter('cid', $selectedCategory);
@@ -42,9 +43,10 @@ class ProductRepository extends EntityRepository
           ->createQuery('
               SELECT p
               FROM AppBundle:Product p
-          	  INNER JOIN AppBundle:Category c WITH p.category = c.id
+          	  INNER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
+          	  INNER JOIN AppBundle:Category c WITH s.category = c.id
               WHERE p.enabled = true
-              ORDER BY p.name, c.name ASC
+              ORDER BY p.name ASC, c.name ASC
           ')
         ;
       }

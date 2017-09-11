@@ -31,23 +31,24 @@ class ProductController extends Controller
     		$page = 1;
     	}
     	
-    	$selectedCategory =  $request->query->get('categorie');
-    	$selectedCategoryName = null;
+     	$selectedCategory =  $request->query->get('categorie');
+//     	$selectedCategoryName = null;
     	
         $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page, $selectedCategory);
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
+//         $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
         
-        if(!empty($selectedCategory))
-        {
-          foreach($categories as $category) {
-            if($category->getId() == $selectedCategory){
-               $selectedCategoryName = $category->getName();
-               break;
-            }
-          }
-        }
+//         if(!empty($selectedCategory))
+//         {
+//           foreach($categories as $category) {
+//             if($category->getId() == $selectedCategory){
+//                $selectedCategoryName = $category->getName();
+//                break;
+//             }
+//           }
+//         }
         
-        return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategoryName]);
+//         return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategoryName]);
+        return $this->render('product/index.html.twig', ['products' => $products]);
     }
 
     /**

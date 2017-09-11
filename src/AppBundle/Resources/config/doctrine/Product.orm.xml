@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AppBundle\Entity\Product" table="product"
-   repository-class="AppBundle\Repository\ProductRepository">
+  <entity name="AppBundle\Entity\Product" table="product" repository-class="AppBundle\Repository\ProductRepository">
     <indexes>
-      <index name="category_id" columns="category_id"/>
       <index name="tax_rate_id" columns="tax_rate_id"/>
+      <index name="subcategory_id" columns="subcategory_id"/>
     </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
@@ -31,15 +30,24 @@
     </field>
     <field name="enabled" type="boolean" column="enabled" nullable="false"/>
     <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
-    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>   
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+    <field name="packaging" type="string" column="packaging" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="price" type="decimal" column="price" precision="10" scale="2" nullable="false"/>
     <field name="refundable" type="decimal" column="refundable" precision="10" scale="2" nullable="true"/>
-    <many-to-one field="category" target-entity="Category" inversed-by="products" fetch="LAZY">
+    <many-to-one field="category" target-entity="Category" fetch="LAZY" inversed-by="products">
       <join-columns>
         <join-column name="category_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <field name="packaging" type="string" column="packaging" length="100" nullable="true"/>
+    <many-to-one field="subcategory" target-entity="Subcategory" fetch="LAZY">
+      <join-columns>
+        <join-column name="subcategory_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="taxRate" target-entity="TaxRate" fetch="LAZY">
       <join-columns>
         <join-column name="tax_rate_id" referenced-column-name="id"/>
