@@ -18,17 +18,18 @@
 # The "main menu" is an example of defining the labels explicitly
 # (they are translated following the 1) method)
 # ------------------------------------------------------------------------------
-menu.categories:   Catégories
-menu.measurements: Mesures
-menu.products:     Produits
-menu.articles:     Articles
-menu.customers:    Clients
-menu.purchases:    Achats
-menu.admin:        Administration
-menu.about:        About EasyAdmin
-menu.about.home:   Project Home
-menu.about.docs:   Documentation
-menu.about.issues: Report Issues
+menu.categories:    Catégories
+menu.subcategories: Sous-catégories
+menu.measurements:  Mesures
+menu.products:      Produits
+menu.articles:      Articles
+menu.customers:     Clients
+menu.purchases:     Achats
+menu.admin:         Administration
+menu.about:         About EasyAdmin
+menu.about.home:    Project Home
+menu.about.docs:    Documentation
+menu.about.issues:  Report Issues
 menu.gestion.products: Gestion des produits
 menu.gestion.purchases: Gestion des commandes
 menu.gestion.entreprise: Gestion de l'entreprise
@@ -55,6 +56,8 @@ Product: Produit
 Products: Produits
 Category: Catégorie
 Categories: Catégories
+Subcategory: Sous-catégorie
+Subcategories: Sous-catégories
 Packaging: Conditionnement
 Refundable: Consigne
 User: Utilisateur
@@ -148,11 +151,11 @@ category.new:  Ajouter une catégorie
 category.edit:  Modifier une catégorie
 category.show.details: Détails de la catégorie
 
-# measurement views
-measurement.list: Liste des mesures
-measurement.new:  Ajouter une mesure
-measurement.edit:  Modifier une mesure
-measurement.show.details: Détails de la mesure
+# subcategory views
+subcategories.list: Liste des sous-catégories
+subcategory.new:  Ajouter une sous-catégorie
+subcategory.edit:  Modifier une sous-catégorie
+subcategory.show.details: Détails de la sous-catégorie
 
 # article views
 article.list: Liste des articles
