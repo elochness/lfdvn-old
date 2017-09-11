@@ -3,6 +3,8 @@ easy_admin:
         Product:
             label: menu.products
             class: AppBundle\Entity\Product
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
             list:
                 title: product.list
                 fields:
@@ -16,6 +18,7 @@ easy_admin:
                   - 'price'
                   - 'refundable'
                   - 'category'
+                  - 'subcategory'
                   - 'packaging'
             new:
                 title: product.new
@@ -28,6 +31,7 @@ easy_admin:
                     - 'taxRate'
                     - { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
                     - 'category'
+                    - 'subcategory'
                     - 'packaging'
                     - { property: 'description', type: 'ckeditor' }
             edit:
@@ -41,5 +45,6 @@ easy_admin:
                     - 'taxRate'
                     - { property: 'imageFile', type: 'vich_image' }
                     - 'category'
+                    - 'subcategory'
                     - 'packaging'
                     - { property: 'description', type: 'ckeditor' }
