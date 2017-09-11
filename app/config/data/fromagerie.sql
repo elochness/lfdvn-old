@@ -36,7 +36,16 @@ CREATE TABLE IF NOT EXISTS `article` (
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `article_category_id` (`article_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Vider la table avant d'insérer `article`
+--
+
+TRUNCATE TABLE `article`;
+--
+-- Contenu de la table `article`
+--
 
 -- --------------------------------------------------------
 
@@ -57,7 +66,8 @@ CREATE TABLE IF NOT EXISTS `article_category` (
 INSERT INTO `article_category` (`id`, `name`) VALUES
 (1, 'Article de présentation'),
 (2, 'Article sur l''entreprise'),
-(3, 'Article sur le bandeau droit');
+(3, 'Article sur le bandeau droit'),
+(4, 'Article de recette');
 
 -- --------------------------------------------------------
 
@@ -68,24 +78,28 @@ INSERT INTO `article_category` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `image` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=19 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=23 ;
 
 --
--- Structure de la table `enterprise`
+-- Vider la table avant d'insérer `category`
 --
 
-CREATE TABLE IF NOT EXISTS `enterprise` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `contains` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+TRUNCATE TABLE `category`;
+--
+-- Contenu de la table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `image`, `enabled`) VALUES
+(15, 'Fruit', NULL, 1),
+(16, 'Légume', NULL, 1),
+(17, 'Pain', NULL, 1),
+(19, 'Produit laitier', NULL, 1),
+(20, 'Viande', NULL, 1),
+(21, 'Vin', NULL, 1),
+(22, 'Bière', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -100,31 +114,21 @@ CREATE TABLE IF NOT EXISTS `enterprise_details` (
   `code_postal` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `city` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
   `telephone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `fax` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Vider la table avant d'insérer `enterprise_details`
+--
+
+TRUNCATE TABLE `enterprise_details`;
+--
 -- Contenu de la table `enterprise_details`
 --
 
-INSERT INTO `enterprise_details` (`id`, `name`, `address`, `code_postal`, `city`, `telephone`, `fax`, `email`) VALUES
-(1, '', '', '', '', 'XX.XX.XX.XX.XX', NULL, '');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `geographic_coordinates`
---
-
-CREATE TABLE IF NOT EXISTS `geographic_coordinates` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `latitude` double NOT NULL,
-  `longitude` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+INSERT INTO `enterprise_details` (`id`, `name`, `address`, `code_postal`, `city`, `telephone`, `email`) VALUES
+(1, 'Entreprise du XXXXX', 'Les XXX', '01234', 'Paris', '01 02 03 04 05', 'mon-entreprise@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -142,14 +146,29 @@ CREATE TABLE IF NOT EXISTS `product` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
   `packaging` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `refundable` decimal(10,2) DEFAULT NULL,
   `tax_rate_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  KEY `tax_rate_id` (`tax_rate_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=29 ;
+  KEY `tax_rate_id` (`tax_rate_id`),
+  KEY `subcategory_id` (`subcategory_id`),
+  KEY `IDX_D34A04AD12469DE2` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Produit en vente' AUTO_INCREMENT=31 ;
+
+--
+-- Vider la table avant d'insérer `product`
+--
+
+TRUNCATE TABLE `product`;
+--
+-- Contenu de la table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `quantity`, `description`, `image`, `enabled`, `created_at`, `updated_at`, `category_id`, `subcategory_id`, `packaging`, `price`, `refundable`, `tax_rate_id`) VALUES
+(12, 'Yaourt Nature', 10, '<p>Lait entier pasteurisé, puis réincorporation de ferments lactiques.</p>\r\n<p><acronym TITLE="Date limite de consommation/Date limite d''utilisation optimale">DLC/DLUO</acronym> : 20 jours</p>', 'yaourt-nature.jpg', 1, '2017-05-28 21:32:23', '2017-05-28 21:32:24', 19, 1, '25 cl', '0.74', '0.16', 9),
+(13, 'Yaourt Fraise', 10, '<p>Pr&eacute;paration de fruits sur sucre &agrave; la fraise</p>\r\n\r\n<p>DLC/DLUO : 20 jours</p>', 'yaourt-fraise.jpg', 1, '2017-05-28 21:46:05', '2017-05-28 21:46:05', 19, 1, '25 cl', '0.95', '0.16', 9),
 
 -- --------------------------------------------------------
 
@@ -166,6 +185,15 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   PRIMARY KEY (`id`),
   KEY `IDX_6117D13B6C755722` (`buyer_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Vider la table avant d'insérer `purchase`
+--
+
+TRUNCATE TABLE `purchase`;
+--
+-- Contenu de la table `purchase`
+--
 
 -- --------------------------------------------------------
 
@@ -185,6 +213,11 @@ CREATE TABLE IF NOT EXISTS `purchase_item` (
   KEY `IDX_6FA8ED7D558FBEB9` (`purchase_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Vider la table avant d'insérer `purchase_item`
+--
+
+TRUNCATE TABLE `purchase_item`;
 -- --------------------------------------------------------
 
 --
@@ -205,11 +238,48 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Horaires de l''entreprise';
 
 --
+-- Vider la table avant d'insérer `schedule`
+--
+
+TRUNCATE TABLE `schedule`;
+--
 -- Contenu de la table `schedule`
 --
 
 INSERT INTO `schedule` (`id`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `alert_day`) VALUES
-(1, 'Fermé', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-12h à 15h-19h', 'De 9h-15h', 'Fermé', 'Fermeture exceptionnelle le XX.');
+(1, 'De 16h30 à 19h30', 'Fermé', 'De 10h30-12h15 à 16h30-19', 'Fermé', 'De 16h30 à 19h30', 'De 10h à 12h30', 'Fermé', 'Fermeture exceptionnelle le XX.');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `subcategory`
+--
+
+CREATE TABLE IF NOT EXISTS `subcategory` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Catégorie d''un produit' AUTO_INCREMENT=7 ;
+
+--
+-- Vider la table avant d'insérer `subcategory`
+--
+
+TRUNCATE TABLE `subcategory`;
+--
+-- Contenu de la table `subcategory`
+--
+
+INSERT INTO `subcategory` (`id`, `name`, `enabled`, `category_id`) VALUES
+(1, 'lait de vache', 1, 19),
+(2, 'lait de chèvre', 1, 19),
+(3, 'Ovin', 1, 20),
+(4, 'Bovin', 1, 20),
+(5, 'Volaille', 1, 20),
+(6, 'Charcuterie', 1, 20);
 
 -- --------------------------------------------------------
 
@@ -223,6 +293,11 @@ CREATE TABLE IF NOT EXISTS `tax_rate` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
+--
+-- Vider la table avant d'insérer `tax_rate`
+--
+
+TRUNCATE TABLE `tax_rate`;
 --
 -- Contenu de la table `tax_rate`
 --
@@ -254,6 +329,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
+-- Vider la table avant d'insérer `user`
+--
+
+TRUNCATE TABLE `user`;
+--
 -- Contenu de la table `user`
 --
 
@@ -275,7 +355,8 @@ ALTER TABLE `article`
 -- Contraintes pour la table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `FK_D34A04AD12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `product_category_fk` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategory` (`id`),
   ADD CONSTRAINT `product_tax_rate_fk` FOREIGN KEY (`tax_rate_id`) REFERENCES `tax_rate` (`id`);
 
 --
@@ -290,6 +371,12 @@ ALTER TABLE `purchase`
 ALTER TABLE `purchase_item`
   ADD CONSTRAINT `FK_6FA8ED7D4584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `FK_6FA8ED7D558FBEB9` FOREIGN KEY (`purchase_id`) REFERENCES `purchase` (`id`);
+
+--
+-- Contraintes pour la table `subcategory`
+--
+ALTER TABLE `subcategory`
+  ADD CONSTRAINT `subcategory_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
