@@ -5,7 +5,7 @@
 {% block body_title %}
 	<div class="row">
         <div class="col-sm-12">
-        	{% if selectedCategory %}
+        	{% if selectedCategory is defined %}
         		<h1>{{ 'product.list_end'|trans ~ " " ~ selectedCategory|lower ~ "s"}}</h1>
         	{% else %}
             	<h1>{{ 'product.list'|trans }}</h1>
@@ -102,6 +102,9 @@
 {% endblock %}
 
 {% block sidebar %}
+
+	{% if categories is defined %}
+	
     <div class="box article-large">
     
         <img src="{{ asset('images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 class="title-inline">Catégories</h2>
@@ -112,6 +115,8 @@
         {% endfor %}
         </ul>
     </div>
+    {% endif %}
+    
     {{ parent() }}
 
 {% endblock %}
