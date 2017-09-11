@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping
-    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="AppBundle\Entity\Article" table="article" repository-class="AppBundle\Repository\ArticleRepository">
-        <indexes>
-            <index name="article_category_id" columns="article_category_id"/>
-        </indexes>
-        <id name="id" type="integer" column="id">
-            <generator strategy="IDENTITY"/>
-        </id>
-        <field name="title" type="string" column="title" length="255" nullable="false">
-            <options>
-                <option name="fixed"/>
-            </options>
-        </field>
-        <field name="contains" type="text" column="contains" nullable="false">
-            <options>
-                <option name="fixed"/>
-            </options>
-        </field>
-        <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
-        <field name="updatedAt" type="datetime" column="updated_at" nullable="false"/>
-        <field name="enabled" type="boolean" column="enabled" nullable="false"/>
-        <many-to-one field="articleCategory" target-entity="ArticleCategory" fetch="LAZY">
-            <join-columns>
-                <join-column name="article_category_id" referenced-column-name="id" nullable="false"/>
-            </join-columns>
-        </many-to-one>
-    </entity>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Article" table="article" repository-class="AppBundle\Repository\ArticleRepository">
+    <indexes>
+      <index name="article_category_id" columns="article_category_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="contains" type="text" column="contains" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="false"/>
+    <field name="enabled" type="boolean" column="enabled" nullable="false"/>
+    <many-to-one field="articleCategory" target-entity="ArticleCategory" fetch="LAZY">
+      <join-columns>
+        <join-column name="article_category_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
 </doctrine-mapping>
