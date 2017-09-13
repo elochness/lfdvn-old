@@ -59,6 +59,11 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $this->loadProducts($manager);
     }
 
+    /**
+     * Load information of users
+     *
+     * @param ObjectManager $manager
+     */
     private function loadUsers(ObjectManager $manager)
     {
         $passwordEncoder = $this->container->get('security.password_encoder');
@@ -157,6 +162,12 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
       $categoryBandeau->setName('Article sur le bandeau droit');
       $manager->persist($categoryBandeau);
       $manager->flush();
+      
+      $categoryRecette = new ArticleCategory();
+      $categoryRecette->setId(4);
+      $categoryRecette->setName('Article de recette');
+      $manager->persist($categoryRecette);
+      $manager->flush();
 
       $articlePresentation = new Article();
       $articlePresentation->setEnabled(true);
@@ -182,11 +193,19 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $articleBandeau->setArticleCategory($categoryBandeau);
       $manager->persist($articleBandeau);
       $manager->flush();
+      
+      $articleRecette = new Article();
+      $articleRecette->setEnabled(true);
+      $articleRecette->setTitle('Ma recette');
+      $articleRecette->setContains('Notre recette est ...');
+      $articleRecette->setArticleCategory($categoryRecette);
+      $manager->persist($articleRecette);
+      $manager->flush();
 
     }
 
     /**
-     * Load information of schedules
+     * Load information of enterprise
      *
      * @param ObjectManager $manager
      */
@@ -236,24 +255,6 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $vacheCategory->setEnabled(1);
       $manager->persist($vacheCategory);
 
-      // Measurement
-      $kiloMeasurement = new Measurement();
-      $kiloMeasurement->setName('Kilogramme');
-      $kiloMeasurement->setShortname('Kg');
-      $kiloMeasurement->setEnabled(0);
-      $manager->persist($kiloMeasurement);
-
-      $litreMeasurement = new Measurement();
-      $litreMeasurement->setName('Litre');
-      $litreMeasurement->setShortname('L');
-      $litreMeasurement->setEnabled(1);
-      $manager->persist($litreMeasurement);
-
-      $grammeMeasurement = new Measurement();
-      $grammeMeasurement->setName('Gramme');
-      $grammeMeasurement->setShortname('Gr');
-      $grammeMeasurement->setEnabled(1);
-      $manager->persist($grammeMeasurement);
 
       // Product
       $product = new Product();
@@ -265,7 +266,6 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $product->setQuantity(100);
       $product->setEnabled(1);
       $product->setTaxRate($taxRate10);
-      $product->setMeasurement($kiloMeasurement);
       $product->setCategory($chevreCategory);
       $product->setPackaging("200");
       $manager->persist($product);
@@ -279,7 +279,6 @@ La passion fait naître un métier : celui de producteur-fromager. C’est alors
       $productFro->setQuantity(22);
       $productFro->setEnabled(1);
       $productFro->setTaxRate($taxRate20);
-      $productFro->setMeasurement($litreMeasurement);
       $productFro->setCategory($chevreCategory);
       $productFro->setPackaging("80");
       $manager->persist($productFro);
