@@ -4,13 +4,27 @@
    See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
 #}
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>
-            {% block title %}La fromagerie du vignoble nantais{% endblock %}
-        </title>
+        <meta name="referrer" content="origin"/>
+		<meta name="google" content="notranslate"/>
+		<meta name="theme-color" content="#DDE236"/>
+		<meta name="keywords" content="Fromagerie, Vignoble, Nantais, Fromage, Biologique"/>
+		<meta name="author" content="lafromagerieduvignoblenantais.fr"/>
+		<meta name="copyright" content="lafromagerieduvignoblenantais.fr"/>
+
+        <title>{% block title %}La fromagerie du vignoble nantais{% endblock %}</title>
+        <meta name="description" content="Création d’une petite fromagerie artisanale bio et ouverture d’un point de vente pour les produits fabriqués sur place et d’autres produits alimentaires locaux issus de l’agriculture biologique (ex : pain, légumes, fruits, bières…)."/>
+
+		<meta property="og:locale" content="fr_fr"/>
+		<meta property="og:site_name" content="lafromagerieduvignoblenantais.fr"/>
+		<meta property="og:title" content="La fromagerie du vignoble nantais - Actualités de l'entreprise et ses produits"/>
+		<meta property="og:description" content="Création d’une petite fromagerie artisanale bio et ouverture d’un point de vente pour les produits fabriqués sur place et d’autres produits alimentaires locaux issus de l’agriculture biologique (ex : pain, légumes, fruits, bières…)."/>
+		<meta property="og:url" content="https://www.lafromagerieduvignoblenantais.fr"/>
+		<meta property="og:image" content="https://lafromagerieduvignoblenantais.fr/favicon.ico"/>
+		<meta property="og:type" content="website"/>
 
         {% block stylesheets %}
             {#  <link rel="stylesheet" href="{{ asset('css/app.css') }}"> #}
