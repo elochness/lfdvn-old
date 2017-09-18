@@ -1,11 +1,14 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    schemes:  ['%httpProtocol%']
 
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+    schemes:  ['%httpProtocol%']
 
 elfinder:
      resource: "@FMElfinderBundle/Resources/config/routing.yml"
+     schemes:  ['%httpProtocol%']
