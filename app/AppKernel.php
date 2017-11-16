@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             # Pagination
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             # Back end
-            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+        	new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             # Editor with style
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             # Upload file
@@ -30,6 +30,7 @@ class AppKernel extends Kernel
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
+        	$bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
