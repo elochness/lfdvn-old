@@ -27,7 +27,6 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
@@ -41,7 +40,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        product_prefix: %app.path.product_images%
+        product_prefix: "%app.path.product_images%"
 
 # Doctrine Configuration
 doctrine:
@@ -93,8 +92,8 @@ vich_uploader:
     db_driver: orm
     mappings:
         product_images:
-            uri_prefix:         %app.path.product_images%
-            upload_destination: %kernel.root_dir%/../web/uploads/images/product
+            uri_prefix:         "%app.path.product_images%"
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/product"
 
 ivory_ck_editor:
     default_config:                     my_custom_config    # Utiliser par defaut la configuration my_custom_config
@@ -104,7 +103,7 @@ ivory_ck_editor:
             filebrowserBrowseRoute:     elfinder
             filebrowserBrowseRouteParameters:
                 instance: ckeditor
-            language:                   %locale%
+            language:                   "%locale%"
             #toolbar:                    standard            # Charger la toolbar tollbar_1 (voir plus bas)
             stylesSet:                  my_styles           # Chargement des styles personnalisables my_styles (voir plus bas)
             uiColor:                    "#FCFCFC"           # Couleur de fond de l'interface
@@ -124,7 +123,7 @@ ivory_ck_editor:
 fm_elfinder:
     instances:
         ckeditor:
-            locale:           %locale%
+            locale:           "%locale%"
             editor:           ckeditor
             fullscreen:       false
             theme:            smoothness

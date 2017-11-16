@@ -13,7 +13,7 @@ easy_admin:
                   - 'name'
                   - 'quantity'
                   - 'description'
-                  - { property: 'image', type: 'image', base_path: %app.path.product_images% }
+                  - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
                   - { property: 'createdAt', format: 'j/m/Y' }
                   - 'price'
                   - 'refundable'
