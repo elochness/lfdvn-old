@@ -41,6 +41,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         product_prefix: "%app.path.product_images%"
+        category_prefix: "%app.path.category_images%"
 
 # Doctrine Configuration
 doctrine:
@@ -94,6 +95,9 @@ vich_uploader:
         product_images:
             uri_prefix:         "%app.path.product_images%"
             upload_destination: "%kernel.root_dir%/../web/uploads/images/product"
+        category_images:
+            uri_prefix:         "%app.path.category_images%"
+            upload_destination: "%kernel.root_dir%/../web/uploads/images/category"
 
 ivory_ck_editor:
     default_config:                     my_custom_config    # Utiliser par defaut la configuration my_custom_config
