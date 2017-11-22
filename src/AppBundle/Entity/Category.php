@@ -44,7 +44,7 @@ class Category
     private $subcategories;
     
     /**
-     * @var Products[]
+     * @var \AppBundle\Entity\Product[]
      */
     private $products;
     
