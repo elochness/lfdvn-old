@@ -23,3 +23,11 @@ easy_admin:
                     - 'name'
                     - { property: 'category', type_options: { required: true } }
                     - 'products'
+            show:
+                title: subcategory.show
+                fields:
+                    - 'id'
+                    - 'enabled'
+                    - 'name'
+                    - 'category'
+                    - 'products'

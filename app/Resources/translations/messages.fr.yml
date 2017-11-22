@@ -143,26 +143,26 @@ product.new:  Ajouter un produit
 product.edit:  Modifier un produit
 products.list.last: Derniers produits
 product.read.more: Plus de détails
-product.show.details: Détails du produit
+product.show: Détails du produit
 product.no_found: Pas de produit disponible
 
 # category views
 categories.list: Liste des catégories
 category.new:  Ajouter une catégorie
 category.edit:  Modifier une catégorie
-category.show.details: Détails de la catégorie
+category.show: Détails de la catégorie
 
 # subcategory views
 subcategories.list: Liste des sous-catégories
 subcategory.new:  Ajouter une sous-catégorie
 subcategory.edit:  Modifier une sous-catégorie
-subcategory.show.details: Détails de la sous-catégorie
+subcategory.show: Détails de la sous-catégorie
 
 # article views
 article.list: Liste des articles
 article.new:  Ajouter un article
 article.edit:  Modifier un article
-article.show.details: Détails de l'article
+article.show: Détails de l'article
 article.no_found: Pas de nouvelles informations sur la Fromagerie du Vignoble Nantais.
 article.no_recipe: Pas de recette pour l'instant. N'hésitez pas à nous transmettre vos recettes afin de les faire découvrir au plus grand nombre.
 article.no_enterprise: Pas d'information sur la fromagerie pour l'instant. Ce n'est qu'une question de temps avant de vous faire découvrir la passion des créateurs de la fromagerie.

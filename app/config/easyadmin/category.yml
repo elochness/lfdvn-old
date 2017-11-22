@@ -24,3 +24,12 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
                     - 'subcategories'
                     - 'products'
+            show:
+                title: category.show
+                fields:
+                    - 'id'
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'image', type: 'image', base_path: '%app.path.category_images%' }
+                    - 'subcategories'
+                    - 'products'
