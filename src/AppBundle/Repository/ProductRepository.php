@@ -21,34 +21,29 @@ class ProductRepository extends EntityRepository
    * @param cid : Category id  
    * @return Query
    */
-  public function queryLatest($selectedCategory)
+  public function queryLatest($params)
   {
-      if(!empty($selectedCategory))
+      $queryString = '
+              SELECT p
+              FROM AppBundle:Product p
+              INNER JOIN AppBundle:Category c WITH p.category = c.id
+              LEFT OUTER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
+              WHERE p.enabled = true
+            ';
+      
+      $queryOrder = '
+            ORDER BY p.name ASC, c.name ASC
+            ';
+      
+      if(isset($params))
       {
-        $query = $this->getEntityManager()
-          ->createQuery('
-              SELECT p
-              FROM AppBundle:Product p
-              INNER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
-          	  INNER JOIN AppBundle:Category c WITH s.category = c.id
-              WHERE p.enabled = true
-              AND c.id = :cid
-              ORDER BY p.name ASC, c.name ASC
-          ')
-        ;
-        $query->setParameter('cid', $selectedCategory);
-        return $query;        
+        
+        $queryFilter = $this->getFilters($params);
+        $query = $this->getEntityManager()->createQuery($queryString .  $queryFilter . $queryOrder);
+        $this->addParameters($params, $query);
+        return $query;    
       } else {
-        return $this->getEntityManager()
-          ->createQuery('
-              SELECT p
-              FROM AppBundle:Product p
-          	  INNER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
-          	  INNER JOIN AppBundle:Category c WITH s.category = c.id
-              WHERE p.enabled = true
-              ORDER BY p.name ASC, c.name ASC
-          ')
-        ;
+        return $this->getEntityManager()->createQuery($queryString . $queryOrder);
       }
   }
 
@@ -57,12 +52,39 @@ class ProductRepository extends EntityRepository
    *
    * @return
    */
-  public function findLatest($page, $selectedCategory)
+  public function findLatest($page, $params)
   {
-      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest($selectedCategory), false));
+      $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest($params), false));
       $paginator->setMaxPerPage(Product::NUM_ITEMS);
       $paginator->setCurrentPage($page);
 
       return $paginator;
+  }
+  
+  /**
+   * Add filter for request
+   * @param array $params
+   * @param unknown $query
+   */
+  private function addParameters($params, &$query) {
+      if(isset($params['category'])) {
+          $query->setParameter('cid', $params['category']);
+      }
+      if (isset($params['subcategory'])) {
+          $query->setParameter('sid', $params['subcategory']);
+      }
+  }
+  
+  private function getFilters($params) {
+      $queryFilter = '';
+      
+      if(isset($params['category'])) {
+          $queryFilter .= ' AND c.id = :cid ';
+      }
+      if (isset($params['subcategory'])) {
+          $queryFilter .= ' AND s.id = :sid ';
+      }
+      
+      return $queryFilter;
   }
 }

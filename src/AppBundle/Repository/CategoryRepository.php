@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
@@ -25,8 +26,17 @@ class CategoryRepository extends EntityRepository
           ->createQuery('
               SELECT c
               FROM AppBundle:Category c
+              LEFT OUTER JOIN AppBundle:Product p WITH p.category = c.id
+              LEFT OUTER JOIN AppBundle:Subcategory s WITH p.subcategory = s.id
               WHERE c.enabled = true
               ORDER BY c.name ASC
           ')->getResult();
+      
+//       $resultsObjects = null;
+//       foreach ($results as $result) {
+//           $resultsObjects[] = new Category($result);
+//       }
+//       return $resultsObjects;
+      
   }
 }

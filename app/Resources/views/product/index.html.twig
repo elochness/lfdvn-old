@@ -5,13 +5,18 @@
 {% block body_title %}
 	<div class="row">
         <div class="col-sm-12">
-        	{% if selectedCategory is defined %}
-        		<h1>{{ 'product.list_end'|trans ~ " " ~ selectedCategory|lower ~ "s"}}</h1>
+        	{% if selectedCategoryName is not null  %}
+        		{% if selectedCategoryPluralName is not null  %}
+        			<h1>{{ 'product.list'|trans ~ " " ~ selectedCategoryPluralName }}</h1>
+        		{% else %}
+	            	<h1>{{ 'product.list_end'|trans ~ " " ~ selectedCategoryName|lower ~ "s"}}</h1>
+	            {% endif %}
         	{% else %}
             	<h1>{{ 'product.list'|trans }}</h1>
             {% endif %}
         </div>
     </div>
+
 {% endblock %}
 
 {% block main %}
@@ -104,17 +109,23 @@
 {% block sidebar %}
 
 	{% if categories is defined %}
-	
-    <div class="box article-large">
-    
-        <img src="{{ asset('images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 class="title-inline">Catégories</h2>
-        <ul id="list-category">
-        
-        {% for category in categories %}
-        	<li><a href=" {{ path('product_index', {'categorie':category.id}) }} ">{{ category.name }}</a></li>
-        {% endfor %}
-        </ul>
-    </div>
+	    <div class="box article-large">
+	    
+	        <img src="{{ asset('images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 class="title-inline">Catégories</h2>
+	        <ul id="list-category">
+	        
+	        {% for category in categories %}
+	        	<li><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" /> <a href=" {{ path('product_index', {'category':category.id}) }} ">{{ category.name }} ({{ category.products | length }})</a></li>
+	        	{% if category.subcategories %}
+	        		<ul id="list-category">
+		        	{% for subcategory in category.subcategories | sort %}
+		        		<li><a href=" {{ path('product_index', {'subcategory':subcategory.id}) }} ">{{ subcategory.name }} ({{ subcategory.products | length }})</a></li>
+		        	{% endfor %}
+		        	</ul>
+	        	{% endif %}
+	        {% endfor %}
+	        </ul>
+	    </div>
     {% endif %}
     
     {{ parent() }}

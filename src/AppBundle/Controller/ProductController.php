@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
@@ -19,40 +18,50 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProductController extends Controller
 {
-	/**
-	 *  @Route("/", name="product_index")
-	 *  @Method("GET")
-	 *  @Cache(smaxage="10")
-	 */
+
+    /**
+     * @Route("/", name="product_index")
+     * @Method("GET")
+     * @Cache(smaxage="10")
+     */
     public function indexAction(Request $request)
     {
-    	$page =  $request->query->get('page');
-    	if (!isset($page)) {
-    		$page = 1;
-    	}
-    	
-     	$selectedCategory =  $request->query->get('categorie');
-//     	$selectedCategoryName = null;
-    	
-        $products = $this->getDoctrine()->getRepository(Product::class)->findLatest($page, $selectedCategory);
-//         $categories = $this->getDoctrine()->getRepository(Category::class)->findActiveCategory();
+        $page = $request->query->get('page');
+        if (! isset($page)) {
+            $page = 1;
+        }
         
-//         if(!empty($selectedCategory))
-//         {
-//           foreach($categories as $category) {
-//             if($category->getId() == $selectedCategory){
-//                $selectedCategoryName = $category->getName();
-//                break;
-//             }
-//           }
-//         }
+        $params = null;
+        if ($request->query->get('category') !== null) {
+            $params['category'] = $request->query->get('category');
+        }
         
-//         return $this->render('product/index.html.twig', ['products' => $products, 'categories' => $categories, 'selectedCategory' => $selectedCategoryName]);
-        return $this->render('product/index.html.twig', ['products' => $products]);
+        if ($request->query->get('subcategory') !== null) {
+            $params['subcategory'] = $request->query->get('subcategory');
+        }
+        // $selectedCategory = $request->query->get('categorie');
+        $selectedCategoryName = null;
+        
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findLatest($page, $params);
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findActiveCategory();
+        
+        $selectedCategoryName = $this->getCategoryName($params, $categories);
+        $selectedCategoryPluralName = $this->getCategoryPluralName($selectedCategoryName);
+        
+        return $this->render('product/index.html.twig', [
+            'products' => $products,
+            'categories' => $categories,
+            'selectedCategoryName' => $selectedCategoryName,
+            'selectedCategoryPluralName' => $selectedCategoryPluralName,
+        ]);
     }
 
     /**
-     *  @Route("/show/{id}", name="product_show")
+     * @Route("/show/{id}", name="product_show")
      */
     public function showAction($id)
     {
@@ -67,6 +76,45 @@ class ProductController extends Controller
         }
 
         return $this->render('product/show.html.twig', ['product' => $product]);
+    }
+    
+    /**
+     * 
+     * @param unknown $params
+     * @param unknown $categories
+     * @return NULL
+     */
+    private function getCategoryName($params, $categories) {
+        $selectedCategoryName = null;
+        
+        if (isset($params['category']) || isset($params['subcategory'])) {
+            foreach ($categories as $category) {
+                if (isset($params['category'])) {
+                    if ($params['category'] == $category->getId()) {
+                        $selectedCategoryName = $category->getName();
+                        break;
+                    }
+                }
+                if (isset($params['subcategory'])) {
+                    foreach ($category->getSubcategories() as $subcategory) {
+                        if ($params['subcategory'] == $subcategory->getId()) {
+                            $selectedCategoryName = $subcategory->getName();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return $selectedCategoryName;
+    }
+    
+    private function getCategoryPluralName($categoryName) {
+        $categoryNamePlural = null;
+        if( strpos($categoryName, 'lait') !== false) {
+            $categoryNamePlural = 'au ' . $categoryName;
+        }
+        
+        return $categoryNamePlural;
     }
 
 }
