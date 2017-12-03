@@ -108,9 +108,14 @@ class ProductController extends Controller
         return $selectedCategoryName;
     }
     
+    /**
+     * Get plural name for the selected category
+     * @param string $categoryName category to plural
+     * @return string category with plural
+     */
     private function getCategoryPluralName($categoryName) {
         $categoryNamePlural = null;
-        if( strpos($categoryName, 'lait') !== false) {
+        if( strpos($categoryName, 'lait') === 0) {
             $categoryNamePlural = 'au ' . $categoryName;
         }
         
