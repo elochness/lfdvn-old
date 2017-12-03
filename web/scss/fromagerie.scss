@@ -102,6 +102,7 @@ p {
 @import "sidebar";
 @import "btn";
 @import "img";
+@import "category";
 @import "product";
 @import "pagination";
 @import "footer";
@@ -168,9 +169,6 @@ h1 {
     	font-style: italic;
     }
     
-    #list-category {
-    	margin-bottom: 0px;
-    }
 }
 
 .navbar {
