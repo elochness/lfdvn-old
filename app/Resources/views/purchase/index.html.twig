@@ -17,6 +17,85 @@
 
 {% block main %}
 
+<script type="text/javascript">
+	function update(){
+		var price = document.getElementById("12_price").value;
+		var quantity = document.getElementById("12_qte").value;
+		var Tprice = price * quantity ;
+		
+		document.getElementById("12_total").value = Tprice + " €";
+	}
+</script>
+
+	{% if categories is defined %}
+	    <div class="box article-large">
+			
+			<form method="post" action="{{ path('purchase_add') }}">
+			<table>
+			
+	        {% for category in categories %}
+	        	
+	        	
+	        	
+	        	{% if category.products | length > 0 %}
+	        	
+	        		
+	        		<tr><td colspan="5"><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" />{{ category.name }} ({{ category.products | length }})</td></tr>
+	        		<tr><th>Photo</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
+		        			        	
+		        	{% if category.subcategories %}
+		        	
+			        	{% for subcategory in category.subcategories | sort %}
+			        		{% if subcategory.products | length > 0 %}
+				        		<tr><td colspan="5">{{ subcategory.name }} ({{ subcategory.products | length }})</td></tr>
+				        		{% for product in subcategory.products %}
+				        			<tr>
+				        				<td>
+				        				{% if product.image %}
+					                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}" height="42" width="42" />
+					                    {% else %}
+					                        <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
+					                    {% endif %}
+					                    </td>
+				        				<td>{{ product.name }} ({{ product.packaging}})</td>
+		        						<td><span id="pu_{{ product.id }}">{{ product.price }}</span> €</td>
+				        				<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" type="number" min="0" max="50" /></td>
+				        				<td><span id="total_{{ product.id }}" name="total" /></td>
+				        			</tr>
+				        		{% endfor %}
+			        		{% endif %}
+			        	{% endfor %}
+			        {% else %}
+		        		{% for product in category.products %}
+		        			<tr>
+		        				<td>
+		        				{% if product.image %}
+			                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}" height="42" width="42" />
+			                    {% else %}
+			                        <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42"/>
+			                    {% endif %}
+			                    </td>
+		        				<td>{{ product.name }} ({{ product.packaging}})</td>
+		        				<td><span id="pu_{{ product.id }}">{{ product.price }}</span> €</td>
+				        		<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" type="number" min="0" max="50" /></td>
+				        		<td><span id="total_{{ product.id }}" name="total" /></td>
+		        			</tr>
+		        		{% endfor %}
+		        	{% endif %}
+		        	
+	        	{% endif %}
+	        	
+	        	
+	        {% endfor %}
+	        
+	        	<tr><td colspan="4">Total</td><td><span id="total-final" /></td></tr>
+		    </table>
+		    <input type="submit" value="Commander" />
+		    </form>
+	        
+	    </div>
+    {% endif %}
+
     <div>
     	<article class="box article-large">
             <h2>

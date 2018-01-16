@@ -11,7 +11,9 @@ function addEvent(obj, evType, fn) {
 }
   
 function isChanged (el) {
-            
+ 
+	// Check value
+	checkMaxValue (el);
     var id_input = el.id.substring(3);
     var price = document.getElementById("pu" + id_input).innerHTML;
     
@@ -22,6 +24,13 @@ function isChanged (el) {
         changeLine(el, false);
     }
     sumPurchase();
+}
+
+function checkMaxValue (el) {
+	
+	if(isNumeric(el.value) && (el.value > 50)) {
+		el.value = 50;
+	}
 }
 
 function changeLine(el, active) {
@@ -63,6 +72,7 @@ function inputHandler() {
     for(i=0;i<inputs.length;i++) {
         if(!(/submit/).test(inputs[i].getAttribute("type"))) {
             inputs[i].onchange = function(){isChanged(this)};
+            inputs[i].onkeyup = function(){isChanged(this)};
         }
     }
 }
