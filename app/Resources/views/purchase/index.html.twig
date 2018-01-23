@@ -17,15 +17,6 @@
 
 {% block main %}
 
-<script type="text/javascript">
-	function update(){
-		var price = document.getElementById("12_price").value;
-		var quantity = document.getElementById("12_qte").value;
-		var Tprice = price * quantity ;
-		
-		document.getElementById("12_total").value = Tprice + " €";
-	}
-</script>
 
 	{% if categories is defined %}
 	    <div class="box article-large">

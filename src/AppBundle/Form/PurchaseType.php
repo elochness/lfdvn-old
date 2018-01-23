@@ -26,8 +26,8 @@ class PurchaseType extends AbstractType
         ->add('deliveryHour',     TimeType::class)
         ->add('items', CollectionType::class, array(
           'entry_type'  => PurchaseItemType::class,
-          'allow_add'   => true,
-          'allow_delete'  => true
+          'allow_add'   => false,
+          'allow_delete'  => false
         ))
         ->add('save',      SubmitType::class)
         ;
