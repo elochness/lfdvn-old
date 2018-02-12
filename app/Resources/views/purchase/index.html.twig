@@ -5,6 +5,7 @@
 {% block stylesheets %}
   {{ parent() }}
   <script src="/js/purchase.js"></script>
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
 {% endblock %}
 
 {% block body_title %}
@@ -17,9 +18,17 @@
 
 {% block main %}
 
-
 	{% if categories is defined %}
 	    <div class="box article-large">
+	    
+	    	<nav>
+				<ol class="cd-breadcrumb triangle custom-icons">
+					<li><a href="#0">Produits</a></li>
+					<li><a href="#0">Compte</a></li>
+					<li class="current"><em>Récapitulatif</em></li>
+					<li><em>Commanndé</em></li>
+				</ol>
+			</nav>
 			
 			<form method="post" action="{{ path('purchase_add') }}">
 			<table>
