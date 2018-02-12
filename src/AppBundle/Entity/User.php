@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -30,26 +31,32 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank(message="user.username.not_blank")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="user.firstname.not_blank")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="user.lastname.not_blank")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank(message="user.email.not_blank")
+     * @Assert\Email(message = "user.email.not_email",checkMX = true)
      */
     private $email;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="user.password.not_blank")
      */
     private $password;
 
@@ -64,6 +71,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="cellphone", type="string", length=20, nullable=true)
+     * @Assert\NotBlank(message="user.cellphone.not_blank")
      */
     private $cellphone;
 
@@ -271,5 +279,21 @@ class User implements UserInterface
     {
         // if you had a plainPassword property, you'd nullify it here
         // $this->plainPassword = null;
+    }
+    
+    /**
+     * @Assert\IsTrue(message="The password cannot match your first name")
+     */
+    public function isPasswordLegal()
+    {
+    	return $this->firstname !== $this->password;
+    }
+    
+    /**
+     * @Assert\IsTrue(message="The password cannot match your last name")
+     */
+    public function isPasswordLegal2()
+    {
+    	return $this->lastname !== $this->password;
     }
 }
