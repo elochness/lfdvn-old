@@ -58,6 +58,7 @@ class SecurityController extends Controller
     		// but, the original `$task` variable has also been updated
     		$user = $form->getData();
     		$passwordEncoder = $this->container->get('security.password_encoder');
+    		$encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
     		$user->setPassword($encodedPassword);
     		$em = $this->getDoctrine()->getManager();
     		$em->persist($user);
@@ -69,7 +70,7 @@ class SecurityController extends Controller
     		// $em->persist($task);
     		// $em->flush();
     	
-    		return $this->redirectToRoute('user_success');
+    		return $this->redirectToRoute('homepage');
     	}
     	
     	return $this->render('security/new.html.twig', array(

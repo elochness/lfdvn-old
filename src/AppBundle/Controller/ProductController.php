@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("/produits")
  *
- * @author Pierre François
+ * @author Pierre FranÃ§ois
  */
 class ProductController extends Controller
 {
@@ -80,8 +80,8 @@ class ProductController extends Controller
     
     /**
      * 
-     * @param unknown $params
-     * @param unknown $categories
+     * @param array $params
+     * @param array $categories
      * @return NULL
      */
     private function getCategoryName($params, $categories) {

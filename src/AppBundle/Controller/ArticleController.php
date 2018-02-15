@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @Route("/")
  *
- * @author Pierre François
+ * @author Pierre FranÃ§ois
  */
 class ArticleController extends Controller
 {

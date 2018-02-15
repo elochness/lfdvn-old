@@ -18,13 +18,13 @@ use AppBundle\Entity\PurchaseItem;
  *
  * @Route("/commander")
  *
- * @author Pierre François
+ * @author Pierre FranÃ§ois
  */
 class PurchaseController extends Controller
 {
     /**
      *  @Route("/", name="purchase_index")    
-     *  @Method("GET")
+     *  @Method("GET")O
      */
     public function indexAction()
     {
@@ -49,23 +49,23 @@ class PurchaseController extends Controller
      */
     public function addAction(Request $request)
     {
-        // On crée un objet Purchase
+        // On crÃ©e un objet Purchase
         $purchase = new Purchase();
         $purchase = $this->constructPurchase($request->request, $purchase);
         $form = $this->createForm(PurchaseType::class, $purchase);
                 
-//         // Si la requête est en POST
-//         // À partir de maintenant, la variable $purchase contient les valeurs entrées dans le formulaire par le visiteur
+//         // Si la requÃªte est en POST
+//         // Ã€ partir de maintenant, la variable $purchase contient les valeurs entrÃ©es dans le formulaire par le visiteur
 //         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-//             // On enregistre notre objet $purchase dans la base de données, par exemple
+//             // On enregistre notre objet $purchase dans la base de donnÃ©es, par exemple
 //             $em = $this->getDoctrine()->getManager();
 //             $em->persist($purchase);
 //             $em->flush();
     
-//             $request->getSession()->getFlashBag()->add('notice', 'Achat bien enregistrée.');
+//             $request->getSession()->getFlashBag()->add('notice', 'Achat bien enregistrÃ©e.');
     
-//             // On redirige vers la page de visualisation de l'annonce nouvellement créée
+//             // On redirige vers la page de visualisation de l'annonce nouvellement crÃ©Ã©e
 //             return $this->redirectToRoute('purchase_index', array('id' => $purchase->getId()));
 
 //         }
@@ -90,7 +90,7 @@ class PurchaseController extends Controller
         
         
 //         var_dump($request->request->get('qte_30'));
-        // On passe la méthode createView() du formulaire à la vue
+        // On passe la mÃ©thode createView() du formulaire Ã  la vue
         // afin qu'elle puisse afficher le formulaire toute seule
         return $this->render('purchase/add.html.twig', array(
         	'form' => $form->createView(),

@@ -23,13 +23,15 @@
 	    
 	    	<nav>
 				<ol class="cd-breadcrumb triangle custom-icons">
-					<li><a href="#0">Produits</a></li>
-					<li><a href="#0">Compte</a></li>
-					<li class="current"><em>Récapitulatif</em></li>
+					<li class="current"><em>Produits</em></li>
+					<li><em>Compte</em></li>
+					<li><em>Récapitulatif</em></li>
 					<li><em>Commanndé</em></li>
 				</ol>
 			</nav>
 			
+			
+				
 			<form method="post" action="{{ path('purchase_add') }}">
 			<table>
 			
@@ -41,15 +43,15 @@
 	        	
 	        		
 	        		<tr><td colspan="5"><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" />{{ category.name }} ({{ category.products | length }})</td></tr>
-	        		<tr><th>Photo</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
+	        		<tr class="header"><th>Photo</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
 		        			        	
 		        	{% if category.subcategories %}
 		        	
 			        	{% for subcategory in category.subcategories | sort %}
 			        		{% if subcategory.products | length > 0 %}
-				        		<tr><td colspan="5">{{ subcategory.name }} ({{ subcategory.products | length }})</td></tr>
+				        		<tr class="product_list"><td colspan="5">{{ subcategory.name }} ({{ subcategory.products | length }})</td></tr>
 				        		{% for product in subcategory.products %}
-				        			<tr>
+				        			<tr class="product_list">
 				        				<td>
 				        				{% if product.image %}
 					                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}" height="42" width="42" />
@@ -59,7 +61,7 @@
 					                    </td>
 				        				<td>{{ product.name }} ({{ product.packaging}})</td>
 		        						<td><span id="pu_{{ product.id }}">{{ product.price }}</span> €</td>
-				        				<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" type="number" min="0" max="50" /></td>
+				        				<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" class="form-control" type="number" min="0" max="50" /></td>
 				        				<td><span id="total_{{ product.id }}" name="total" /></td>
 				        			</tr>
 				        		{% endfor %}
@@ -67,7 +69,7 @@
 			        	{% endfor %}
 			        {% else %}
 		        		{% for product in category.products %}
-		        			<tr>
+		        			<tr class="product_lists">
 		        				<td>
 		        				{% if product.image %}
 			                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}" height="42" width="42" />
@@ -76,8 +78,8 @@
 			                    {% endif %}
 			                    </td>
 		        				<td>{{ product.name }} ({{ product.packaging}})</td>
-		        				<td><span id="pu_{{ product.id }}">{{ product.price }}</span> €</td>
-				        		<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" type="number" min="0" max="50" /></td>
+		        				<td><span id="pu_{{ product.id }}" >{{ product.price }} €</span></td>
+				        		<td><input id="qte_{{ product.id }}" name="qte_{{ product.id }}" class="form-control" type="number" min="0" max="50" /></td>
 				        		<td><span id="total_{{ product.id }}" name="total" /></td>
 		        			</tr>
 		        		{% endfor %}
@@ -90,8 +92,11 @@
 	        
 	        	<tr><td colspan="4">Total</td><td><span id="total-final" /></td></tr>
 		    </table>
-		    <input type="submit" value="Commander" />
+		    <button type="submit" class="btn btn-primary">
+		        <i class="fa fa-sign-in"></i> {{ 'action.continue'|trans }}
+		    </button>
 		    </form>
+		
 	        
 	    </div>
     {% endif %}

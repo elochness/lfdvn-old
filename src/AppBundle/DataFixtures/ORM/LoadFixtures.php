@@ -12,9 +12,6 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\Post;
-use AppBundle\Entity\Comment;
-use AppBundle\Entity\Measurement;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\TaxRate;
@@ -91,35 +88,35 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     }
 
 
-    private function loadPosts(ObjectManager $manager)
-    {
-        foreach (range(1, 30) as $i) {
-            $post = new Post();
+//     private function loadPosts(ObjectManager $manager)
+//     {
+//         foreach (range(1, 30) as $i) {
+//             $post = new Post();
 
-            $post->setTitle($this->getRandomPostTitle());
-            $post->setSummary($this->getRandomPostSummary());
-            $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
-            $post->setContent($this->getPostContent());
-            $post->setAuthorEmail('anna_admin@symfony.com');
-            $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+//             $post->setTitle($this->getRandomPostTitle());
+//             $post->setSummary($this->getRandomPostSummary());
+//             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
+//             $post->setContent($this->getPostContent());
+//             $post->setAuthorEmail('anna_admin@symfony.com');
+//             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
-            foreach (range(1, 5) as $j) {
-                $comment = new Comment();
+//             foreach (range(1, 5) as $j) {
+//                 $comment = new Comment();
 
-                $comment->setAuthorEmail('john_user@symfony.com');
-                $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
-                $comment->setContent($this->getRandomCommentContent());
-                $comment->setPost($post);
+//                 $comment->setAuthorEmail('john_user@symfony.com');
+//                 $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
+//                 $comment->setContent($this->getRandomCommentContent());
+//                 $comment->setPost($post);
 
-                $manager->persist($comment);
-                $post->addComment($comment);
-            }
+//                 $manager->persist($comment);
+//                 $post->addComment($comment);
+//             }
 
-            $manager->persist($post);
-        }
+//             $manager->persist($post);
+//         }
 
-        $manager->flush();
-    }
+//         $manager->flush();
+//     }
 
     /**
      * Load information of schedules

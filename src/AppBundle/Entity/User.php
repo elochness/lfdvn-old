@@ -50,7 +50,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank(message="user.email.not_blank")
-     * @Assert\Email(message = "user.email.not_email",checkMX = true)
+     * @Assert\Email(message = "user.email.not_email")
      */
     private $email;
 

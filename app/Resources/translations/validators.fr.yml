@@ -1,0 +1,29 @@
+# There are two main techniques to fully translate a backend:
+# 1) Define the `label` option for each element and translate those labels in
+#    files like this.
+# 2) Let the backend create the labels for each element and translate those
+#    labels in files like this.
+#
+# The first one is the traditional way of translating Symfony applications, but
+# is very boring and you'll make lots of mistakes. The second one is the way we
+# recommend to translate backends.
+#
+# Both ways are explained in https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/tutorials/i18n.md
+
+# NOTE: since the application is originally developed in English, this
+#       "translation" file looks useless because it doesn't really translate
+#       any content. However, this file is essential to use it as the base for
+#       the translations into other languages.
+
+# The "main menu" is an example of defining the labels explicitly
+# (they are translated following the 1) method)
+# ------------------------------------------------------------------------------
+
+#user
+user.username.not_blank: Le surnom doit être saisi
+user.firstname.not_blank: Le prénom doit être saisi
+user.lastname.not_blank: Le nom doit être saisi
+user.email.not_blank: L'email doit être saisi
+user.email.not_email: L'email n'est pas valide
+user.password.not_blank: Le mot de passe doit être saisi
+user.cellphone.not_blank: Le numéro de téléphone doit être saisi
