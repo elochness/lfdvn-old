@@ -26,6 +26,7 @@ menu.articles:      Articles
 menu.customers:     Clients
 menu.purchases:     Achats
 menu.admin:         Administration
+menu.account:        Compte
 menu.about:         About EasyAdmin
 menu.about.home:    Project Home
 menu.about.docs:    Documentation
