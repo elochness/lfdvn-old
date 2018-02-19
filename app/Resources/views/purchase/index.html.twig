@@ -44,8 +44,8 @@
 	        		
 	        		<tr><td colspan="5"><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" />{{ category.name }} ({{ category.products | length }})</td></tr>
 	        		<tr class="header"><th>Photo</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-		        			        	
-		        	{% if category.subcategories %}
+		        				        	
+		        	{% if category.subcategories | length > 0 %}
 		        	
 			        	{% for subcategory in category.subcategories | sort %}
 			        		{% if subcategory.products | length > 0 %}
