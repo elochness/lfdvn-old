@@ -13,6 +13,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
@@ -29,16 +30,27 @@ class SecurityController extends Controller
     /**
      * @Route("/login", name="security_login")
      */
-    public function loginAction()
+    public function loginAction(UserInterface $user = null)
     {
-        $helper = $this->get('security.authentication_utils');
-
-        return $this->render('security/login.html.twig', [
-            // last username entered by the user (if any)
-            'last_username' => $helper->getLastUsername(),
-            // last authentication error (if any)
-            'error' => $helper->getLastAuthenticationError(),
-        ]);
+//        var_dump($user->getRoles());
+        // Check if user has admin role
+        if (in_array(User::ROLE_ADMIN, $user->getRoles())) {
+            return $this->redirectToRoute('admin');
+        }
+        // Check if user has user role
+        else if (in_array(User::ROLE_USER, $user->getRoles())) {
+            return $this->redirectToRoute('account');
+        }
+        else {
+            $helper = $this->get('security.authentication_utils');
+            
+            return $this->render('security/login.html.twig', [
+                // last username entered by the user (if any)
+                'last_username' => $helper->getLastUsername(),
+                // last authentication error (if any)
+                'error' => $helper->getLastAuthenticationError(),
+            ]);
+        }
     }
     
     
@@ -60,6 +72,7 @@ class SecurityController extends Controller
     		$passwordEncoder = $this->container->get('security.password_encoder');
     		$encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
     		$user->setPassword($encodedPassword);
+    		$user->setRoles(array(User::ROLE_USER));
     		$em = $this->getDoctrine()->getManager();
     		$em->persist($user);
     		$em->flush();

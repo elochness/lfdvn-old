@@ -30,7 +30,7 @@
 				</ol>
 			</nav>
 			
-			
+			<h3>{{ 'title.purchase.step1.products'|trans }}</h3>
 				
 			<form method="post" action="{{ path('purchase_add') }}">
 			<table>
@@ -90,8 +90,13 @@
 	        	
 	        {% endfor %}
 	        
+	        
+	        
 	        	<tr><td colspan="4">Total</td><td><span id="total-final" /></td></tr>
 		    </table>
+		    
+		    <h3>{{ 'title.purchase.step1.date'|trans }}</h3>
+		    
 		    <button type="submit" class="btn btn-primary">
 		        <i class="fa fa-sign-in"></i> {{ 'action.continue'|trans }}
 		    </button>

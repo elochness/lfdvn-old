@@ -26,7 +26,7 @@ menu.articles:      Articles
 menu.customers:     Clients
 menu.purchases:     Achats
 menu.admin:         Administration
-menu.account:        Compte
+menu.account:       Compte
 menu.about:         About EasyAdmin
 menu.about.home:    Project Home
 menu.about.docs:    Documentation
@@ -195,3 +195,8 @@ label.role: Rôle
 action.sign_in: Se connecter
 action.create: Créer
 action.continue: Continuer
+
+#purchase
+title.purchase.step1.products: Sélectionner les produits à commander
+title.purchase.step1.date: Sélectionner la date de livraison
+title.purchase.step2: Veuillez vous connecter

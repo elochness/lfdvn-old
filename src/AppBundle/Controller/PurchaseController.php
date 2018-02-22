@@ -24,7 +24,7 @@ class PurchaseController extends Controller
 {
     /**
      *  @Route("/", name="purchase_index")    
-     *  @Method("GET")O
+     *  @Method("GET")
      */
     public function indexAction()
     {
@@ -41,6 +41,29 @@ class PurchaseController extends Controller
         return $this->render('purchase/index.html.twig', [
         		'categories' => $categories
         ]);
+    }
+    
+    /**
+     *  @Route("/step2", name="purchase_step2")
+     *  @Method("GET")
+     */
+    public function step2Action()
+    {
+        // Check if user is connected
+        $helper = $this->get('security.authentication_utils');
+        
+        return $this->render('purchase/step2.html.twig', [
+            // last username entered by the user (if any)
+            'last_username' => $helper->getLastUsername(),
+            // last authentication error (if any)
+            'error' => $helper->getLastAuthenticationError(),
+        ]);
+        
+        // redirect in step 3 is connected
+        
+        // else show step 2 (sign up or sign in)
+        
+//         return $this->render('purchase/step2.html.twig');
     } 
     
     /**
