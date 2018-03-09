@@ -23,6 +23,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     /**
+     * Name of user role
+     * @var string
+     */
+    const ROLE_USER = "ROLE_USER";
+    
+    
+    /**
+     * Name of admin role
+     * @var string
+     */
+    const ROLE_ADMIN = "ROLE_ADMIN";
+    
+    /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -81,7 +94,11 @@ class User implements UserInterface
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
-
+    
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -123,11 +140,6 @@ class User implements UserInterface
     {
         return $this->enabled;
     }
-
-    /**
-     * @ORM\Column(type="json_array")
-     */
-    private $roles = [];
 
     public function getId()
     {
@@ -249,7 +261,7 @@ class User implements UserInterface
 
         // guarantees that a user always has at least one role for security
         if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
+            $roles[] = $this::ROLE_USER;
         }
 
         return array_unique($roles);

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <script src="/js/purchase.js"></script>
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
+{% endblock %}
+
+{% block body_title %}
+	<div class="row">
+        <div class="col-sm-12">
+        	<h1>{{ 'menu.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+<script type="text/javascript">
+	function update(){
+		var price = document.getElementById("12_price").value;
+		var quantity = document.getElementById("12_qte").value;
+		var Tprice = price * quantity ;
+		
+		document.getElementById("12_total").value = Tprice + " €";
+	}
+</script>
+
+    <div class="box article-large">
+		
+		<nav>
+			<ol class="cd-breadcrumb triangle custom-icons">
+				<li><a href="{{ path('purchase_index') }}">Produits</a></li>
+				<li class="current"><em>Compte</em></li>
+				<li><em>Récapitulatif</em></li>
+				<li><em>Commanndé</em></li>
+			</ol>
+		</nav>
+	    
+	    <h3>{{ 'title.purchase.step2'|trans }}</h3>
+	    
+		<div style="
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    background-color: #eee;
+		">
+		{% include 'common/login_form.html.twig' %}
+    	</div>
+    	
+    	<br />
+        <center><b><p>OU</p></b></center>
+        <br />
+        
+        <div style="
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    background-color: #eee;
+        ">
+        {% include 'common/signin_form.html.twig' %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+    {{ parent() }}
+
+{% endblock %}

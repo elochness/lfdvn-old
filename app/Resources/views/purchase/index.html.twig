@@ -30,7 +30,7 @@
 				</ol>
 			</nav>
 			
-			
+			<h3>{{ 'title.purchase.step1.products'|trans }}</h3>
 				
 			<form method="post" action="{{ path('purchase_add') }}">
 			<table>
@@ -44,8 +44,8 @@
 	        		
 	        		<tr><td colspan="5"><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" />{{ category.name }} ({{ category.products | length }})</td></tr>
 	        		<tr class="header"><th>Photo</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-		        			        	
-		        	{% if category.subcategories %}
+		        				        	
+		        	{% if category.subcategories | length > 0 %}
 		        	
 			        	{% for subcategory in category.subcategories | sort %}
 			        		{% if subcategory.products | length > 0 %}
@@ -90,8 +90,13 @@
 	        	
 	        {% endfor %}
 	        
+	        
+	        
 	        	<tr><td colspan="4">Total</td><td><span id="total-final" /></td></tr>
 		    </table>
+		    
+		    <h3>{{ 'title.purchase.step1.date'|trans }}</h3>
+		    
 		    <button type="submit" class="btn btn-primary">
 		        <i class="fa fa-sign-in"></i> {{ 'action.continue'|trans }}
 		    </button>

@@ -85,15 +85,33 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 {% block header_navigation_links %}
-
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <li>
-                                            <a href="/admin">
-                                                <i class="fa fa-lock"></i>
-                                                {{ 'menu.admin'|trans }}
-                                            </a>
-                                        </li>
-                                    {% else %}
+                                      
+                                    {% if app.user %}
+                                    
+                                    	{% if is_granted('ROLE_ADMIN') %}
+	                                        <li>
+	                                            <a href="/admin">
+	                                                <i class="fa fa-lock"></i>
+	                                                {{ 'menu.admin'|trans }}
+	                                            </a>
+	                                        </li>
+	                                    {% else %}
+	                                    	<li>
+	                                            <a href="/account">
+	                                                <i class="fa fa-lock"></i>
+	                                                {{ 'menu.account'|trans }}
+	                                            </a>
+	                                        </li>
+	                                    {% endif %}
+	                                    
+	                                    <li>
+	                                        <a href="{{ path('security_logout') }}">
+	                                            <i class="fa fa-sign-out"></i>
+	                                            {{ 'menu.logout'|trans }}
+	                                        </a>
+	                                    </li>
+	                                
+	                                {% else %}
                                         <li>
                                             <a href="/admin">
                                                 <i class="fa fa-home"></i>
@@ -101,16 +119,8 @@
                                             </a>
                                         </li>
                                     {% endif %}
+                                    
                                 {% endblock %}
-
-                                {% if app.user %}
-                                    <li>
-                                        <a href="{{ path('security_logout') }}">
-                                            <i class="fa fa-sign-out"></i>
-                                            {{ 'menu.logout'|trans }}
-                                        </a>
-                                    </li>
-                                {% endif %}
                             </ul>
                         </div>
                     </div>
