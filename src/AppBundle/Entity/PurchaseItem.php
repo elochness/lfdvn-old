@@ -45,7 +45,7 @@ class PurchaseItem
     public function __toString()
     {
       if (isset($this->product)) {
-          return $this->product->name;
+          return $this->product->getName();
       } else {
           return "Non défini";
       }

@@ -18,47 +18,30 @@
 
 {% block main %}
 
-<script type="text/javascript">
-	function update(){
-		var price = document.getElementById("12_price").value;
-		var quantity = document.getElementById("12_qte").value;
-		var Tprice = price * quantity ;
-		
-		document.getElementById("12_total").value = Tprice + " €";
-	}
-</script>
-
     <div class="box article-large">
 		
 		<nav>
 			<ol class="cd-breadcrumb triangle custom-icons">
-				<li><a href="{{ path('purchase_index') }}">Produits</a></li>
-				<li class="current"><em>Compte</em></li>
-				<li><em>Récapitulatif</em></li>
-				<li><em>Commanndé</em></li>
+				<li><a href="{{ path('purchase_index') }}">{{ 'breadcrumb.purchase.step1'|trans }}</a></li>
+				<li class="current"><em>{{ 'breadcrumb.purchase.step2'|trans }}</em></li>
+				<li><em>{{ 'breadcrumb.purchase.step3'|trans }}</em></li>
+				<li><em>{{ 'breadcrumb.purchase.step4'|trans }}</em></li>
 			</ol>
 		</nav>
 	    
-	    <h3>{{ 'title.purchase.step2'|trans }}</h3>
+	    <h2>{{ 'title.purchase.step2'|trans }}</h2>
 	    
-		<div style="
-    border: 1px solid #ccc;
-    padding: 10px 10px 10px 10px;
-    background-color: #eee;
-		">
-		{% include 'common/login_form.html.twig' %}
+		<div class="paragraph">
+			{% include 'common/login_form.html.twig' %}
     	</div>
     	
-    	<br />
-        <center><b><p>OU</p></b></center>
-        <br />
+    	
+    	<div class="separator">
+    		<p>OU</p>
+    	</div>
         
-        <div style="
-    border: 1px solid #ccc;
-    padding: 10px 10px 10px 10px;
-    background-color: #eee;
-        ">
-        {% include 'common/signin_form.html.twig' %}
+        <div class="paragraph">
+        	{% include 'common/signin_form.html.twig' %}
         </div>
     </div>
 

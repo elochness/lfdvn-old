@@ -313,3 +313,17 @@ ol, ul {
 .row:after {
     clear: both;
 }
+
+.paragraph {
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    background-color: #eee;
+}
+
+.separator {
+	text-align: center;
+	font-weight: bold;
+	margin-top : 20px;
+	margin-bottom : 20px;
+}
+		

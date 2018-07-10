@@ -134,6 +134,20 @@ Friday: Vendredi
 Saturday: Samedi
 Sunday: Dimanche
 
+# schedule month
+january: janvier
+february: février
+march: mars
+april: avril
+may: mai
+june: juin
+july: juillet
+august: aout
+september: septembre
+october: octobre
+november: novembre
+december: décembre 
+
 # tax rate column
 Tax rate: Taux TVA
 
@@ -195,8 +209,31 @@ label.role: Rôle
 action.sign_in: Se connecter
 action.create: Créer
 action.continue: Continuer
+action.purchase: Commander
+
+#breadcrumb_purchase
+breadcrumb.purchase.step1: Produits
+breadcrumb.purchase.step2: Compte
+breadcrumb.purchase.step3: Récapitulatif
+breadcrumb.purchase.step4: Commandé
 
 #purchase
+title.purchase.step1.purchase: Sélectionner les produits et la date de livraison
 title.purchase.step1.products: Sélectionner les produits à commander
 title.purchase.step1.date: Sélectionner la date de livraison
 title.purchase.step2: Veuillez vous connecter
+title.purchase.step3: Récapitulatif de la commande
+title.purchase.step3.date: Date de la livraison
+title.purchase.step3.date.message: La date de livraison est prévu le
+title.purchase.step3.products: Liste des produits commandés
+title.purchase.step3.comment: Ajouter un commentaire à la commande (heure de passage, ...)
+title.purchase.step4: Merci d'avoir commandé!
+title.purchase.step4.information: Vous allez recevoir un email récapitulant les informations de votre commande (produits, date de réception et commentaire). Si vous voulez modifier votre commande, veuillez nous contacter.
+title.purchase.step4.signature: L'équipe de la fromagerie du vignoble nantais
+label.purchase.not_purchased: Ce produit ne peut pas être commandé à partir du site web
+title.purchase.email.customer: Récapitulatif de la commande n°
+title.purchase.email.customer.thanks: Merci d'avoir commandé!
+title.purchase.email.enterprise: Nouvelle commande n°
+title.purchase.email.remark: Remarque
+title.purchase.email.enterprise: Nouvelle commande n°
+title.purchase.email.customer.name: Nom du client

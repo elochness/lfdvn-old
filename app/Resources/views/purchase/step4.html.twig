@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
+{% endblock %}
+
+{% block body_title %}
+	<div class="row">
+        <div class="col-sm-12">
+        	<h1>{{ 'menu.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}   
+    
+    <div>
+    	<article class="box article-large">
+    		<nav>
+				<ol class="cd-breadcrumb triangle custom-icons">
+					<li><a href="{{ path('purchase_index') }}">{{ 'breadcrumb.purchase.step1'|trans }}</a></li>
+					<li><a href="{{ path('purchase_step2') }}">{{ 'breadcrumb.purchase.step2'|trans }}</a></li>
+					<li><a href="{{ path('purchase_step3') }}">{{ 'breadcrumb.purchase.step3'|trans }}</a></li>
+					<li class="current"><em>{{ 'breadcrumb.purchase.step4'|trans }}</em></li>
+				</ol>
+			</nav>
+			
+            <h2>{{ 'title.purchase.step4'|trans }}</h2>
+            <div>
+            	<div class="flex flex-center">
+            		<div >{{ 'title.purchase.step4.information'|trans }} <br /><br /> {{ 'title.purchase.step4.signature'|trans }}</div>
+            		<div><img class="center" src="{{ asset('images/svg/012-cart.svg') }}" width="128" height="128" alt="Caddie" /></div>
+            	</div>
+            </div>
+        </article>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

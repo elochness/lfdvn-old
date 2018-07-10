@@ -14,18 +14,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Purchase
 {
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="delivery_date", type="date", nullable=false)
      */
     private $deliveryDate;
-
+    
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="delivery_hour", type="time", nullable=true)
+     * Delivery date formated
+     * 
+     * @var \Date
      */
-    private $deliveryHour;
+    private $deliveryDateFormated;
 
     /**
      * @var \DateTime
@@ -57,6 +57,11 @@ class Purchase
      * })
      */
     private $buyer;
+    
+    /**
+     * @var string
+     */
+    private $comment;
 
     /**
      * Constructor of the Purchase class.
@@ -66,7 +71,6 @@ class Purchase
     {
         $this->createdAt = new \DateTime();
         $this->deliveryDate = new \DateTime();
-        $this->deliveryHour = new \DateTime();
         $this->items = new ArrayCollection();
     }
     
@@ -83,7 +87,7 @@ class Purchase
     /**
      * Set deliveryDate
      *
-     * @param \DateTime $deliveryDate
+     * @param \Date $deliveryDate
      *
      * @return Purchase
      */
@@ -97,35 +101,60 @@ class Purchase
     /**
      * Get deliveryDate
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDeliveryDate()
     {
         return $this->deliveryDate;
     }
-
+    
     /**
-     * Set deliveryHour
+     * Set deliveryDateFormated
      *
-     * @param \DateTime $deliveryHour
+     * @param \Date $deliveryDateFormated
      *
      * @return Purchase
      */
-    public function setDeliveryHour($deliveryHour)
+    public function setDeliveryDateFormated($deliveryDateFormated)
     {
-        $this->deliveryHour = $deliveryHour;
-
-        return $this;
+    	$this->deliveryDateFormated = $deliveryDateFormated;
+    
+    	return $this;
     }
-
+    
     /**
-     * Get deliveryHour
+     * Get deliveryDateFormated
      *
-     * @return \DateTime
+     * @return \Date
      */
-    public function getDeliveryHour()
+    public function getDeliveryDateFormated()
     {
-        return $this->deliveryHour;
+    	return $this->deliveryDateFormated;
+    }
+    
+        
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Purchase
+     */
+    public function setComment($comment)
+    {
+    	$this->comment = $comment;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+    	return $this->comment;
     }
 
     /**

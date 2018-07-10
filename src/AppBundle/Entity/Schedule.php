@@ -7,6 +7,12 @@ namespace AppBundle\Entity;
  */
 class Schedule
 {
+	/**
+	 * Indicate the day is close
+	 * @var string
+	 */
+	const CLOSED_DAY = "Fermé";
+	
     /**
      * @var string
      */
@@ -268,4 +274,89 @@ class Schedule
 
       return $this;
     }
+    
+    /**
+     * 
+     * @param unknown $date
+     * @return string
+     */
+    public static function getDayFormated($date, $translator) {
+    	$dayNumberOfWeek = date("N",strtotime($date));
+    	$stringDay = "";
+    	// Day
+    	if ($dayNumberOfWeek == 1) {
+    		$stringDay = $translator->trans('Monday');
+    	}
+    	elseif ($dayNumberOfWeek == 2) {
+    		$stringDay = $translator->trans('Tuesday');
+    	}
+    	elseif ($dayNumberOfWeek == 3) {
+    		$stringDay = $translator->trans('Wednesday');
+    	}
+    	elseif ($dayNumberOfWeek == 4) {
+    		$stringDay = $translator->trans('Thursday');
+    	}
+    	elseif ($dayNumberOfWeek == 5) {
+    		$stringDay = $translator->trans('Friday');
+    	}
+    	elseif ($dayNumberOfWeek == 6) {
+    		$stringDay = $translator->trans('Saturday');
+    	}
+    	elseif ($dayNumberOfWeek == 7) {
+    		$stringDay = $translator->trans('Sunday');
+    	}
+    	
+    	return $stringDay;
+    }
+    
+    /**
+     * 
+     * @param unknown $date
+     * @return string
+     */
+    public static function getMonthFormated($date, $translator) {
+    	$monthNumber = date("m",strtotime($date));
+    	$stringMonth = "";
+    	
+    	if ($monthNumber == 1) {
+    		$stringMonth = $translator->trans('january');
+    	}
+    	elseif ($monthNumber == 2) {
+    		$stringMonth = $translator->trans('february');
+    	}
+    	elseif ($monthNumber == 3) {
+    		$stringMonth = $translator->trans('march');
+    	}
+    	elseif ($monthNumber == 4) {
+    		$stringMonth = $translator->trans('april');
+    	}
+    	elseif ($monthNumber == 5) {
+    		$stringMonth = $translator->trans('may');
+    	}
+    	elseif ($monthNumber == 6) {
+    		$stringMonth = $translator->trans('june');
+    	}
+    	elseif ($monthNumber == 7) {
+    		$stringMonth = $translator->trans('july');
+    	}
+    	elseif ($monthNumber == 8) {
+    		$stringMonth = $translator->trans('august');
+    	}
+    	elseif ($monthNumber == 9) {
+    		$stringMonth = $translator->trans('september');
+    	}
+    	elseif ($monthNumber == 10) {
+    		$stringMonth = $translator->trans('october');
+    	}
+    	elseif ($monthNumber == 11) {
+    		$stringMonth = $translator->trans('november');
+    	}
+    	elseif ($monthNumber == 12) {
+    		$stringMonth = $translator->trans('december');
+    	}
+    	
+    	return $stringMonth;
+    }
+    
+    	 
 }

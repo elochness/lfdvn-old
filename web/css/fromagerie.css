@@ -409,19 +409,34 @@ footer #footer-resources i {
   color: #fb0303;
 }
 
-.product_lists {
+.purchase-list {
   border-top: 1px solid #96c03d;
   line-height: 50px;
 }
 
-.purchase-list {
-  border-top: 1px solid #96c03d;
-  line-height: 50px;
+.purchase-list.selected {
   background-color: #edeff0;
 }
 
 table {
   width: 100%;
+}
+
+table .center {
+  text-align: center;
+}
+
+table .right {
+  text-align: right;
+}
+
+#tr-total {
+  line-height: 25px;
+}
+
+#td-total {
+  border: black 2px solid;
+  font-weight: bold;
 }
 
 *,
@@ -612,4 +627,17 @@ ol, ul {
 
 .row:after {
   clear: both;
+}
+
+.paragraph {
+  border: 1px solid #ccc;
+  padding: 10px 10px 10px 10px;
+  background-color: #eee;
+}
+
+.separator {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

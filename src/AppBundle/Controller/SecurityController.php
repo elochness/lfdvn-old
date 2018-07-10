@@ -30,15 +30,14 @@ class SecurityController extends Controller
     /**
      * @Route("/login", name="security_login")
      */
-    public function loginAction(UserInterface $user = null)
+    public function loginAction(Request $request, UserInterface $user = null)
     {
-//        var_dump($user->getRoles());
         // Check if user has admin role
-        if (in_array(User::ROLE_ADMIN, $user->getRoles())) {
+        if ($user != null && in_array(User::ROLE_ADMIN, $user->getRoles())) {
             return $this->redirectToRoute('admin');
         }
         // Check if user has user role
-        else if (in_array(User::ROLE_USER, $user->getRoles())) {
+        else if ($user != null && in_array(User::ROLE_USER, $user->getRoles())) {
             return $this->redirectToRoute('account');
         }
         else {

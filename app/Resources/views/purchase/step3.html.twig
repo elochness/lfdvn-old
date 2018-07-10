@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
+{% endblock %}
+
+{% block body_title %}
+	<div class="row">
+        <div class="col-sm-12">
+        	<h1>{{ 'menu.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="box article-large">
+		
+		<nav>
+			<ol class="cd-breadcrumb triangle custom-icons">
+				<li><a href="{{ path('purchase_index') }}">{{ 'breadcrumb.purchase.step1'|trans }}</a></li>
+				<li><a href="{{ path('purchase_step2') }}">{{ 'breadcrumb.purchase.step2'|trans }}</a></li>
+				<li class="current"><em>{{ 'breadcrumb.purchase.step3'|trans }}</em></li>
+				<li><em>{{ 'breadcrumb.purchase.step4'|trans }}</em></li>
+			</ol>
+		</nav>
+	    
+	    <h2>{{ 'title.purchase.step3'|trans }}</h2>
+	    
+	    <h3>{{ 'title.purchase.step3.date'|trans }}</h3>
+	    
+	    <div class="paragraph">
+	    	<p>{{ 'title.purchase.step3.date.message'|trans }} : {{ purchase.deliveryDateFormated }}</p>
+	    </div>
+	    
+	    <div class="separator">
+    		<p>ET</p>
+    	</div>
+	    	
+	    <h3>{{ 'title.purchase.step3.products'|trans }}</h3>
+		<table>
+			<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
+	        {% for purchaseItem in purchase.items %}
+	        	<input type="hidden" id="qte_{{ purchaseItem.product.id }}" name="qte_{{ purchaseItem.product.id }}" value="{{ purchaseItem.quantity }}" />
+	        	<tr class="purchase-list">
+    				<td>
+    				{% if purchaseItem.product.image %}
+                        <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
+                    {% else %}
+                        <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
+                    {% endif %}
+                    </td>
+                    <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
+					<td class="center">{{ purchaseItem.product.price }} €</td>
+    				<td class="center">{{ purchaseItem.quantity }}</td>
+    				<td class="center">{{ purchaseItem.price }} €</td>
+	    		</tr>
+	        {% endfor %}
+        	<tr id="tr-total">
+        		<td colspan="3">&nbsp;</td>
+        		<td class="center"><b>Total</b></td>
+        		<td class="center" id="td-total">{{ total }} €</td>
+        	</tr>
+	    </table>
+	    
+	    <div class="separator">
+    		<p>ET</p>
+    	</div>
+    	
+	    <form method="post" action="{{ path('purchase_step4') }}">
+	    
+	    	<h3>{{ 'title.purchase.step3.comment'|trans }}</h3>
+	    	<textarea cols="70" rows="5" name="comment"></textarea> 
+	    
+	    	<div class="separator">
+	    		<p>VALIDER ...</p>
+	    	</div>
+    	
+	    	<button type="submit" class="btn btn-primary">
+		        <i class="fa fa-sign-in"></i> {{ 'action.purchase'|trans }}
+		    </button>
+	    </form>
+	    
+
+    </div>
+    
+    
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+    {{ parent() }}
+
+{% endblock %}

@@ -29,6 +29,7 @@
       </options>
     </field>
     <field name="enabled" type="boolean" column="enabled" nullable="false"/>
+    <field name="isPurchase" type="boolean" column="is_purchase" nullable="false"/>
     <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
     <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
     <field name="packaging" type="string" column="packaging" length="100" nullable="true">

@@ -48,6 +48,13 @@ class Product
      * @var boolean
      */
     private $enabled;
+    
+    /**
+     * Indicate if this product can be purchased
+     * 
+     * @var boolean
+     */
+    private $isPurchase;
 
     /**
      * @var \DateTime
@@ -240,11 +247,11 @@ class Product
      */
     public function setEnabled($enabled)
     {
-        $this->enabled = $enabled;
-
-        return $this;
+    	$this->enabled = $enabled;
+    
+    	return $this;
     }
-
+    
     /**
      * Get enabled
      *
@@ -252,7 +259,31 @@ class Product
      */
     public function getEnabled()
     {
-        return $this->enabled;
+    	return $this->enabled;
+    }
+    
+    /**
+     * Set isPurchase
+     *
+     * @param boolean $isPurchase
+     *
+     * @return Product
+     */
+    public function setIsPurchase($isPurchase)
+    {
+        $this->isPurchase = $isPurchase;
+
+        return $this;
+    }
+
+    /**
+     * Get isPurchase
+     *
+     * @return boolean
+     */
+    public function getIsPurchase()
+    {
+        return $this->isPurchase;
     }
 
     /**
