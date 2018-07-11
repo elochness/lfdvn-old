@@ -237,3 +237,10 @@ title.purchase.email.enterprise: Nouvelle commande n°
 title.purchase.email.remark: Remarque
 title.purchase.email.enterprise: Nouvelle commande n°
 title.purchase.email.customer.name: Nom du client
+
+#account
+account.title: Information sur le compte utilisateur
+account.user.title: Données de l'utilisateur
+account.purchase.title: Liste des commandes
+account.purchase.no_purchase: Pas de commande réalisée.
+account.change_password: Changer de mot de passe

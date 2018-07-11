@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AppBundle\Entity\Purchase" table="purchase">
+  <entity name="AppBundle\Entity\Purchase" table="purchase" repository-class="AppBundle\Repository\PurchaseRepository">
     <indexes>
       <index name="IDX_6117D13B6C755722" columns="buyer_id"/>
     </indexes>
