@@ -1,8 +1,10 @@
 
 <fieldset>
-        <legend><i class="fa fa-lock"></i> {{ 'title.create_user'|trans }}</legend>
+    <legend><i class="fa fa-lock"></i> {{ 'title.create_user'|trans }}</legend>
 
-	<button type="submit" class="btn btn-primary">
-	    <i class="fa fa-sign-in"></i> {{ 'action.create'|trans }}
-	</button>
+	<form method="get" action="{{ path('user_new') }}">
+		<button type="submit" class="btn btn-primary">
+			<i class="fa fa-sign-in"></i> {{ 'action.create'|trans }}
+		</button>
+	</form>
 </fieldset>

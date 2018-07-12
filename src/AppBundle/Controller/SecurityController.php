@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
 
 /**
@@ -38,7 +37,7 @@ class SecurityController extends Controller
         }
         // Check if user has user role
         else if ($user != null && in_array(User::ROLE_USER, $user->getRoles())) {
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('user_account');
         }
         else {
             $helper = $this->get('security.authentication_utils');
@@ -50,45 +49,6 @@ class SecurityController extends Controller
                 'error' => $helper->getLastAuthenticationError(),
             ]);
         }
-    }
-    
-    
-    /**
-     * @Route("/user", name="security_user")
-     */
-    public function newAction(Request $request)
-    {
-    	
-    	$user = new User();
-    	$form = $this->createForm(UserType::class, $user);
-    	
-    	$form->handleRequest($request);
-    
-    	if ($form->isSubmitted() && $form->isValid()) {
-    		// $form->getData() holds the submitted values
-    		// but, the original `$task` variable has also been updated
-    		$user = $form->getData();
-    		$passwordEncoder = $this->container->get('security.password_encoder');
-    		$encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
-    		$user->setPassword($encodedPassword);
-    		$user->setRoles(array(User::ROLE_USER));
-    		$em = $this->getDoctrine()->getManager();
-    		$em->persist($user);
-    		$em->flush();
-    	
-    		// ... perform some action, such as saving the task to the database
-    		// for example, if Task is a Doctrine entity, save it!
-    		// $em = $this->getDoctrine()->getManager();
-    		// $em->persist($task);
-    		// $em->flush();
-    	
-    		return $this->redirectToRoute('homepage');
-    	}
-    	
-    	return $this->render('security/new.html.twig', array(
-    			'form' => $form->createView(),
-    	));
-    	
     }
 
     /**

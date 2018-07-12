@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use AppBundle\Entity\Purchase;
 use AppBundle\Entity\User;
+use AppBundle\Form\UserType;
 
 
 /**
@@ -22,6 +23,44 @@ use AppBundle\Entity\User;
  */
 class UserController extends Controller
 {
+
+	/**
+     * @Route("/user", name="user_new")
+     */
+    public function newAction(Request $request)
+    {
+    	
+    	$user = new User();
+    	$form = $this->createForm(UserType::class, $user);
+    	
+    	$form->handleRequest($request);
+    
+    	if ($form->isSubmitted() && $form->isValid()) {
+    		// $form->getData() holds the submitted values
+    		// but, the original `$task` variable has also been updated
+    		$user = $form->getData();
+    		$passwordEncoder = $this->container->get('security.password_encoder');
+    		$encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
+    		$user->setPassword($encodedPassword);
+    		$user->setRoles(array(User::ROLE_USER));
+    		$em = $this->getDoctrine()->getManager();
+    		$em->persist($user);
+    		$em->flush();
+    	
+    		// ... perform some action, such as saving the task to the database
+    		// for example, if Task is a Doctrine entity, save it!
+    		// $em = $this->getDoctrine()->getManager();
+    		// $em->persist($task);
+    		// $em->flush();
+    	
+    		return $this->redirectToRoute('homepage');
+    	}
+    	
+    	return $this->render('user/new.html.twig', array(
+    			'form' => $form->createView(),
+    	));
+    	
+    }
 
     /**
      *  @Route("/", name="user_account")    

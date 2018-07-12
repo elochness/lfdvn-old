@@ -13,16 +13,14 @@
 
 {% block main %}
 
-	<p><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a> | <a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></p>
-
-	<h2>{{ 'account.user.title'|trans }}</h2>
-	
 	<article class="box article-large">
 	
-		<p>{{ 'account.lastname'|trans }} : {{ user.lastname }}</p>
-		<p>{{ 'account.firstname'|trans }} : {{ user.firstname }}</p>
-		<p>{{ 'account.cellphone'|trans }} : {{ user.cellphone }}</p>
-		<p>{{ 'account.email'|trans }} : {{ user.email }}</p>
+		<p><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a> | <a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></p>
+		
+		<p>{{ 'Lastname'|trans }} : {{ user.lastname }}</p>
+		<p>{{ 'Firstname'|trans }} : {{ user.firstname }}</p>
+		<p>{{ 'Telephone'|trans }} : {{ user.cellphone }}</p>
+		<p>{{ 'Email'|trans }} : {{ user.username }}</p>
 		
 		<button type="submit" class="btn btn-primary">
 			<i class="fa fa-sign-in"></i> {{ 'account.change_password'|trans }}

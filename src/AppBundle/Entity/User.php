@@ -43,12 +43,6 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank(message="user.username.not_blank")
-     */
-    private $username;
-
-    /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="user.firstname.not_blank")
      */
@@ -65,7 +59,7 @@ class User implements UserInterface
      * @Assert\NotBlank(message="user.email.not_blank")
      * @Assert\Email(message = "user.email.not_email")
      */
-    private $email;
+    private $username;
 
     /**
      * @ORM\Column(type="string")
@@ -207,14 +201,14 @@ class User implements UserInterface
     }
 
 
-    public function getEmail()
+    /*public function getEmail()
     {
         return $this->email;
     }
     public function setEmail($email)
     {
         $this->email = $email;
-    }
+    }*/
 
     /**
      * Set cellphone
