@@ -14,195 +14,42 @@
 {% block main %}
 
 	<h2>{{ 'account.purchase.title'|trans }}</h2>
+    
+	<article class="box article-large">
 	
-    
-    {% if purchases|length > 0 %}
-    
-    	<article class="box article-large">
-            
-            <div class="paragraph">
-				<table>
-					<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-    
-    	{% for purchase in purchases %}
-            <article class="box article-large">
-            
-            	<div class="paragraph">
-					<table>
-						<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-					    {% for purchaseItem in purchase.items %}
-					    	<tr class="purchase-list">
-								<td>
-								{% if purchaseItem.product.image %}
-					                <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
-					            {% else %}
-					                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
-					            {% endif %}
-					            </td>
-					            <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
-								<td class="center">{{ purchaseItem.product.price }} €</td>
-								<td class="center">{{ purchaseItem.quantity }}</td>
-								<td class="center">{{ purchaseItem.price }} €</td>
-							</tr>
-					    {% endfor %}
-						<tr id="tr-total">
-							<td colspan="3">&nbsp;</td>
-							<td class="center"><b>Total</b></td>
-							<td class="center" id="td-total">{{ total }} €</td>
-						</tr>
-					</table>
-				</div>
+		<div class="paragraph">
+			<table>
+				<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
+				{% for purchaseItem in purchase.items %}
+					<tr class="purchase-list">
+						<td>
+						{% if purchaseItem.product.image %}
+							<img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
+						{% else %}
+							<img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
+						{% endif %}
+						</td>
+						<td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
+						<td class="center">{{ purchaseItem.product.price }} €</td>
+						<td class="center">{{ purchaseItem.quantity }}</td>
+						<td class="center">{{ purchaseItem.price }} €</td>
+					</tr>
+				{% endfor %}
+				<tr id="tr-total">
+					<td colspan="3">&nbsp;</td>
+					<td class="center"><b>Total</b></td>
+					<td class="center" id="td-total">{{ total }} €</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h3>{{ 'title.purchase.email.remark'|trans }}</h3>
+		
+		<div class="paragraph">
+			<p>{{ purchase.comment }}</p>
+		</div>
 
-                <div>
-                  {{article.contains | raw }}
-                </div>
-                
-                <h1>{{ 'title.purchase.email.customer'|trans }} : {{ purchase.id }}</h1>
-
-				<h2>{{ 'title.purchase.step4'|trans }}</h2>
-				
-				
-				<h3>{{ 'title.purchase.step3.date'|trans }}</h3>
-				
-				<div class="paragraph">
-					<p>{{ 'title.purchase.step3.date.message'|trans }} : {{ purchase.deliveryDateFormated }}</p>
-				</div>
-				
-				<h3>{{ 'title.purchase.step3.products'|trans }}</h3>
-					
-				<div class="paragraph">
-					<table>
-						<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-					    {% for purchaseItem in purchase.items %}
-					    	<tr class="purchase-list">
-								<td>
-								{% if purchaseItem.product.image %}
-					                <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
-					            {% else %}
-					                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
-					            {% endif %}
-					            </td>
-					            <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
-								<td class="center">{{ purchaseItem.product.price }} €</td>
-								<td class="center">{{ purchaseItem.quantity }}</td>
-								<td class="center">{{ purchaseItem.price }} €</td>
-							</tr>
-					    {% endfor %}
-						<tr id="tr-total">
-							<td colspan="3">&nbsp;</td>
-							<td class="center"><b>Total</b></td>
-							<td class="center" id="td-total">{{ total }} €</td>
-						</tr>
-					</table>
-				</div>
-				
-				<h3>{{ 'title.purchase.email.remark'|trans }}</h3>
-				
-				<div class="paragraph">
-					<p>{{ purchase.comment }}</p>
-				</div>
-
-            </article>
-    
-    {% else %}
-    	<article class="box article-large">
-            <h2>
-                {{ 'account.purchase.no_purchase'|trans }}
-            </h2>
-            <div>
-            	<div class="flex flex-center">
-            		<div >{{ 'purchase.no_found'|trans }}</div>
-            		<div><img class="center" src="{{ asset('images/svg/009-notes.svg') }}" width="128" height="128" alt="Note" /> </div>
-            	</div>
-            </div>
-
-        </article>
-    {% endif %}
-    
-    
-        {% for purchase in purchases %}
-            <article class="box article-large">
-            
-            	<div class="paragraph">
-					<table>
-						<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-					    {% for purchaseItem in purchase.items %}
-					    	<tr class="purchase-list">
-								<td>
-								{% if purchaseItem.product.image %}
-					                <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
-					            {% else %}
-					                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
-					            {% endif %}
-					            </td>
-					            <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
-								<td class="center">{{ purchaseItem.product.price }} €</td>
-								<td class="center">{{ purchaseItem.quantity }}</td>
-								<td class="center">{{ purchaseItem.price }} €</td>
-							</tr>
-					    {% endfor %}
-						<tr id="tr-total">
-							<td colspan="3">&nbsp;</td>
-							<td class="center"><b>Total</b></td>
-							<td class="center" id="td-total">{{ total }} €</td>
-						</tr>
-					</table>
-				</div>
-
-                <div>
-                  {{article.contains | raw }}
-                </div>
-                
-                <h1>{{ 'title.purchase.email.customer'|trans }} : {{ purchase.id }}</h1>
-
-				<h2>{{ 'title.purchase.step4'|trans }}</h2>
-				
-				
-				<h3>{{ 'title.purchase.step3.date'|trans }}</h3>
-				
-				<div class="paragraph">
-					<p>{{ 'title.purchase.step3.date.message'|trans }} : {{ purchase.deliveryDateFormated }}</p>
-				</div>
-				
-				<h3>{{ 'title.purchase.step3.products'|trans }}</h3>
-					
-				<div class="paragraph">
-					<table>
-						<tr class="header"><th>&nbsp;</th><th>&nbsp;</th><th>Prix</th><th>Quantité</th><th>Montant</th></tr>
-					    {% for purchaseItem in purchase.items %}
-					    	<tr class="purchase-list">
-								<td>
-								{% if purchaseItem.product.image %}
-					                <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}" alt="{{ purchaseItem.product.name }}" height="42" width="42" />
-					            {% else %}
-					                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="Produit sans image" height="42" width="42" />
-					            {% endif %}
-					            </td>
-					            <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging}})</td>
-								<td class="center">{{ purchaseItem.product.price }} €</td>
-								<td class="center">{{ purchaseItem.quantity }}</td>
-								<td class="center">{{ purchaseItem.price }} €</td>
-							</tr>
-					    {% endfor %}
-						<tr id="tr-total">
-							<td colspan="3">&nbsp;</td>
-							<td class="center"><b>Total</b></td>
-							<td class="center" id="td-total">{{ total }} €</td>
-						</tr>
-					</table>
-				</div>
-				
-				<h3>{{ 'title.purchase.email.remark'|trans }}</h3>
-				
-				<div class="paragraph">
-					<p>{{ purchase.comment }}</p>
-				</div>
-
-            </article>
-
-        
-    </div>
-
+	</article>
 
 {% endblock %}
 

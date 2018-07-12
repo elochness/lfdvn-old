@@ -101,7 +101,52 @@ class UserController extends Controller
     				'purchases' => $purchases
     		));
     	}
-    }
+	}
+	
+	/**
+     *  @Route("/purchase/{id}", name="user_purchase_show", requirements={"id"="\d+"})
+     *  @Method("GET")
+     */
+	public function purchaseShowIndex($id, SessionInterface $session, UserInterface $user = null)
+    {
+    	// Check if user is connected
+    	if ($user === null) {
+    		// redirect in step 2 isn't connected
+    		return  $this->forward('AppBundle:Article:index');
+    	} else {
+
+			// Recuperate all purchases according to the buyer
+			$purchase = new Purchase();
+    		$purchase = $this->getDoctrine()
+	    		->getRepository(Purchase::class)
+				->findOneById($id);			
+				
+			// Check the purchase and if the user is the owner of the purchase
+			if($purchase == null || $purchase->getBuyer()->getId() != $user->getId()) {
+
+				$purchases = $this->getDoctrine()
+					->getRepository(Purchase::class)
+					->test($user->getId());
+				
+				return $this->render('user/purchase_index.html.twig', array(
+    				'purchases' => $purchases
+    			));
+			} else {
+
+				$total = 0;
+	        
+				foreach ($purchase->getItems() as $item) {
+					$total += $item->getPrice();
+				}
+			
+				return $this->render('user/purchase_show.html.twig', array(
+					'purchase' => $purchase,
+					'total'    => $total
+    			));
+			}  		
+    	}
+	}
+
  
     
 }
