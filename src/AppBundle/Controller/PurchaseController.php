@@ -149,12 +149,12 @@ class PurchaseController extends Controller
 		    	}
 		    	
 		    	// delete data session
-		    	// $session->clear();
+		    	$session->clear();
 		    	
-		    	$this->sendCustomerMail($purchase, $total);
-		    	$this->sendEnterpriseMail($purchase, $total);
+		    	//$this->sendCustomerMail($purchase, $total);
+		    	//$this->sendEnterpriseMail($purchase, $total);
 		    	
-// 		    	return $this->render('purchase/step4.html.twig');
+ 		    	return $this->render('purchase/step4.html.twig');
 // 		    	return $this->render('email/enterprise_purchase.html.twig', array(
 // 	    			'purchase' => $purchase,
 // 	    			'total' => $total
