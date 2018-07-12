@@ -2,6 +2,11 @@
 
 {% block body_id '_index' %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
+{% endblock %}
+
 {% block body_title %}
 	<div class="row">
         <div class="col-sm-12">
@@ -14,8 +19,13 @@
 {% block main %}
 
 	<article class="box article-large">
-	
-		<p><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a> | <a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></p>
+
+		<nav>
+			<ol class="cd-breadcrumb">
+				<li class="current"><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a></li>
+				<li><a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></li>
+			</ol>
+		</nav>
 		
 		<p>{{ 'Lastname'|trans }} : {{ user.lastname }}</p>
 		<p>{{ 'Firstname'|trans }} : {{ user.firstname }}</p>

@@ -2,6 +2,11 @@
 
 {% block body_id '_index' %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/css/breadcrumbs.css"/>
+{% endblock %}
+
 {% block body_title %}
 	<div class="row">
         <div class="col-sm-12">
@@ -15,11 +20,15 @@
 	
 	<article class="box article-large">
 	
-	<p><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a> | <a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></p>
+	<nav>
+		<ol class="cd-breadcrumb custom-separator">
+			<li><a href="{{ path('user_account') }}">{{ 'account.user.title'|trans }}</a></li>
+			<li class="current"><a href="{{ path('user_purchase') }}">{{ 'account.purchase.title'|trans }}</a></li>
+		</ol>
+	</nav>
     
     {% if purchases|length > 0 %}
     
-            
         <div class="paragraph">
 			<table>
 				<tr class="header"><th>N° de commande</th><th>Date de création</th><th>Date de réception</th><th>Nb de produits</th><th>Commentaire</th></tr>
