@@ -12,7 +12,7 @@ easy_admin:
                   - 'codePostal'
                   - 'city'
                   - 'telephone'
-                  - 'email'
+                  - 'username'
             show:
                 title: enterprise_details.show
                 fields:
@@ -21,7 +21,7 @@ easy_admin:
                     - 'codePostal'
                     - 'city'
                     - 'telephone'
-                    - 'email'
+                    - 'username'
             edit:
                 title: enterprise_details.edit
                 fields:
@@ -30,4 +30,4 @@ easy_admin:
                     - 'codePostal'
                     - 'city'
                     - 'telephone'
-                    - 'email'
+                    - 'username'

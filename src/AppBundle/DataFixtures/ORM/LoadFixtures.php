@@ -66,19 +66,17 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $passwordEncoder = $this->container->get('security.password_encoder');
 
         $johnUser = new User();
-        $johnUser->setUsername('john_user');
         $johnUser->setFirstname('john');
         $johnUser->setLastname('user');
-        $johnUser->setEmail('john_user@symfony.com');
+        $johnUser->setUsername('john_user@symfony.com');
         $encodedPassword = $passwordEncoder->encodePassword($johnUser, ' ');
         $johnUser->setPassword($encodedPassword);
         $manager->persist($johnUser);
 
         $annaAdmin = new User();
-        $annaAdmin->setUsername('anna_admin');
         $annaAdmin->setFirstname('anna');
         $annaAdmin->setLastname('admin');
-        $annaAdmin->setEmail('anna_admin@symfony.com');
+        $annaAdmin->setUsername('anna_admin@symfony.com');
         $annaAdmin->setRoles(['ROLE_ADMIN']);
         $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
         $annaAdmin->setPassword($encodedPassword);

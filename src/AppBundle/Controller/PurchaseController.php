@@ -291,7 +291,7 @@ class PurchaseController extends Controller
     private function sendCustomerMail($purchase, $total) {
     	$message = (new \Swift_Message('Récapitulatif de la commande à la Fromagerie du Vignoble Nantais'))
         ->setFrom('test@lafromagerieduvignoblenantais.com')
-        ->setTo($purchase->getBuyer()->getEmail())
+        ->setTo($purchase->getBuyer()->getUsername())
         ->setBody(
         	$this->renderView('email/customer_purchase.html.twig', array(
         			'purchase' => $purchase,
@@ -322,7 +322,7 @@ class PurchaseController extends Controller
     private function sendEnterpriseMail($purchase, $total) {
     	$message = (new \Swift_Message('Nouvelle commande n° ' + $purchase->getId() + 'à la Fromagerie du Vignoble Nantais'))
     	->setFrom('test@lafromagerieduvignoblenantais.com')
-    	->setTo($purchase->getBuyer()->getEmail())
+    	->setTo($purchase->getBuyer()->getUsername())
     	->setBody(
     			$this->renderView('email/enterprise_purchase.html.twig', array(
     					'purchase' => $purchase,
