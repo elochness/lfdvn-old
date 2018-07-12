@@ -12,8 +12,6 @@
 
 
 {% block main %}
-
-	<h2>{{ 'account.purchase.title'|trans }}</h2>
 	
 	<article class="box article-large">
 	
@@ -43,12 +41,9 @@
         
     
     {% else %}
-        <h2>
-            {{ 'account.purchase.no_purchase'|trans }}
-        </h2>
         <div>
         	<div class="flex flex-center">
-        		<div >{{ 'purchase.no_found'|trans }}</div>
+        		<div >{{ 'account.purchase.no_purchase'|trans }}</div>
         		<div><img class="center" src="{{ asset('images/svg/009-notes.svg') }}" width="128" height="128" alt="Note" /> </div>
         	</div>
         </div>
